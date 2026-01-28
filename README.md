@@ -62,5 +62,20 @@ Para ejecutar el proyecto localmente, asegúrate de tener instalado Node.js y si
     npm run build
     ```
 
+## 🌐 Despliegue en GitHub Pages
+
+Este proyecto está configurado para desplegarse automáticamente en GitHub Pages mediante **GitHub Actions**.
+
+### Pasos para activar el despliegue:
+
+1.  **Sube los cambios a GitHub**: Asegúrate de que los archivos `.github/workflows/deploy.yml` y `vite.config.js` están en tu repositorio.
+2.  **Configura el Repositorio**:
+    -   Ve a la pestaña **Settings** (Ajustes) de tu repositorio en GitHub.
+    -   En el menú lateral izquierdo, haz clic en **Pages**.
+    -   En la sección **Build and deployment > Source**, selecciona **GitHub Actions** en el desplegable.
+3.  **¡Listo!**: A partir de ahora, cada vez que hagas un `git push` a la rama `main`, la web se compilará y desplegará automáticamente.
+
+La URL de tu web será algo como: `https://datoscarlesgutierrez-stack.github.io/libreavedriov1/`
+
 ---
 Diseñado y desarrollado para representar la esencia de la agricultura ecológica y el respeto animal.
