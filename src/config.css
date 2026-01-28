@@ -1,0 +1,44 @@
+:root {
+    /* Colors */
+    --color-bg: #fffbf0;
+    --color-text: #2c2c2c;
+    --color-marker: #101010;
+    /* Suave black */
+    --color-accent: #c2410c;
+    --color-secondary: #fef3c7;
+    --color-nav-bg: #fff;
+    --color-form-border: #ccc;
+
+    /* Fonts */
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+
+    /* Spacing */
+    --spacing-section: 4rem;
+    --spacing-container: 1.5rem;
+    --spacing-element: 1rem;
+    --spacing-gap-large: 4rem;
+    --spacing-gap-medium: 2rem;
+
+    /* Sizes */
+    --width-container: 1000px;
+    --width-logo-wrapper: 540px;
+    --width-logo-graphic: 430px;
+    --height-nav: auto;
+    --header-height: 80px;
+
+    /* Logo & Typography Specific */
+    --logo-subtitle-letter-spacing: 0.15em;
+    /* Increased default to compensate for HTML rendering */
+    --logo-subtitle-font-size: 0.85rem;
+
+    /* Bezier Separator */
+    --bezier-stroke-width: 4px;
+
+    /* Animations */
+    --nav-transition-speed: 0.01s;
+
+    /* Scroll/Layout */
+    --scroll-offset: 140px;
+    /* Space between header and content when jumping to anchors */
+}
