@@ -100,11 +100,12 @@
             </div>
         </section>
 
-        <div class="bezier-separator">
-            <!-- Simulated variable stroke using a filled path shape -->
+        <div class="bezier-separator to-alt">
             <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
-                <path
-                    d="M0,30 C200,45 400,15 600,30 C800,45 1000,15 1200,30 C1300,38 1400,28 1440,30 L1440,32 C1400,30 1300,40 1200,32 C1000,17 800,47 600,32 C400,17 200,47 0,32 Z" />
+                <path class="separator-fill"
+                    d="M0,30 C200,45 400,15 600,30 C800,45 1000,15 1200,30 C1300,38 1400,28 1440,30 L1440,60 L0,60 Z" />
+                <path class="separator-stroke"
+                    d="M0,30 C200,45 400,15 600,30 C800,45 1000,15 1200,30 C1300,38 1400,28 1440,30 L1440,33 C1400,31 1300,41 1200,33 C1000,18 800,48 600,33 C400,18 200,48 0,33 Z" />
             </svg>
         </div>
 
@@ -112,29 +113,126 @@
         <section id="huevos" class="content-section alt-bg">
             <div class="container">
                 <h2>HUEVOS CON SABOR REBELDE</h2>
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <span class="emoji-icon">🌲</span>
-                        <h3>ENTORNO</h3>
-                        <p>Naves integradas en plena naturaleza de la Sierra Norte.</p>
+                <div class="features-notes-grid">
+                    <!-- Card 1: Entorno -->
+                    <div class="feature-note-container" style="--note-rot: var(--rot-slight);">
+                        <div class="feature-note-inner">
+                            <div class="feature-note-front">
+                                <span class="emoji-icon">🌲</span>
+                                <h3>ENTORNO</h3>
+                                <p>Nuestras naves están estratégicamente integradas en plena naturaleza de la Sierra
+                                    Norte de Madrid. Las gallinas disponen de espacio real para el pastoreo, rodeadas de
+                                    robledales y aire puro.</p>
+                                <div class="flip-hint">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M17 2l4 4-4 4" />
+                                        <path d="M3 11v-1a4 4 0 0 1 4-4h14" />
+                                        <path d="M7 22l-4-4 4-4" />
+                                        <path d="M21 13v1a4 4 0 0 1-4 4H3" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="feature-note-back">
+                                <p>Nuestras instalaciones se funden con el robledal, garantizando que cada ave disfrute
+                                    de aire puro y libertad de movimiento en un ecosistema preservado.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="feature-item">
-                        <span class="emoji-icon">🥚</span>
-                        <h3>ECOLÓGICO</h3>
-                        <p>Certificación oficial y alimentación 100% bio.</p>
+
+                    <!-- Card 2: Ecológico -->
+                    <div class="feature-note-container" style="--note-rot: var(--rot-bold);">
+                        <div class="feature-note-inner">
+                            <div class="feature-note-front">
+                                <span class="emoji-icon">🥚</span>
+                                <h3>ECOLÓGICO</h3>
+                                <p>Contamos con certificación oficial CAEM. La alimentación es 100% ecológica, libre de
+                                    transgénicos y pesticidas. Priorizamos la salud del suelo y del animal.</p>
+                                <div class="flip-hint">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M17 2l4 4-4 4" />
+                                        <path d="M3 11v-1a4 4 0 0 1 4-4h14" />
+                                        <path d="M7 22l-4-4 4-4" />
+                                        <path d="M21 13v1a4 4 0 0 1-4 4H3" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="feature-note-back">
+                                <p>Certificados por el Comité de Agricultura Ecológica de Madrid, garantizamos un huevo
+                                    libre de químicos, respetando los ciclos naturales del campo.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="feature-item">
-                        <span class="emoji-icon">🤝</span>
-                        <h3>ÉTICO</h3>
-                        <p>Filosofía de respeto total a la vida animal.</p>
+
+                    <!-- Card 3: Ético -->
+                    <div class="feature-note-container" style="--note-rot: var(--rot-chaos);">
+                        <div class="feature-note-inner">
+                            <div class="feature-note-front">
+                                <span class="emoji-icon">🤝</span>
+                                <h3>ÉTICO</h3>
+                                <p>Nuestra filosofía se basa en el respeto total a la vida. Evitamos el estrés, no hay
+                                    jaulas y acompañamos a nuestras aves en todo su ciclo vital.</p>
+                                <div class="flip-hint">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M17 2l4 4-4 4" />
+                                        <path d="M3 11v-1a4 4 0 0 1 4-4h14" />
+                                        <path d="M7 22l-4-4 4-4" />
+                                        <path d="M21 13v1a4 4 0 0 1-4 4H3" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="feature-note-back">
+                                <p>Entendemos el bienestar animal como un compromiso moral. Sin jaulas, sin luz
+                                    artificial forzada y respetando el descanso natural de cada ave.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Precio -->
+                    <div class="feature-note-container" style="--note-rot: 1deg;">
+                        <div class="feature-note-inner" id="price-card">
+                            <div class="feature-note-front">
+                                <span class="emoji-icon">💶</span>
+                                <h3>NUESTRO PRECIO</h3>
+                                <div class="price-details">
+                                    <p><strong>El valor de lo artesano:</strong> 1€ / huevo aprox.</p>
+                                    <ul>
+                                        <li>📦 6 Huevos: <strong>6€</strong></li>
+                                        <li>📦 12 Huevos: <strong>12€</strong></li>
+                                        <li>📦 24 Huevos: <strong>24€</strong></li>
+                                    </ul>
+                                    <p class="price-footer">Hay posibilidad de descuentos.</p>
+                                </div>
+                                <div class="flip-hint">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M17 2l4 4-4 4" />
+                                        <path d="M3 11v-1a4 4 0 0 1 4-4h14" />
+                                        <path d="M7 22l-4-4 4-4" />
+                                        <path d="M21 13v1a4 4 0 0 1-4 4H3" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="feature-note-back">
+                                <p>Repartimos directamente en Madrid y la Sierra. Pregúntanos por entregas a grupos de
+                                    consumo o suscripciones mensuales con descuento.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <div class="bezier-separator">
+        <div class="bezier-separator from-alt">
             <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
-                <path d="M0,30 C300,10 900,50 1440,30 L1440,33 C900,53 300,13 0,33 Z" />
+                <path class="separator-fill" d="M0,30 C300,10 900,50 1440,30 L1440,60 L0,60 Z" />
+                <path class="separator-stroke" d="M0,30 C300,10 900,50 1440,30 L1440,33 C900,53 300,13 0,33 Z" />
             </svg>
         </div>
 
@@ -160,14 +258,15 @@
             </div>
         </section>
 
-        <div class="bezier-separator">
+        <div class="bezier-separator to-alt">
             <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
-                <path d="M0,30 Q720,55 1440,30 L1440,33 Q720,58 0,33 Z" />
+                <path class="separator-fill" d="M0,30 Q720,55 1440,30 L1440,60 L0,60 Z" />
+                <path class="separator-stroke" d="M0,30 Q720,55 1440,30 L1440,33 Q720,58 0,33 Z" />
             </svg>
         </div>
 
         <!-- Section: Contacto / Formulario -->
-        <section id="contacto" class="content-section">
+        <section id="contacto" class="content-section alt-bg">
             <div class="container contact-container">
                 <h2>CONTACTO Y PEDIDOS</h2>
                 <p class="intro-contact">No tenemos tienda online automática. Preferimos el trato directo y artesanal.
@@ -224,6 +323,13 @@
             </div>
         </section>
 
+        <div class="bezier-separator from-alt">
+            <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+                <path class="separator-fill" d="M0,30 C300,50 1100,10 1440,30 L1440,60 L0,60 Z" />
+                <path class="separator-stroke" d="M0,30 C300,50 1100,10 1440,30 L1440,33 C1100,13 300,53 0,33 Z" />
+            </svg>
+        </div>
+
     </main>
 
     <footer class="main-footer">
@@ -232,8 +338,7 @@
             <p>Piñuécar-Gandullas, Madrid</p>
             <p>hola@libreavedrio.com</p>
             <div class="footer-legal">
-                <p>© 2026 Libreavedrio. Los datos del formulario se usan solo para gestionar tu pedido y enviarte
-                    noticias si lo has solicitado. No rastreamos tu navegación.</p>
+                <p>© 2026 Libreavedrio.</p>
             </div>
         </div>
     </footer>

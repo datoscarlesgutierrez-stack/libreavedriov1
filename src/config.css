@@ -1,13 +1,24 @@
 :root {
-    /* Colors */
-    --color-bg: #fffbf0;
-    --color-text: #2c2c2c;
-    --color-marker: #101010;
-    /* Suave black */
-    --color-accent: #c2410c;
-    --color-secondary: #fef3c7;
-    --color-nav-bg: #fff;
-    --color-form-border: #ccc;
+    /* Colors - webAnarquica Style */
+    /* Brand Colors - Extracted from Logo */
+    --color-bg: #e9e7e7;
+    /*#fdfbf7;*/
+    /* Organic Off-white */
+    --color-bg-alt: #fff5ed;
+    /* Soft Beige (Alternate sections) */
+    --color-text: #1a1a1a;
+    /* Charcoal Black */
+    --color-marker: #8a0c20;
+    /* Deep Red / Maroon */
+    --color-accent: #d97d3a;
+    /* Terracotta Orange */
+    --color-secondary: #1a1a1a;
+    /* Charcoal / Black */
+    --color-clash: #8a0c20;
+    /* Consistent Maroon */
+    --color-nav-bg: #fdfbf7;
+    /* Light background for nav */
+    --color-form-border: #1a1a1a;
 
     /* Fonts */
     --font-heading: 'Montserrat', sans-serif;
@@ -25,18 +36,54 @@
     --width-logo-wrapper: 540px;
     --width-logo-graphic: 430px;
     --height-nav: auto;
-    --header-height: 80px;
+    --header-height: 60px;
 
     /* Logo & Typography Specific */
-    --logo-subtitle-letter-spacing: 0.15em;
-    /* Increased default to compensate for HTML rendering */
-    --logo-subtitle-font-size: 0.85rem;
+    --logo-subtitle-letter-spacing: 0.1em;
+    --logo-subtitle-font-size: 1.1rem;
+    --logo-subtitle-font-weight: 600;
+    /* Configurable weight - set to normal */
+    --logo-subtitle-font-style: normal;
+    /* Configurable style */
+    --logo-subtitle-max-width: 100%;
+    /* Configurable max-width */
+    --logo-subtitle-width: auto;
+    /* Configurable width */
 
     /* Bezier Separator */
     --bezier-stroke-width: 4px;
 
+    /* Anarchy Tokens */
+    --rot-slight: -1.5deg;
+    --rot-bold: 3deg;
+    --rot-chaos: -5deg;
+    --offset-chaos: -20px;
+    --shadow-opacity: 0.15;
+    /* Configurable opacity */
+    --shadow-color: 0, 0, 0;
+    /* Base color for shadows (RGB) */
+    --shadow-bold: 10px 10px 0px rgba(var(--shadow-color), var(--shadow-opacity));
+
     /* Animations */
-    --nav-transition-speed: 0.01s;
+    --nav-transition-speed: 0.2s;
+
+    /* Feature Card Refinements */
+    --note-font-size: 0.95rem;
+    --note-padding-top: 1.5rem;
+    --note-title-line-height: 1.1;
+    --note-text-line-height: 1.4;
+    --note-font-front: var(--font-body);
+    --note-font-back: var(--font-body);
+
+    /* Header & Nav Positioning */
+    --nav-position-offset: 0px;
+    /* Adjust centering (positive = down, negative = up) */
+    --nav-sticky-top: 10px;
+    /* Where it sticks when scrolling down */
+    --nav-mobile-sticky-type: relative;
+    /*sticky;*/
+
+    /* Set to 'relative' to disable sticky on mobile */
 
     /* Scroll/Layout */
     --scroll-offset: 140px;

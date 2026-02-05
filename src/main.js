@@ -140,4 +140,34 @@ document.addEventListener('DOMContentLoaded', () => {
             if (phoneInput) phoneInput.value = "+34 ";
         });
     }
+
+    // Feature Cards Flip Logic
+    const flipCards = document.querySelectorAll('.feature-note-inner');
+    flipCards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent bubbling that might trigger multiple flips
+            card.classList.toggle('is-flipped');
+        });
+    });
+
+    // Mobile Scroll Highlight Logic
+    if ('IntersectionObserver' in window) {
+        const observerOptions = {
+            root: null,
+            rootMargin: '-40% 0% -40% 0%', // Target the center of the screen
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-centered');
+                } else {
+                    entry.target.classList.remove('is-centered');
+                }
+            });
+        }, observerOptions);
+
+        flipCards.forEach(card => observer.observe(card));
+    }
 });
