@@ -1,0 +1,5 @@
+<svg viewBox="0 0 1200 20" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Thicker horizontal stroke with slightly irregular ends and jitter -->
+  <path d="M0,8 L50,9 L100,7 L200,8 L350,7 L500,9 L700,8 L950,7 L1100,9 L1200,8 L1200,12 L1050,11 L800,13 L550,11 L300,12 L100,13 L0,12 Z" 
+        fill="black"/>
+</svg>
