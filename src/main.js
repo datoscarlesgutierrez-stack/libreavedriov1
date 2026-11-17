@@ -3,20 +3,20 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Hero Slideshow (Runs continuously on all pages)
+    // 1. Hero Background: Rotación secuencial al cambiar de página (sin carrusel automático)
     const heroSlides = document.querySelectorAll('.hero-slide');
-    if (heroSlides.length > 1) {
-        let heroCurrent = 0;
-        const heroIntervalVar = getComputedStyle(document.documentElement)
-            .getPropertyValue('--hero-slide-interval')
-            .trim();
-        const heroInterval = parseInt(heroIntervalVar) || 3000;
+    if (heroSlides.length > 0) {
+        // Obtenemos el índice guardado de la última imagen vista en la sesión
+        const lastIndex = parseInt(sessionStorage.getItem('hero_slide_index') || '0', 10);
+        
+        // Asignamos la imagen correspondiente a esta página
+        heroSlides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === lastIndex);
+        });
 
-        setInterval(() => {
-            heroSlides[heroCurrent].classList.remove('active');
-            heroCurrent = (heroCurrent + 1) % heroSlides.length;
-            heroSlides[heroCurrent].classList.add('active');
-        }, heroInterval);
+        // Preparamos el índice de la siguiente imagen para cuando el usuario cambie de página
+        const nextIndex = (lastIndex + 1) % heroSlides.length;
+        sessionStorage.setItem('hero_slide_index', nextIndex.toString());
     }
 
     // 2. Cinematic Initial Intro Animation (Only on Home page first visit)
