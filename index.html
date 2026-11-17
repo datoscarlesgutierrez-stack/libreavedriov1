@@ -5,129 +5,76 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Granja Avícola Ecológica</title>
+    <title>Libreavedrio | Granja Avícola Ecológica</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600;700&family=Indie+Flower&display=swap"
         rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- 1. Hero Section (Image/Video + Centered Logo) -->
+    <!-- 1. Hero Section (Slideshow + Centered Logo + Nav inside photo frame) -->
     <section class="hero-intro">
-        <div class="hero-bg">
-            <img src="images/hero_bg.png" alt="Bosque Granja" class="hero-image">
+        <div class="hero-bg" id="hero-slideshow">
+            <img src="images/hero_bg.png" alt="Bosque Granja 1" class="hero-slide active">
+            <img src="images/bosque_1.jpg" alt="Bosque Granja 2" class="hero-slide">
+            <img src="images/bosque_2.jpg" alt="Bosque Granja 3" class="hero-slide">
+            <img src="images/bosque_3.jpg" alt="Bosque Granja 4" class="hero-slide">
+            <img src="images/bosque_4.jpg" alt="Bosque Granja 5" class="hero-slide">
+            <img src="images/bosque_5.jpg" alt="Bosque Granja 6" class="hero-slide">
+            <img src="images/bosque_6.jpg" alt="Bosque Granja 7" class="hero-slide">
+            <img src="images/bosque_7.jpg" alt="Bosque Granja 8" class="hero-slide">
+            <img src="images/bosque_8.jpg" alt="Bosque Granja 9" class="hero-slide">
         </div>
 
+        <div class="hero-overlay"></div>
+
         <div class="hero-content">
+
+
             <div class="logo-wrapper">
-                <img src="images/logo_clean.png" alt="Libreavedrio Graphic" class="main-logo-graphic" width="1118"
-                    height="295">
+                <a href="index.html" class="logo-link" title="Inicio - Granja Libreavedrio">
+                    <img src="images/logo_clean.png" alt="Libreavedrio Graphic" class="main-logo-graphic" width="1118"
+                        height="295">
+                </a>
                 <p class="logo-subtitle">Granja avícola ecológica Sierra Norte de Madrid</p>
             </div>
         </div>
+
+        <!-- Navigation inside the hero background frame -->
+        <header class="sticky-nav" id="main-nav">
+            <div class="container nav-container">
+                <nav class="main-menu">
+                    <div class="nav-dropdown">
+                        <button type="button" class="nav-item nav-dropdown-btn" aria-haspopup="true">
+                            ¿QUIÉNES SOMOS? <span class="dropdown-arrow">▾</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="historia.html" class="dropdown-item">HISTORIA DEL PROYECTO</a>
+                            <a href="principios.html" class="dropdown-item">PRINCIPIOS IDEOLÓGICOS <span class="tag-wip">EN CONSTRUCCIÓN</span></a>
+                        </div>
+                    </div>
+                    <a href="granja.html" class="nav-item">LA GRANJA</a>
+                    <span class="nav-item nav-item-disabled" title="Próximamente">TIENDA <span class="badge-disabled">PRONTO</span></span>
+                    <a href="contacto.html" class="nav-item">CONTACTO</a>
+                    <span class="nav-item nav-item-disabled" title="Próximamente">LO QUE ES LA VIDA <span class="badge-disabled">PRONTO</span></span>
+                </nav>
+            </div>
+        </header>
     </section>
 
-    <header class="sticky-nav">
-        <div class="container nav-container">
-            <nav class="main-menu">
-                <a href="#granja" class="nav-item">LA GRANJA</a>
-                <a href="#huevos" class="nav-item">NUESTROS HUEVOS</a>
-                <a href="#ubicacion" class="nav-item">UBICACIÓN</a>
-                <a href="#contacto" class="nav-item">CONTACTO / PEDIDOS</a>
-            </nav>
-        </div>
-    </header>
-
     <main>
-        <!-- Section: La Granja (Keila y Tamayo) -->
-        <!-- Section: La Granja (Keila y Tamayo) -->
-        <section id="granja" class="content-section">
+        <!-- Intro Section Home -->
+        <section class="content-section intro-home-section">
             <div class="container">
-                <h2>LA GRANJA</h2>
-
-                <div class="granja-grid">
-                    <!-- Left: Polaroid Slider -->
-                    <div class="granja-visuals">
-                        <div class="polaroid-wrapper">
-                            <div class="polaroid-frame">
-                                <span class="tape-corner top-left"></span>
-                                <span class="tape-corner bottom-right"></span>
-                                <div class="polaroid-image-container">
-                                    <img src="images/granja_1.png" alt="Granja Libreavedrio" title="Keila y Tamayo"
-                                        class="polaroid-img active">
-                                    <img src="images/granja_2.jpg" alt="Interior Naves" title="Nuestras Naves"
-                                        class="polaroid-img">
-                                    <img src="images/granja_3.png" alt="Exterior" title="Entorno Natural"
-                                        class="polaroid-img">
-                                    <img src="images/granja_4.png" alt="Gallinas" title="Bienestar Animal"
-                                        class="polaroid-img">
-                                </div>
-                                <div class="polaroid-caption">Keila y Tamayo</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right: Content -->
-                    <div class="text-block">
-                        <p><strong>Keila Martín Betancor y Miguel Tamayo Belda.</strong> Libreavedrio nace de nuestras
-                            ganas
-                            de emprender un proyecto de producción primaria, cooperativo y de apoyo mutuo. Somos
-                            personas
-                            vegetarianas desde hace décadas, y entendemos el bienestar animal como una prioridad
-                            absoluta.
-                        </p>
-
-                        <div class="housing-container">
-                            <h3>Nuestras Naves</h3>
-                            <p>Contamos con <strong>2 naves</strong> de un máximo de <strong>1.500 gallinas</strong>
-                                cada
-                                una. A diferencia de lo que se suele imaginar, nuestras aves no viven bajo árboles;
-                                residen
-                                en naves diseñadas para garantizar su seguridad y bienestar óptimo. Estas naves nos
-                                permiten
-                                un control exhaustivo de su salud y alimentación, manteniendo siempre una transparencia
-                                total en nuestros procesos.</p>
-                        </div>
-
-                        <p class="highlight-text">Evitamos el sacrificio de las aves por "baja rentabilidad" y apoyamos
-                            el
-                            sexado in ovo para terminar con el sacrificio de pollitos macho.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="bezier-separator">
-            <!-- Simulated variable stroke using a filled path shape -->
-            <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
-                <path
-                    d="M0,30 C200,45 400,15 600,30 C800,45 1000,15 1200,30 C1300,38 1400,28 1440,30 L1440,32 C1400,30 1300,40 1200,32 C1000,17 800,47 600,32 C400,17 200,47 0,32 Z" />
-            </svg>
-        </div>
-
-        <!-- Section: Nuestros Huevos -->
-        <section id="huevos" class="content-section alt-bg">
-            <div class="container">
-                <h2>HUEVOS CON SABOR REBELDE</h2>
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <span class="emoji-icon">🌲</span>
-                        <h3>ENTORNO</h3>
-                        <p>Naves integradas en plena naturaleza de la Sierra Norte.</p>
-                    </div>
-                    <div class="feature-item">
-                        <span class="emoji-icon">🥚</span>
-                        <h3>ECOLÓGICO</h3>
-                        <p>Certificación oficial y alimentación 100% bio.</p>
-                    </div>
-                    <div class="feature-item">
-                        <span class="emoji-icon">🤝</span>
-                        <h3>ÉTICO</h3>
-                        <p>Filosofía de respeto total a la vida animal.</p>
-                    </div>
+                <div class="home-intro-card">
+                    <h2 class="home-intro-title">Huevos ecológicos desde la Sierra Norte de Madrid</h2>
+                    <p class="home-intro-text">
+                        Nuestra granja apuesta por la sostenibilidad, el bienestar animal y la transparencia. Queremos compartir nuestro camino desde el inicio y ofrecer huevos de calidad con un impacto positivo en el medio ambiente.
+                    </p>
+                    <a href="granja.html" class="btn-primary-organic">CONOCE LA GRANJA</a>
                 </div>
             </div>
         </section>
@@ -138,107 +85,51 @@
             </svg>
         </div>
 
-        <!-- Section: Ubicación -->
+        <!-- Section: Ubicación (Cómo llegar) -->
         <section id="ubicacion" class="content-section">
             <div class="container map-section-container">
                 <h2>CÓMO LLEGAR</h2>
                 <div class="map-grid">
                     <div class="map-info">
-                        <p>En el término municipal de <strong>Piñuécar-Gandullas</strong>.</p>
+                        <p>En el término municipal de <strong>Piñuécar-Gandullas</strong> (Madrid).</p>
                         <ul class="location-details">
                             <li>📍 A 3 min de la salida 83 de la A1 dirección Aoslos.</li>
-                            <li>📍 A 10 min de Buitrago de Lozoya.</li>
+                            <li>📍 A 10 min de Buitrago del Lozoya.</li>
                         </ul>
-                        <a href="https://maps.app.goo.gl/NW9Fr1s6UscKuGtw5" target="_blank" class="btn-maps">
-                            VER EN GOOGLE MAPS
-                        </a>
+                        <div class="map-buttons-group">
+                            <a href="https://www.google.com/maps?q=41.055714517046276,-3.6072308811227165" target="_blank" rel="noopener" class="btn-maps">
+                                VER EN GOOGLE MAPS
+                            </a>
+                        </div>
                     </div>
-                    <div class="map-image-wrapper">
-                        <img src="images/mapa_zona.png" alt="Mapa de acceso Libreavedrio" class="map-image-sketch">
+                    <div class="map-display-wrapper">
+                        <div id="osm-map" class="map-canvas"></div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <div class="bezier-separator">
-            <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
-                <path d="M0,30 Q720,55 1440,30 L1440,33 Q720,58 0,33 Z" />
-            </svg>
-        </div>
-
-        <!-- Section: Contacto / Formulario -->
-        <section id="contacto" class="content-section">
-            <div class="container contact-container">
-                <h2>CONTACTO Y PEDIDOS</h2>
-                <p class="intro-contact">No tenemos tienda online automática. Preferimos el trato directo y artesanal.
-                    Repartimos en <strong>Madrid y Sierra Norte</strong> (semanalmente) y trabajamos mucho con grupos de
-                    consumo.</p>
-
-                <div class="form-wrapper">
-                    <p>Escríbenos para organizar tu pedido, proponer un grupo de consumo o incluso un trueque.</p>
-
-                    <!-- Simple Form Structure -->
-                    <!-- Improved AJAX Form -->
-                    <form id="contact-form" action="https://formspree.io/f/xlgbkgok" method="POST" class="contact-form">
-                        <div class="form-group">
-                            <label for="name">Nombre</label>
-                            <input type="text" id="name" name="name" required placeholder="Tu nombre">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required placeholder="tucorreo@ejemplo.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="tel">Teléfono (WhatsApp)</label>
-                            <input type="tel" id="tel" name="tel" required value="+34 " pattern="^(\+34\s?)[6789]\d{8}$"
-                                title="Formato: +34 seguido de 9 números">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Mensaje / Pedido</label>
-                            <textarea id="message" name="message" rows="5" required
-                                placeholder="Hola Keila y Tamayo, me gustaría..."></textarea>
-                        </div>
-                        <div class="form-group checkbox-group">
-                            <input type="checkbox" id="newsletter" name="newsletter">
-                            <label for="newsletter" class="checkbox-label">Quiero recibir noticias y ofertas de la
-                                granja</label>
-                        </div>
-                        <div class="form-group checkbox-group">
-                            <input type="checkbox" id="privacy" name="privacy" required>
-                            <label for="privacy" class="checkbox-label">He leído y acepto la <a href="#privacidad"
-                                    id="open-privacy">política de privacidad</a></label>
-                        </div>
-                        <button type="submit" id="submit-button" class="btn-submit">ENVIAR EN UN CLIC</button>
-                        <div id="form-status-error" class="form-status error" style="display: none;"></div>
-                    </form>
-
-                    <!-- Success State (Hidden by default) -->
-                    <div id="form-success" class="form-success-container" style="display: none;">
-                        <span class="emoji-success">🌿</span>
-                        <h3>¡MENSAJE RECIBIDO!</h3>
-                        <p>Gracias por vuestro pedido/mensaje. Os responderemos lo antes posible.</p>
-                        <button id="reset-form" class="btn-reset">ENVIAR OTRO MENSAJE</button>
-                    </div>
-                    <!-- Note: Formspree is a placeholder for generic form handling without backend, user can replace action -->
-                </div>
-            </div>
-        </section>
-
     </main>
+
+    <div class="bezier-separator">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+            <path d="M0,30 Q720,55 1440,30 L1440,33 Q720,58 0,33 Z" />
+        </svg>
+    </div>
 
     <footer class="main-footer">
         <div class="container">
-            <img src="images/logo_clean.png" alt="Libreavedrio Footer" class="footer-logo-small" id="footer-logo-top">
+            <a href="index.html">
+                <img src="images/logo_clean.png" alt="Libreavedrio Footer" class="footer-logo-small" id="footer-logo-top">
+            </a>
             <p>Piñuécar-Gandullas, Madrid</p>
             <p>hola@libreavedrio.com</p>
             <div class="footer-legal">
-                <p>© 2026 Libreavedrio. Los datos del formulario se usan solo para gestionar tu pedido y enviarte
-                    noticias si lo has solicitado. No rastreamos tu navegación.</p>
+                <p>© 2026 Libreavedrio. Granja avícola ecológica Sierra Norte de Madrid. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <script type="module" src="src/main.js"></script>
+    <script type="module" src="./src/main.js"></script>
 </body>
 
 </html>

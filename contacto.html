@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contacto y Pedidos | Libreavedrio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600;700&family=Indie+Flower&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Hero Section with Slideshow & Menu inside frame -->
+    <section class="hero-intro">
+        <div class="hero-bg" id="hero-slideshow">
+            <img src="images/hero_bg.png" alt="Bosque Granja 1" class="hero-slide active">
+            <img src="images/bosque_1.jpg" alt="Bosque Granja 2" class="hero-slide">
+            <img src="images/bosque_2.jpg" alt="Bosque Granja 3" class="hero-slide">
+            <img src="images/bosque_3.jpg" alt="Bosque Granja 4" class="hero-slide">
+            <img src="images/bosque_4.jpg" alt="Bosque Granja 5" class="hero-slide">
+            <img src="images/bosque_5.jpg" alt="Bosque Granja 6" class="hero-slide">
+            <img src="images/bosque_6.jpg" alt="Bosque Granja 7" class="hero-slide">
+            <img src="images/bosque_7.jpg" alt="Bosque Granja 8" class="hero-slide">
+            <img src="images/bosque_8.jpg" alt="Bosque Granja 9" class="hero-slide">
+        </div>
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+
+
+            <div class="logo-wrapper">
+                <a href="index.html" class="logo-link" title="Inicio - Granja Libreavedrio">
+                    <img src="images/logo_clean.png" alt="Libreavedrio Graphic" class="main-logo-graphic" width="1118"
+                        height="295">
+                </a>
+                <p class="logo-subtitle">Granja avícola ecológica Sierra Norte de Madrid</p>
+            </div>
+        </div>
+
+        <!-- Navigation inside the hero background frame -->
+        <header class="sticky-nav" id="main-nav">
+            <div class="container nav-container">
+                <nav class="main-menu">
+                    <div class="nav-dropdown">
+                        <button type="button" class="nav-item nav-dropdown-btn" aria-haspopup="true">
+                            ¿QUIÉNES SOMOS? <span class="dropdown-arrow">▾</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="historia.html" class="dropdown-item">HISTORIA DEL PROYECTO</a>
+                            <a href="principios.html" class="dropdown-item">PRINCIPIOS IDEOLÓGICOS <span class="tag-wip">EN CONSTRUCCIÓN</span></a>
+                        </div>
+                    </div>
+                    <a href="granja.html" class="nav-item">LA GRANJA</a>
+                    <span class="nav-item nav-item-disabled" title="Próximamente">TIENDA <span class="badge-disabled">PRONTO</span></span>
+                    <a href="contacto.html" class="nav-item active">CONTACTO</a>
+                    <span class="nav-item nav-item-disabled" title="Próximamente">LO QUE ES LA VIDA <span class="badge-disabled">PRONTO</span></span>
+                </nav>
+            </div>
+        </header>
+    </section>
+
+    <main>
+        <!-- Section: Contacto / Formulario -->
+        <section class="content-section">
+            <div class="container contact-container">
+                <div class="page-header">
+                    <h2>CONTACTO Y PEDIDOS</h2>
+                    <p class="intro-contact">
+                        No tenemos tienda online automática: preferimos el <strong>trato directo, artesanal y cercano</strong>. Repartimos semanalmente en <strong>Madrid y la Sierra Norte</strong> y trabajamos de forma prioritaria con grupos de consumo y personas comprometidas.
+                    </p>
+                </div>
+
+                <div class="form-wrapper">
+                    <p style="font-weight: 600; margin-bottom: 1.5rem; color: #333;">
+                        Escríbenos para organizar tu pedido, proponer un nuevo grupo de consumo o plantear un trueque:
+                    </p>
+
+                    <!-- AJAX Form -->
+                    <form id="contact-form" action="https://formspree.io/f/xlgbkgok" method="POST" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Nombre</label>
+                            <input type="text" id="name" name="name" required placeholder="Tu nombre y apellidos">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="tucorreo@ejemplo.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="tel">Teléfono (WhatsApp)</label>
+                            <input type="tel" id="tel" name="tel" required value="+34 " pattern="^(\+34\s?)[6789]\d{8}$"
+                                title="Formato: +34 seguido de 9 números">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensaje / Pedido / Propuesta</label>
+                            <textarea id="message" name="message" rows="5" required
+                                placeholder="Hola Keila y Tamayo, me gustaría consultar..."></textarea>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="newsletter" name="newsletter">
+                            <label for="newsletter" class="checkbox-label">Quiero recibir noticias y ofertas de la granja</label>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="privacy" name="privacy" required>
+                            <label for="privacy" class="checkbox-label">He leído y acepto la política de privacidad</label>
+                        </div>
+                        <button type="submit" id="submit-button" class="btn-submit">ENVIAR EN UN CLIC</button>
+                        <div id="form-status-error" class="form-status error" style="display: none;"></div>
+                    </form>
+
+                    <!-- Success State (Hidden by default) -->
+                    <div id="form-success" class="form-success-container" style="display: none;">
+                        <span class="emoji-success">🌿</span>
+                        <h3>¡MENSAJE RECIBIDO!</h3>
+                        <p>Muchas gracias por escribirnos. Os responderemos lo antes posible.</p>
+                        <button id="reset-form" class="btn-reset">ENVIAR OTRO MENSAJE</button>
+                    </div>
+                </div>
+
+                <!-- Tarjeta adicional de contacto directo -->
+                <div class="section-block" style="margin-top: 3rem; text-align: center;">
+                    <h3>📍 Información de contacto directa</h3>
+                    <p><strong>Granja Libreavedrio</strong> — Piñuécar-Gandullas (Madrid)</p>
+                    <p>📧 Correo: <a href="mailto:hola@libreavedrio.com" style="color: var(--color-accent); font-weight: 700;">hola@libreavedrio.com</a></p>
+                    <p>🚚 Reparto directo semanal en Madrid y comarca de la Sierra Norte.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="bezier-separator">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+            <path d="M0,30 Q720,55 1440,30 L1440,33 Q720,58 0,33 Z" />
+        </svg>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <a href="index.html">
+                <img src="images/logo_clean.png" alt="Libreavedrio Footer" class="footer-logo-small" id="footer-logo-top">
+            </a>
+            <p>Piñuécar-Gandullas, Madrid</p>
+            <p>hola@libreavedrio.com</p>
+            <div class="footer-legal">
+                <p>© 2026 Libreavedrio. Los datos del formulario se usan exclusivamente para gestionar tu consulta o pedido. No rastreamos tu navegación.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="./src/main.js"></script>
+</body>
+
+</html>
+

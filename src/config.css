@@ -23,9 +23,10 @@
     /* Sizes */
     --width-container: 1000px;
     --width-logo-wrapper: 540px;
-    --width-logo-graphic: 430px;
+    --width-logo-graphic: 380px;
     --height-nav: auto;
-    --header-height: 80px;
+    --header-height: 65px;
+    --hero-compact-height: 330px; /* Altura compacta típica de cabecera web */
 
     /* Logo & Typography Specific */
     --logo-subtitle-letter-spacing: 0.15em;
@@ -35,10 +36,17 @@
     /* Bezier Separator */
     --bezier-stroke-width: 4px;
 
+    /* Hero Slideshow */
+    --hero-slide-interval: 3000ms; /* Tiempo de cada foto en el hero (3 segundos) */
+    --hero-slide-transition: 1000ms; /* Duración del fundido suave entre fotos */
+
+    /* Map Aesthetics */
+    --map-filter: sepia(0.28) saturate(0.85) contrast(0.96) brightness(0.98); /* Filtro estético para OpenStreetMap */
+
     /* Animations */
-    --nav-transition-speed: 0.01s;
+    --nav-transition-speed: 0.2s;
 
     /* Scroll/Layout */
-    --scroll-offset: 140px;
+    --scroll-offset: 100px;
     /* Space between header and content when jumping to anchors */
 }
