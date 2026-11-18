@@ -18,16 +18,31 @@
     <!-- 1. Hero Section (Slideshow + Centered Logo + Nav inside photo frame) -->
     <section class="hero-intro">
         <div class="hero-bg" id="hero-slideshow">
-            <img src="images/hero_bg.png" alt="Bosque Granja 1" class="hero-slide active">
-            <img src="images/bosque_1.jpg" alt="Bosque Granja 2" class="hero-slide">
-            <img src="images/bosque_2.jpg" alt="Bosque Granja 3" class="hero-slide">
-            <img src="images/bosque_3.jpg" alt="Bosque Granja 4" class="hero-slide">
-            <img src="images/bosque_4.jpg" alt="Bosque Granja 5" class="hero-slide">
-            <img src="images/bosque_5.jpg" alt="Bosque Granja 6" class="hero-slide">
-            <img src="images/bosque_6.jpg" alt="Bosque Granja 7" class="hero-slide">
-            <img src="images/bosque_7.jpg" alt="Bosque Granja 8" class="hero-slide">
-            <img src="images/bosque_8.jpg" alt="Bosque Granja 9" class="hero-slide">
+            <img src="images/bosque_1.jpg" alt="Bosque Granja 1" class="hero-slide">
+            <img src="images/bosque_2.jpg" alt="Bosque Granja 2" class="hero-slide">
+            <img src="images/bosque_3.jpg" alt="Bosque Granja 3" class="hero-slide">
+            <img src="images/bosque_4.jpg" alt="Bosque Granja 4" class="hero-slide">
+            <img src="images/bosque_5.jpg" alt="Bosque Granja 5" class="hero-slide">
+            <img src="images/bosque_6.jpg" alt="Bosque Granja 6" class="hero-slide">
+            <img src="images/bosque_7.jpg" alt="Bosque Granja 7" class="hero-slide">
+            <img src="images/bosque_8.jpg" alt="Bosque Granja 8" class="hero-slide">
         </div>
+        <script>
+            (function () {
+                const slides = document.querySelectorAll('#hero-slideshow .hero-slide');
+                if (!slides.length) return;
+                let idx = sessionStorage.getItem('hero_slide_index');
+                if (idx === null || isNaN(parseInt(idx, 10))) {
+                    idx = Math.floor(Math.random() * slides.length);
+                    sessionStorage.setItem('hero_slide_index', idx);
+                } else {
+                    idx = parseInt(idx, 10) % slides.length;
+                }
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].classList.toggle('active', i === idx);
+                }
+            })();
+        </script>
 
         <div class="hero-overlay"></div>
 
@@ -36,8 +51,8 @@
 
             <div class="logo-wrapper">
                 <a href="index.html" class="logo-link" title="Inicio - Granja Libreavedrio">
-                    <img src="images/logo.svg" alt="Libreavedrio Graphic" class="main-logo-graphic" width="4130"
-                        height="1305">
+                    <img src="images/logo.svg" alt="Libreavedrio Graphic" class="main-logo-graphic" width="3784"
+                        height="1011">
                 </a>
                 <p class="logo-subtitle">Granja avícola ecológica Sierra Norte de Madrid</p>
             </div>
@@ -47,6 +62,7 @@
         <header class="sticky-nav" id="main-nav">
             <div class="container nav-container">
                 <nav class="main-menu">
+                    <a href="index.html" class="nav-item active">INICIO</a>
                     <div class="nav-dropdown">
                         <button type="button" class="nav-item nav-dropdown-btn" aria-haspopup="true">
                             ¿QUIÉNES SOMOS? <span class="dropdown-arrow">▾</span>

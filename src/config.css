@@ -1,52 +1,97 @@
+/* =============================================================================
+   LIBREAVEDRIO — ARCHIVO DE CONFIGURACIÓN CENTRAL
+   Toca solo este archivo para personalizar la web.
+   Todos los parámetros están agrupados por sección/página.
+   ============================================================================= */
+
 :root {
-    /* Colors */
-    --color-bg: #fffbf0;
-    --color-text: #2c2c2c;
-    --color-marker: #101010;
-    /* Suave black */
-    --color-accent: #c2410c;
-    --color-secondary: #fef3c7;
-    --color-nav-bg: #fff;
-    --color-form-border: #ccc;
 
-    /* Fonts */
-    --font-heading: 'Montserrat', sans-serif;
-    --font-body: 'Open Sans', sans-serif;
+  /* ===========================================================================
+     🎨  COLORES GLOBALES (Usados en toda la web)
+     =========================================================================== */
 
-    /* Spacing */
-    --spacing-section: 4rem;
-    --spacing-container: 1.5rem;
-    --spacing-element: 1rem;
-    --spacing-gap-large: 4rem;
-    --spacing-gap-medium: 2rem;
+  --color-bg:          #fffbf0;   /* Fondo general */
+  --color-text:        #2c2c2c;   /* Texto principal */
+  --color-marker:      #101010;   /* Negro suave (subtítulo logo, marcadores) */
+  --color-accent:      #c2410c;   /* Naranja/rojo — botones activos, badges, acentos */
+  --color-secondary:   #fef3c7;   /* Amarillo muy suave — fondos secundarios */
+  --color-nav-bg:      #fff;      /* Fondo del header sticky */
+  --color-form-border: #ccc;      /* Bordes de los campos del formulario de contacto */
 
-    /* Sizes */
-    --width-container: 1000px;
-    --width-logo-wrapper: 540px;
-    --width-logo-graphic: 380px;
-    --height-nav: auto;
-    --header-height: 65px;
-    --hero-compact-height: 330px; /* Altura compacta típica de cabecera web */
 
-    /* Logo & Typography Specific */
-    --logo-subtitle-letter-spacing: 0.15em;
-    /* Increased default to compensate for HTML rendering */
-    --logo-subtitle-font-size: 0.85rem;
+  /* ===========================================================================
+     🔤  TIPOGRAFÍA GLOBAL
+     =========================================================================== */
 
-    /* Bezier Separator */
-    --bezier-stroke-width: 4px;
+  --font-heading: 'Montserrat', sans-serif;   /* Títulos, nav, subtítulo logo */
+  --font-body:    'Open Sans', sans-serif;    /* Texto corrido */
 
-    /* Hero Slideshow */
-    --hero-slide-interval: 3000ms; /* Tiempo de cada foto en el hero (3 segundos) */
-    --hero-slide-transition: 1000ms; /* Duración del fundido suave entre fotos */
 
-    /* Map Aesthetics */
-    --map-filter: sepia(0.28) saturate(0.85) contrast(0.96) brightness(0.98); /* Filtro estético para OpenStreetMap */
+  /* ===========================================================================
+     📐  ESPACIADO GLOBAL
+     =========================================================================== */
 
-    /* Animations */
-    --nav-transition-speed: 0.2s;
+  --spacing-section:    4rem;    /* Separación entre secciones de contenido */
+  --spacing-container:  1.5rem;  /* Padding horizontal de los contenedores */
+  --spacing-element:    1rem;    /* Separación entre elementos (cards, párrafos) */
+  --spacing-gap-large:  4rem;    /* Gap en layouts de columnas grandes */
+  --spacing-gap-medium: 2rem;    /* Gap en layouts de columnas medianas */
 
-    /* Scroll/Layout */
-    --scroll-offset: 100px;
-    /* Space between header and content when jumping to anchors */
+  --width-container: 1000px;     /* Ancho máximo del área de contenido */
+  --scroll-offset:   100px;      /* Espacio libre sobre el contenido al saltar a un anchor */
+
+
+  /* ===========================================================================
+     🏔️  PORTADA / HERO — Sección inicial con foto de fondo
+     =========================================================================== */
+
+  /* Tamaño final de la portada (tras la animación de entrada) */
+  --hero-compact-height:    50vh;   /* Altura en escritorio. Ej: 50vh, 480px, 55vh */
+  --hero-min-height:        420px;  /* Altura mínima en escritorio (evita que sea muy pequeña) */
+  --hero-mobile-height:     50vh;   /* Altura en móvil */
+  --hero-mobile-min-height: 340px;  /* Altura mínima en móvil */
+
+  /* Slideshow de fotos de fondo del hero */
+  --hero-slide-interval:   3000ms;  /* Tiempo que se ve cada foto (3 segundos) */
+  --hero-slide-transition: 1000ms;  /* Duración del fundido entre fotos */
+
+
+  /* ===========================================================================
+     🦅  LOGO — Imagen SVG principal y subtítulo
+     El texto "Granja avícola ecológica..." escala automáticamente con el logo.
+     =========================================================================== */
+
+  /* 👉 Para agrandar o reducir el logo, toca solo estas dos variables: */
+  --logo-size:        480px;  /* Ancho base en escritorio. Ej: 480px, 520px, 560px */
+  --logo-scale:       1.0;    /* Multiplicador. 1.0 = normal · 1.2 = +20% · 0.9 = -10% */
+  --logo-size-mobile: 310px;  /* Ancho base en móvil. Ej: 280px, 310px, 340px */
+
+  /* Calculados automáticamente — NO tocar */
+  --width-logo-wrapper:        calc(var(--logo-size) * var(--logo-scale));
+  --width-logo-wrapper-mobile: calc(var(--logo-size-mobile) * var(--logo-scale));
+
+
+  /* ===========================================================================
+     🧭  HEADER / NAVEGACIÓN — Barra de menú superior
+     =========================================================================== */
+
+  --header-height:      65px;   /* Altura del header sticky */
+  --nav-btn-radius:     50px;   /* Redondez de los botones del nav (píldora). Ej: 50px, 8px */
+  --nav-transition-speed: 0.2s; /* Velocidad de las transiciones hover del nav */
+
+
+  /* ===========================================================================
+     〰️  SEPARADOR SVG — Línea curva entre secciones
+     =========================================================================== */
+
+  --bezier-stroke-width: 2px;   /* Grosor de la línea. Era 4px, ahora la mitad. Ej: 1px, 2px, 3px */
+
+
+  /* ===========================================================================
+     🗺️  MAPA (Página Contacto)
+     =========================================================================== */
+
+  --map-filter: sepia(0.28) saturate(0.85) contrast(0.96) brightness(0.98);
+  /* Filtro estético para el mapa OpenStreetMap. Ajusta los valores para más/menos color */
+
 }

@@ -8,7 +8,8 @@
   padding: 0;
 }
 
-html, body {
+html,
+body {
   overflow-x: hidden;
   max-width: 100vw;
 }
@@ -49,8 +50,8 @@ h2 {
 /* 1. HERO SECTION */
 .hero-intro {
   position: relative;
-  height: var(--hero-compact-height, 330px);
-  min-height: 300px;
+  height: var(--hero-compact-height, 50vh);
+  min-height: var(--hero-min-height, 420px);
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -78,7 +79,7 @@ h2 {
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-.hero-intro.is-animating .main-menu > * {
+.hero-intro.is-animating .main-menu>* {
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.4s ease, transform 0.4s ease;
@@ -97,36 +98,36 @@ h2 {
 
 /* Animation Step 2: Shrink Hero to Compact Height */
 .hero-intro.is-animating.step-shrink {
-  height: var(--hero-compact-height, 330px);
-  min-height: 300px;
+  height: var(--hero-compact-height, 50vh);
+  min-height: var(--hero-min-height, 420px);
 }
 
 /* Animation Step 3: Show Buttons One by One */
-.hero-intro.is-animating.step-buttons .main-menu > *:nth-child(1) {
+.hero-intro.is-animating.step-buttons .main-menu>*:nth-child(1) {
   opacity: 1;
   transform: translateY(0);
   transition-delay: 0.05s;
 }
 
-.hero-intro.is-animating.step-buttons .main-menu > *:nth-child(2) {
+.hero-intro.is-animating.step-buttons .main-menu>*:nth-child(2) {
   opacity: 1;
   transform: translateY(0);
   transition-delay: 0.16s;
 }
 
-.hero-intro.is-animating.step-buttons .main-menu > *:nth-child(3) {
+.hero-intro.is-animating.step-buttons .main-menu>*:nth-child(3) {
   opacity: 1;
   transform: translateY(0);
   transition-delay: 0.27s;
 }
 
-.hero-intro.is-animating.step-buttons .main-menu > *:nth-child(4) {
+.hero-intro.is-animating.step-buttons .main-menu>*:nth-child(4) {
   opacity: 1;
   transform: translateY(0);
   transition-delay: 0.38s;
 }
 
-.hero-intro.is-animating.step-buttons .main-menu > *:nth-child(5) {
+.hero-intro.is-animating.step-buttons .main-menu>*:nth-child(5) {
   opacity: 1;
   transform: translateY(0);
   transition-delay: 0.49s;
@@ -215,10 +216,12 @@ h2 {
     transform: scale(0.95);
     box-shadow: 0 0 0 0 rgba(194, 65, 12, 0.7);
   }
+
   70% {
     transform: scale(1);
     box-shadow: 0 0 0 6px rgba(194, 65, 12, 0);
   }
+
   100% {
     transform: scale(0.95);
     box-shadow: 0 0 0 0 rgba(194, 65, 12, 0);
@@ -229,7 +232,7 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 320px;
+  width: var(--width-logo-wrapper, 480px);
   max-width: 88vw;
   container-type: inline-size;
 }
@@ -246,7 +249,7 @@ h2 {
 .main-logo-graphic {
   width: 100%;
   max-width: 100%;
-  aspect-ratio: 4130 / 1305;
+  aspect-ratio: 3784 / 1011;
   height: auto;
   display: block;
   transition: transform 0.2s ease;
@@ -256,23 +259,21 @@ h2 {
   transform: scale(1.02);
 }
 
-/* Subtítulo: nunca salta de línea (white-space: nowrap), y escala matemáticamente con cqi */
+/* Subtítulo: nunca salta de línea (white-space: nowrap), y ocupa exactamente el mismo ancho del logo.
+   font-size escala proporcionalmente con --logo-scale (2.708% del ancho base = 13px / 480px).
+   El JS (alignLogoSubtitle) ajusta letter-spacing para que cuadre pixel a pixel con el logo. */
 .logo-subtitle {
   width: 100%;
   box-sizing: border-box;
-  white-space: nowrap; /* Garantiza 100% que NUNCA salte a una segunda línea */
-  margin-top: 5px;
+  white-space: nowrap;
+  margin-top: 6px;
   font-family: var(--font-heading);
   font-weight: 600;
-  font-size: clamp(8px, 3.4cqi, 11.5px);
-  letter-spacing: 0.12em;
+  font-size: clamp(8px, calc(var(--width-logo-wrapper) * 0.02708), 20px);
   color: var(--color-marker);
-  text-align: center;
-  display: flex;
-  justify-content: space-between;
+  text-align: left;
   line-height: 1;
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85);
-  text-transform: uppercase;
 }
 
 /* 2. NAV (INSIDE HERO BACKGROUND FRAME) */
@@ -303,6 +304,7 @@ h2 {
   from {
     transform: translateY(-100%);
   }
+
   to {
     transform: translateY(0);
   }
@@ -321,7 +323,8 @@ h2 {
   gap: 0.65rem;
   align-items: center;
   justify-content: center;
-  flex-wrap: nowrap; /* MUST NOT WRAP: ALL BUTTONS IN ONE LINE */
+  flex-wrap: nowrap;
+  /* MUST NOT WRAP: ALL BUTTONS IN ONE LINE */
   white-space: nowrap;
 }
 
@@ -331,30 +334,41 @@ h2 {
   font-weight: 700;
   color: var(--color-marker);
   font-size: 0.85rem;
-  padding: 0.45rem 1.05rem;
+  padding: 0.45rem 1.15rem;
   transition: all var(--nav-transition-speed) ease;
   text-transform: uppercase;
-  background: rgba(255, 251, 240, 0.92);
-  border: 2px solid var(--color-marker);
-  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
-  box-shadow: 3px 3px 0 var(--color-marker);
+  background: rgba(255, 251, 240, 0.95);
+  border: 1.8px solid var(--color-marker);
+  border-radius: var(--nav-btn-radius, 50px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
   backdrop-filter: blur(4px);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.4rem;
   white-space: nowrap;
   flex-shrink: 0;
 }
 
 /* Hover and Active states */
 .nav-item:hover,
-.nav-item.active {
+.nav-dropdown:hover .nav-dropdown-btn,
+.nav-dropdown.is-open .nav-dropdown-btn {
   color: var(--color-marker);
   border-color: var(--color-marker);
   background-color: var(--color-secondary);
-  box-shadow: 4px 4px 0 var(--color-marker);
-  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18);
+  transform: translateY(-2px);
+}
+
+/* Página activa: mismo fondo destacado pero SIN desplazamiento vertical */
+.nav-item.active,
+.nav-dropdown-btn.active {
+  color: var(--color-marker);
+  border-color: var(--color-marker);
+  background-color: var(--color-secondary);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18);
+  transform: none;
 }
 
 /* Dropdown Menu for ¿QUIÉNES SOMOS? */
@@ -366,15 +380,15 @@ h2 {
 
 .nav-dropdown-btn {
   appearance: none;
-  background: rgba(255, 251, 240, 0.92);
-  border: 2px solid var(--color-marker);
-  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
-  box-shadow: 3px 3px 0 var(--color-marker);
+  background: rgba(255, 251, 240, 0.95);
+  border: 1.8px solid var(--color-marker);
+  border-radius: var(--nav-btn-radius, 50px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
   font-family: var(--font-heading);
   font-weight: 700;
   color: var(--color-marker);
   font-size: 0.85rem;
-  padding: 0.45rem 1.05rem;
+  padding: 0.45rem 1.15rem;
   cursor: pointer;
   white-space: nowrap;
   flex-shrink: 0;
@@ -440,34 +454,44 @@ h2 {
 
 /* Disabled nav items */
 .nav-item-disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
+  opacity: 0.9;
+  cursor: default;
   user-select: none;
 }
 
 .nav-item-disabled:hover {
   transform: none;
-  box-shadow: 3px 3px 0 var(--color-marker);
-  background: rgba(255, 251, 240, 0.92);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+  background: rgba(255, 251, 240, 0.95);
   border-color: var(--color-marker);
 }
 
 .badge-disabled {
   font-size: 0.65rem;
-  background: #666;
+  font-weight: 700;
+  background: var(--color-accent);
   color: white;
-  padding: 2px 6px;
-  border-radius: 8px;
-  margin-left: 4px;
+  padding: 2px 8px;
+  border-radius: 50px;
+  margin-left: 5px;
+  letter-spacing: 0.03em;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.2;
 }
 
 .tag-wip {
   font-size: 0.65rem;
+  font-weight: 700;
   background: var(--color-accent);
   color: white;
-  padding: 2px 6px;
-  border-radius: 8px;
+  padding: 2px 8px;
+  border-radius: 50px;
   margin-left: 6px;
+  letter-spacing: 0.03em;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.2;
 }
 
 /* Home Intro Section */
@@ -513,7 +537,7 @@ h2 {
 }
 
 /* Single CTA button — left-aligned like editorial */
-.home-intro-card > .btn-primary-organic {
+.home-intro-card>.btn-primary-organic {
   display: inline-block;
 }
 
@@ -569,7 +593,8 @@ h2 {
   background: #ffffff;
   padding: 16px 16px 48px 16px;
   border: 2px solid var(--color-marker);
-  border-radius: 0; /* Ángulos rectos clásicos Polaroid */
+  border-radius: 0;
+  /* Ángulos rectos clásicos Polaroid */
   box-shadow: 6px 6px 0 var(--color-marker);
   margin: 2.5rem auto;
   max-width: 620px;
@@ -585,10 +610,12 @@ h2 {
 
 .photo-card-tape img {
   width: 100%;
-  aspect-ratio: 4 / 3; /* Formato panorámico, no 1:1 cuadrado */
+  aspect-ratio: 4 / 3;
+  /* Formato panorámico, no 1:1 cuadrado */
   object-fit: cover;
   display: block;
-  border-radius: 0; /* Recto */
+  border-radius: 0;
+  /* Recto */
   border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
@@ -801,7 +828,8 @@ h2 {
 .text-block {
   width: 100%;
   max-width: 100%;
-  min-width: 0; /* Evita que el contenedor de grid se desborde */
+  min-width: 0;
+  /* Evita que el contenedor de grid se desborde */
 }
 
 /* Polaroid Style (Líneas rectas, ángulos rectos y proporción panorámica) */
@@ -824,7 +852,8 @@ h2 {
   padding: 14px 14px 55px 14px;
   /* Bottom padding for handwritten caption */
   border: 2px solid var(--color-marker);
-  border-radius: 0; /* Esquinas rectas auténticas Polaroid */
+  border-radius: 0;
+  /* Esquinas rectas auténticas Polaroid */
   box-shadow: 6px 6px 0 var(--color-marker);
   position: relative;
   width: 100%;
@@ -833,7 +862,8 @@ h2 {
 
 .polaroid-image-container {
   width: 100%;
-  aspect-ratio: 4 / 3; /* Formato panorámico, no 1:1 */
+  aspect-ratio: 4 / 3;
+  /* Formato panorámico, no 1:1 */
   overflow: hidden;
   position: relative;
   background: #eee;
@@ -914,11 +944,13 @@ h2 {
 
 @media (max-width: 500px) {
   .tape-corner {
-    display: none; /* En pantallas de móvil muy estrechas evita cualquier riesgo de desbordamiento horizontal */
+    display: none;
+    /* En pantallas de móvil muy estrechas evita cualquier riesgo de desbordamiento horizontal */
   }
 
   .polaroid-wrapper {
-    transform: none; /* Sin rotación en móviles estrechos para encajar perfecto */
+    transform: none;
+    /* Sin rotación en móviles estrechos para encajar perfecto */
   }
 
   .photo-card-tape {
@@ -1155,6 +1187,7 @@ h2 {
   0% {
     transform: rotate(-45deg) translateY(0);
   }
+
   100% {
     transform: rotate(-45deg) translateY(-6px);
   }
@@ -1447,13 +1480,13 @@ h2 {
 .bezier-separator path {
   fill: currentColor;
   stroke: currentColor;
-  stroke-width: var(--bezier-stroke-width);
+  stroke-width: var(--bezier-stroke-width, 2px);
 }
 
 @media (max-width: 768px) {
   .hero-intro {
-    height: auto;
-    min-height: 290px;
+    height: var(--hero-mobile-height, var(--hero-compact-height, 50vh));
+    min-height: var(--hero-mobile-min-height, 340px);
     padding-bottom: 0.8rem;
   }
 
@@ -1463,13 +1496,13 @@ h2 {
   }
 
   .hero-intro.is-animating.step-shrink {
-    height: auto;
-    min-height: 290px;
+    height: var(--hero-mobile-height, var(--hero-compact-height, 50vh));
+    min-height: var(--hero-mobile-min-height, 340px);
   }
 
   .logo-wrapper {
-    width: 250px;
-    max-width: 80vw;
+    width: var(--width-logo-wrapper-mobile, 310px);
+    max-width: 85vw;
   }
 
   .main-logo-graphic {
@@ -1478,9 +1511,9 @@ h2 {
   }
 
   .logo-subtitle {
-    font-size: clamp(7.5px, 3.4cqi, 9.5px);
+    font-size: clamp(7.5px, calc(var(--width-logo-wrapper-mobile) * 0.02708), 14px);
     width: 100%;
-    margin-top: 3px;
+    margin-top: 4px;
     white-space: nowrap;
   }
 
@@ -1497,14 +1530,16 @@ h2 {
 
   .nav-container {
     padding: 0.2rem 0.4rem;
-    overflow: visible; /* IMPORTANTE: no recortar el menú desplegable hacia abajo */
+    overflow: visible;
+    /* IMPORTANTE: no recortar el menú desplegable hacia abajo */
     justify-content: center;
     max-width: 100%;
   }
 
   .main-menu {
     gap: 0.35rem;
-    flex-wrap: wrap; /* En pantallas estrechas permite filas ordenadas */
+    flex-wrap: wrap;
+    /* En pantallas estrechas permite filas ordenadas */
     justify-content: center;
     padding: 0;
     overflow: visible;
@@ -1533,20 +1568,23 @@ h2 {
 
   .badge-disabled {
     font-size: 0.58rem;
-    padding: 1px 4px;
-    margin-left: 2px;
+    padding: 1px 6px;
+    border-radius: 50px;
+    margin-left: 3px;
   }
 
   .tag-wip {
     font-size: 0.58rem;
-    padding: 1px 4px;
+    padding: 1px 6px;
+    border-radius: 50px;
     margin-left: 4px;
   }
 
   .dropdown-menu {
     min-width: 250px;
     max-width: calc(100vw - 20px);
-    left: 0; /* Alineado a la izquierda del botón para no cortarse jamás por la izquierda */
+    left: 0;
+    /* Alineado a la izquierda del botón para no cortarse jamás por la izquierda */
     transform: translateY(8px);
     z-index: 99999;
     box-shadow: 5px 5px 0 var(--color-marker);
