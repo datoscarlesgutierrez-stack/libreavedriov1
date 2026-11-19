@@ -11,6 +11,7 @@ export default defineConfig({
         granjaNave: resolve(__dirname, 'granja-nave.html'),
         granjaParque: resolve(__dirname, 'granja-parque.html'),
         granjaEmbalaje: resolve(__dirname, 'granja-embalaje.html'),
+        granjaCompostera: resolve(__dirname, 'granja-compostera.html'),
         granjaHuevos: resolve(__dirname, 'granja-huevos.html'),
         historia: resolve(__dirname, 'historia.html'),
         principios: resolve(__dirname, 'principios.html'),
