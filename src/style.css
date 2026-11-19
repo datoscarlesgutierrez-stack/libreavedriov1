@@ -1141,10 +1141,10 @@ h2 {
 }
 
 .triptico-card {
-  background: #ffffff;
+  background: linear-gradient(180deg, #ffffff 50%, #E7DCCF 50%);
   border: 1.8px solid var(--color-marker, #1a1a1a);
   box-shadow: 4px 4px 0 var(--color-marker, #1a1a1a);
-  padding: 2rem 1.6rem;
+  padding: 2.2rem 1.6rem 2rem 1.6rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1161,7 +1161,7 @@ h2 {
 .triptico-card.featured-center {
   border-color: var(--color-wine, #821723);
   box-shadow: 5px 5px 0 var(--color-wine, #821723);
-  background: #ffffff;
+  background: linear-gradient(180deg, #ffffff 50%, #E7DCCF 50%);
 }
 
 .triptico-card.featured-center:hover {
@@ -1239,10 +1239,10 @@ h2 {
   flex-direction: column;
   align-items: flex-start;
   flex: 1;
-  background: #fdfaf6;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 3px;
-  padding: 1.2rem 1.1rem;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 1.2rem 0.2rem 0.2rem 0.2rem;
 }
 
 .triptico-bottom .triptico-tag {
