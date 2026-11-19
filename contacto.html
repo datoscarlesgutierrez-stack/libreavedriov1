@@ -5,11 +5,11 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contacto y Pedidos | Libreavedrio</title>
+    <title>Contacto | Libreavedrio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600;700&family=Indie+Flower&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600;700&family=Indie+Flower&display=swap"
         rel="stylesheet">
 </head>
 
@@ -69,10 +69,21 @@
                         </button>
                         <div class="dropdown-menu">
                             <a href="historia.html" class="dropdown-item">HISTORIA DEL PROYECTO</a>
-                            <a href="principios.html" class="dropdown-item">PRINCIPIOS IDEOLÓGICOS <span class="tag-wip">EN CONSTRUCCIÓN</span></a>
+                            <a href="principios.html" class="dropdown-item">PRINCIPIOS IDEOLÓGICOS</a>
                         </div>
                     </div>
-                    <a href="granja.html" class="nav-item">LA GRANJA</a>
+                    <div class="nav-dropdown">
+                        <a href="granja.html" class="nav-item nav-dropdown-btn" aria-haspopup="true">
+                            LA GRANJA <span class="dropdown-arrow">▾</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="granja.html" class="dropdown-item">VISIÓN GENERAL</a>
+                            <a href="granja-nave.html" class="dropdown-item">LA NAVE</a>
+                            <a href="granja-parque.html" class="dropdown-item">EL PARQUE</a>
+                            <a href="granja-embalaje.html" class="dropdown-item">CENTRO EMBALAJE Y COMPOSTERA</a>
+                            <a href="granja-huevos.html" class="dropdown-item">NUESTROS HUEVOS</a>
+                        </div>
+                    </div>
                     <span class="nav-item nav-item-disabled" title="Próximamente">TIENDA <span class="badge-disabled">PRONTO</span></span>
                     <a href="contacto.html" class="nav-item active">CONTACTO</a>
                     <span class="nav-item nav-item-disabled" title="Próximamente">LO QUE ES LA VIDA <span class="badge-disabled">PRONTO</span></span>
@@ -82,88 +93,160 @@
     </section>
 
     <main>
-        <!-- Section: Contacto / Formulario -->
-        <section class="content-section">
-            <div class="container contact-container">
-                <div class="page-header">
-                    <h2>CONTACTO Y PEDIDOS</h2>
-                    <p class="intro-contact">
-                        No tenemos tienda online automática: preferimos el <strong>trato directo, artesanal y cercano</strong>. Repartimos semanalmente en <strong>Madrid y la Sierra Norte</strong> y trabajamos de forma prioritaria con grupos de consumo y personas comprometidas.
-                    </p>
-                </div>
-
-                <div class="form-wrapper">
-                    <p style="font-weight: 600; margin-bottom: 1.5rem; color: #333;">
-                        Escríbenos para organizar tu pedido, proponer un nuevo grupo de consumo o plantear un trueque:
-                    </p>
-
-                    <!-- AJAX Form -->
-                    <form id="contact-form" action="https://formspree.io/f/xlgbkgok" method="POST" class="contact-form">
-                        <div class="form-group">
-                            <label for="name">Nombre</label>
-                            <input type="text" id="name" name="name" required placeholder="Tu nombre y apellidos">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required placeholder="tucorreo@ejemplo.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="tel">Teléfono (WhatsApp)</label>
-                            <input type="tel" id="tel" name="tel" required value="+34 " pattern="^(\+34\s?)[6789]\d{8}$"
-                                title="Formato: +34 seguido de 9 números">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Mensaje / Pedido / Propuesta</label>
-                            <textarea id="message" name="message" rows="5" required
-                                placeholder="Hola Keila y Tamayo, me gustaría consultar..."></textarea>
-                        </div>
-                        <div class="form-group checkbox-group">
-                            <input type="checkbox" id="newsletter" name="newsletter">
-                            <label for="newsletter" class="checkbox-label">Quiero recibir noticias y ofertas de la granja</label>
-                        </div>
-                        <div class="form-group checkbox-group">
-                            <input type="checkbox" id="privacy" name="privacy" required>
-                            <label for="privacy" class="checkbox-label">He leído y acepto la política de privacidad</label>
-                        </div>
-                        <button type="submit" id="submit-button" class="btn-submit">ENVIAR EN UN CLIC</button>
-                        <div id="form-status-error" class="form-status error" style="display: none;"></div>
-                    </form>
-
-                    <!-- Success State (Hidden by default) -->
-                    <div id="form-success" class="form-success-container" style="display: none;">
-                        <span class="emoji-success">🌿</span>
-                        <h3>¡MENSAJE RECIBIDO!</h3>
-                        <p>Muchas gracias por escribirnos. Os responderemos lo antes posible.</p>
-                        <button id="reset-form" class="btn-reset">ENVIAR OTRO MENSAJE</button>
+        <!-- Section: Contacto / Formulario en 2 Columnas -->
+        <section class="content-section" style="padding-top: 3.5rem; padding-bottom: 2rem;">
+            <div class="container">
+                <!-- Cabecera de la página alineada a la izquierda -->
+                <div class="editorial-page-header">
+                    <div class="editorial-header-left">
+                        <span class="intro-eyebrow">TRATO DIRECTO Y CERCANO</span>
+                        <h2 class="editorial-header-title">CONTACTO</h2>
                     </div>
                 </div>
 
-                <!-- Tarjeta adicional de contacto directo -->
-                <div class="section-block" style="margin-top: 3rem; text-align: center;">
-                    <h3>📍 Información de contacto directa</h3>
-                    <p><strong>Granja Libreavedrio</strong> — Piñuécar-Gandullas (Madrid)</p>
-                    <p>📧 Correo: <a href="mailto:hola@granjalibreavedrio.es" style="color: var(--color-accent); font-weight: 700;">hola@granjalibreavedrio.es</a></p>
-                    <p>🚚 Reparto directo semanal en Madrid y comarca de la Sierra Norte.</p>
+                <!-- Separador de trazo fino -->
+                <div class="bezier-separator" style="margin: 2.2rem auto 2.8rem auto;">
+                    <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+                        <path d="M0,30 Q720,52 1440,30" />
+                    </svg>
                 </div>
+
+                <!-- Texto introductorio alineado a la izquierda -->
+                <p class="editorial-lead-text">
+                    Preferimos el <strong>trato directo, humano y de confianza</strong>. Escríbenos para cualquier duda o consulta, proponer colaboraciones o sumarte a nuestros grupos de consumo locales.
+                </p>
+
+                <!-- Layout a 2 Columnas: Formulario a la Izquierda, Tarjeta Visual e Info a la Derecha -->
+                <div class="contact-grid-2col">
+                    <!-- Columna Izquierda: Formulario -->
+                    <div class="form-wrapper" style="box-shadow: none; border: 1.5px solid var(--color-marker); padding: 2rem; border-radius: 4px; background: #ffffff;">
+                        <span class="editorial-eyebrow" style="margin-bottom: 0.5rem;">FORMULARIO DIRECTO</span>
+                        <h3 class="editorial-subheading" style="margin-top: 0; margin-bottom: 1.2rem;">ESCRIBIR A LA GRANJA</h3>
+                        <p style="font-size: 0.95rem; color: #555; margin-bottom: 1.5rem; line-height: 1.5;">
+                            Escríbenos, propón colaboraciones o consúltanos cualquier duda:
+                        </p>
+
+                        <!-- AJAX Form -->
+                        <form id="contact-form" action="https://formspree.io/f/xlgbkgok" method="POST" class="contact-form">
+                            <div class="form-group">
+                                <label for="name">Nombre y apellidos</label>
+                                <input type="text" id="name" name="name" required placeholder="Tu nombre y apellidos">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Correo electrónico</label>
+                                <input type="email" id="email" name="email" required placeholder="tucorreo@ejemplo.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="tel">Teléfono (WhatsApp)</label>
+                                <input type="tel" id="tel" name="tel" required value="+34 " pattern="^(\+34\s?)[6789]\d{8}$"
+                                    title="Formato: +34 seguido de 9 números">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Mensaje o Consulta</label>
+                                <textarea id="message" name="message" rows="5" required
+                                    placeholder="Hola Keila y Miguel, me gustaría consultar..."></textarea>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="newsletter" name="newsletter">
+                                <label for="newsletter" class="checkbox-label">Quiero recibir noticias y novedades de la granja</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="privacy" name="privacy" required>
+                                <label for="privacy" class="checkbox-label">He leído y acepto la política de privacidad</label>
+                            </div>
+                            <button type="submit" id="submit-button" class="btn-editorial-cta" style="width: 100%; justify-content: center; padding: 0.9rem;">
+                                ENVIAR EN UN CLIC <span class="btn-arrow">↗</span>
+                            </button>
+                            <div id="form-status-error" class="form-status error" style="display: none;"></div>
+                        </form>
+
+                        <!-- Success State (Hidden by default) -->
+                        <div id="form-success" class="form-success-container" style="display: none;">
+                            <span class="emoji-success">🌿</span>
+                            <h3>¡MENSAJE RECIBIDO!</h3>
+                            <p>Muchas gracias por escribirnos. Os responderemos lo antes posible.</p>
+                            <button id="reset-form" class="btn-reset">ENVIAR OTRO MENSAJE</button>
+                        </div>
+                    </div>
+
+                    <!-- Columna Derecha: Tarjeta Post-It y Datos de Contacto Directo -->
+                    <div class="editorial-visual">
+                        <div class="postit-card">
+                            <span class="postit-tape"></span>
+                            <div class="postit-image-container">
+                                <img src="images/granja_3.png" alt="Entorno natural de la granja Libreavedrio"
+                                    class="postit-slide active" data-caption="Entorno y vida en Piñuécar-Gandullas.">
+                            </div>
+                            <p class="postit-caption">Entorno y vida en Piñuécar-Gandullas.</p>
+                        </div>
+
+                        <!-- Tarjeta de información directa editorial -->
+                        <div class="contact-info-card" style="width: 100%;">
+                            <div class="contact-info-item">
+                                <span class="contact-info-label">📍 UBICACIÓN</span>
+                                <p class="contact-info-text">
+                                    <strong>Granja Libreavedrio</strong><br>
+                                    Piñuécar-Gandullas (Madrid).<br>
+                                    A 3 min de la salida 83 de la A1 hacia Aoslos.
+                                </p>
+                            </div>
+
+                            <div class="contact-info-item">
+                                <span class="contact-info-label">📧 CORREO ELECTRÓNICO</span>
+                                <p class="contact-info-text">
+                                    <a href="mailto:hola@granjalibreavedrio.es" style="color: var(--color-wine, #821723); font-weight: 700; text-decoration: underline;">
+                                        hola@granjalibreavedrio.es
+                                    </a>
+                                </p>
+                            </div>
+
+                            <div class="contact-info-item">
+                                <span class="contact-info-label">🚚 REPARTO SEMANAL</span>
+                                <p class="contact-info-text">
+                                    Entregas directas en Madrid capital y municipios de la Sierra Norte.
+                                </p>
+                            </div>
+
+                            <div class="contact-info-item">
+                                <span class="contact-info-label">🤝 GRUPOS DE CONSUMO</span>
+                                <p class="contact-info-text">
+                                    Prioridad de suministro y condiciones cooperativas para grupos organizados.
+                                </p>
+                            </div>
+
+                            <div style="margin-top: 1.5rem;">
+                                <a href="index.html#ubicacion" class="btn-editorial-cta" style="background: transparent; color: var(--color-marker); border: 1.5px solid var(--color-marker); box-shadow: none;">
+                                    CÓMO LLEGAR / GOOGLE MAPS <span class="btn-arrow">↗</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
     </main>
 
     <div class="bezier-separator">
         <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
-            <path d="M0,30 Q720,55 1440,30 L1440,33 Q720,58 0,33 Z" />
+            <path d="M0,30 Q720,52 1440,30" />
         </svg>
     </div>
 
     <footer class="main-footer">
-        <div class="container">
-            <a href="index.html">
-                <img src="images/logo.svg" alt="Libreavedrio Footer" class="footer-logo-small" id="footer-logo-top">
-            </a>
-            <p>Piñuécar-Gandullas, Madrid</p>
-            <p>hola@granjalibreavedrio.es</p>
-            <div class="footer-legal">
-                <p>© 2026 Libreavedrio. Los datos del formulario se usan exclusivamente para gestionar tu consulta o pedido. No rastreamos tu navegación.</p>
+        <div class="container footer-container">
+            <div class="footer-col footer-col-left">
+                <p class="footer-item">Piñuécar-Gandullas, Madrid</p>
+                <a href="mailto:hola@granjalibreavedrio.es" class="footer-item footer-link">hola@granjalibreavedrio.es</a>
+            </div>
+            <div class="footer-col footer-col-center">
+                <a href="index.html" title="Subir al inicio">
+                    <img src="images/logo.svg" alt="Libreavedrio Footer" class="footer-logo-small" id="footer-logo-top">
+                </a>
+            </div>
+            <div class="footer-col footer-col-right">
+                <p class="footer-item">© 2026 Libreavedrio</p>
+                <p class="footer-item footer-subtext">Granja ecológica · Sierra Norte</p>
             </div>
         </div>
     </footer>

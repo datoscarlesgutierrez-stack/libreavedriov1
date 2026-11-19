@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600;700&family=Indie+Flower&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600;700&family=Indie+Flower&display=swap"
         rel="stylesheet">
 </head>
 
@@ -69,13 +69,26 @@
                         </button>
                         <div class="dropdown-menu">
                             <a href="historia.html" class="dropdown-item">HISTORIA DEL PROYECTO</a>
-                            <a href="principios.html" class="dropdown-item">PRINCIPIOS IDEOLÓGICOS <span class="tag-wip">EN CONSTRUCCIÓN</span></a>
+                            <a href="principios.html" class="dropdown-item">PRINCIPIOS IDEOLÓGICOS</a>
                         </div>
                     </div>
-                    <a href="granja.html" class="nav-item">LA GRANJA</a>
-                    <span class="nav-item nav-item-disabled" title="Próximamente">TIENDA <span class="badge-disabled">PRONTO</span></span>
+                    <div class="nav-dropdown">
+                        <a href="granja.html" class="nav-item nav-dropdown-btn" aria-haspopup="true">
+                            LA GRANJA <span class="dropdown-arrow">▾</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="granja.html" class="dropdown-item">VISIÓN GENERAL</a>
+                            <a href="granja-nave.html" class="dropdown-item">LA NAVE</a>
+                            <a href="granja-parque.html" class="dropdown-item">EL PARQUE</a>
+                            <a href="granja-embalaje.html" class="dropdown-item">CENTRO EMBALAJE Y COMPOSTERA</a>
+                            <a href="granja-huevos.html" class="dropdown-item">NUESTROS HUEVOS</a>
+                        </div>
+                    </div>
+                    <span class="nav-item nav-item-disabled" title="Próximamente">TIENDA <span
+                            class="badge-disabled">PRONTO</span></span>
                     <a href="contacto.html" class="nav-item">CONTACTO</a>
-                    <span class="nav-item nav-item-disabled" title="Próximamente">LO QUE ES LA VIDA <span class="badge-disabled">PRONTO</span></span>
+                    <span class="nav-item nav-item-disabled" title="Próximamente">LO QUE ES LA VIDA <span
+                            class="badge-disabled">PRONTO</span></span>
                 </nav>
             </div>
         </header>
@@ -85,41 +98,106 @@
         <!-- Intro Section Home -->
         <section class="content-section intro-home-section">
             <div class="container">
-                <div class="home-intro-card">
-                    <h2 class="home-intro-title">Huevos ecológicos desde la Sierra Norte de Madrid</h2>
-                    <p class="home-intro-text">
-                        Nuestra granja apuesta por la sostenibilidad, el bienestar animal y la transparencia. Queremos compartir nuestro camino desde el inicio y ofrecer huevos de calidad con un impacto positivo en el medio ambiente.
-                    </p>
-                    <a href="granja.html" class="btn-primary-organic">CONOCE LA GRANJA</a>
+                <div class="home-hero-grid">
+                    <!-- Columna Izquierda: Contenido Editorial -->
+                    <div class="home-hero-content">
+                        <span class="intro-eyebrow">LIBRES POR NATURALEZA</span>
+                        <h2 class="home-intro-title">
+                            Huevos ecológicos desde la Sierra Norte de Madrid
+                        </h2>
+                        <p class="home-intro-text">
+                            Nuestra granja apuesta por la sostenibilidad, el bienestar animal y la transparencia.
+                            Queremos compartir nuestro camino desde el inicio y ofrecer huevos de calidad con un impacto
+                            positivo en el medio ambiente.
+                        </p>
+                        <a href="granja.html" class="btn-editorial-cta">
+                            CONOCE LA GRANJA <span class="btn-arrow">↗</span>
+                        </a>
+                    </div>
+
+                    <!-- Columna Derecha: Tarjeta Post-it con Carrusel -->
+                    <div class="home-hero-visual">
+                        <div class="postit-card" id="home-postit">
+                            <span class="postit-tape"></span>
+                            <div class="postit-image-container">
+                                <img src="images/granja_1.png" alt="Gallinas en libertad en el pinar"
+                                    class="postit-slide active" data-caption="Aquí, la libertad tiene raíces.">
+                                <img src="images/granja_4.png" alt="Nuestras naves, abiertas al pinar"
+                                    class="postit-slide" data-caption="Nuestras naves, abiertas al pinar.">
+                                <img src="images/bosque_3.jpg" alt="Pinar vivo en Piñuécar-Gandullas"
+                                    class="postit-slide" data-caption="24.000 m² de pinar y monte protegido.">
+                            </div>
+                            <div class="postit-caption" id="home-postit-caption">
+                                Aquí, la libertad tiene raíces.
+                            </div>
+                        </div>
+
+                        <!-- Controles de navegación de fotos (flechas + contador) -->
+                        <div class="postit-controls">
+                            <span class="postit-counter" id="home-postit-counter">01 / 03</span>
+                            <div class="postit-arrows">
+                                <button type="button" class="postit-arrow-btn" id="postit-prev"
+                                    aria-label="Foto anterior">←</button>
+                                <button type="button" class="postit-arrow-btn" id="postit-next"
+                                    aria-label="Foto siguiente">→</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trazo curvo que no cruza de extremo a extremo, sino que se mantiene en los márgenes del texto -->
+                <div class="metrics-separator-curve">
+                    <svg viewBox="0 0 1000 30" preserveAspectRatio="none">
+                        <path d="M0,16 Q250,6 500,16 T1000,16" fill="none" stroke="currentColor" stroke-width="2.2"
+                            stroke-linecap="round" />
+                    </svg>
+                </div>
+
+                <!-- Métricas destacadas de impacto -->
+                <div class="home-metrics-grid">
+                    <div class="metric-item">
+                        <span class="metric-number">24.000 m²</span>
+                        <span class="metric-label">de pinar vivo</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-number">100% Eco</span>
+                        <span class="metric-label">producción ecológica</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-number">Rebeldes</span>
+                        <span class="metric-label">Cuidamos nuestro entorno y gente</span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <div class="bezier-separator">
-            <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
-                <path d="M0,30 C300,10 900,50 1440,30 L1440,33 C900,53 300,13 0,33 Z" />
-            </svg>
-        </div>
-
         <!-- Section: Ubicación (Cómo llegar) -->
-        <section id="ubicacion" class="content-section">
+        <section id="ubicacion" class="content-section map-section">
             <div class="container map-section-container">
-                <h2>CÓMO LLEGAR</h2>
                 <div class="map-grid">
                     <div class="map-info">
-                        <p>En el término municipal de <strong>Piñuécar-Gandullas</strong> (Madrid).</p>
-                        <ul class="location-details">
-                            <li>📍 A 3 min de la salida 83 de la A1 dirección Aoslos.</li>
-                            <li>📍 A 10 min de Buitrago del Lozoya.</li>
-                        </ul>
-                        <div class="map-buttons-group">
-                            <a href="https://www.google.com/maps?q=41.055714517046276,-3.6072308811227165" target="_blank" rel="noopener" class="btn-maps">
-                                VER EN GOOGLE MAPS
+                        <span class="intro-eyebrow">EN EL CORAZÓN DE LA SIERRA</span>
+                        <h2 class="map-title">CÓMO LLEGAR</h2>
+                        <p class="map-lead-text">Estamos en Piñuécar-Gandullas, rodeados de pinos y muy cerca de ti.</p>
+                        <div class="map-directions-list">
+                            <p>A 3 min de la salida 83 de la A1 hacia Aoslos.</p>
+                            <p>A 10 min de Buitrago del Lozoya.</p>
+                        </div>
+                        <div class="map-btn-wrapper">
+                            <a href="https://www.google.com/maps?q=41.055714517046276,-3.6072308811227165"
+                                target="_blank" rel="noopener" class="btn-editorial-cta">
+                                VER EN GOOGLE MAPS <span class="btn-arrow">↗</span>
                             </a>
                         </div>
+                        <p class="map-note-red">Escríbenos antes de venir. Así te recibimos como mereces.</p>
                     </div>
                     <div class="map-display-wrapper">
-                        <div id="osm-map" class="map-canvas"></div>
+                        <div id="osm-map" class="map-canvas">
+                            <button type="button" class="map-fullscreen-btn" id="map-fullscreen-toggle"
+                                aria-label="Ampliar mapa a pantalla completa">
+                                <span class="fs-icon">⤢</span> <span class="fs-text">AMPLIAR MAPA</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -128,19 +206,24 @@
 
     <div class="bezier-separator">
         <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
-            <path d="M0,30 Q720,55 1440,30 L1440,33 Q720,58 0,33 Z" />
+            <path d="M0,30 Q720,52 1440,30" />
         </svg>
     </div>
 
     <footer class="main-footer">
-        <div class="container">
-            <a href="index.html">
-                <img src="images/logo.svg" alt="Libreavedrio Footer" class="footer-logo-small" id="footer-logo-top">
-            </a>
-            <p>Piñuécar-Gandullas, Madrid</p>
-            <p>hola@granjalibreavedrio.es</p>
-            <div class="footer-legal">
-                <p>© 2026 Libreavedrio. Granja avícola ecológica Sierra Norte de Madrid. Todos los derechos reservados.</p>
+        <div class="container footer-container">
+            <div class="footer-col footer-col-left">
+                <p class="footer-item">Piñuécar-Gandullas, Madrid</p>
+                <a href="mailto:hola@granjalibreavedrio.es" class="footer-item footer-link">hola@granjalibreavedrio.es</a>
+            </div>
+            <div class="footer-col footer-col-center">
+                <a href="index.html" title="Subir al inicio">
+                    <img src="images/logo.svg" alt="Libreavedrio Footer" class="footer-logo-small" id="footer-logo-top">
+                </a>
+            </div>
+            <div class="footer-col footer-col-right">
+                <p class="footer-item">© 2026 Libreavedrio</p>
+                <p class="footer-item footer-subtext">Granja ecológica · Sierra Norte</p>
             </div>
         </div>
     </footer>

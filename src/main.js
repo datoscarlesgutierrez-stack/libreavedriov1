@@ -86,52 +86,66 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', handleNavScroll);
     handleNavScroll();
 
-    // 4. Dropdown Menu — Click (toggle) + Hover con delays
+    // 4. Dropdown Menu — Apertura rápida (50ms) y margen amplio de cierre (850ms)
     const dropdownContainers = document.querySelectorAll('.nav-dropdown');
+    let activeCloseTimer = null;
+    let activeOpenTimer = null;
+
     dropdownContainers.forEach((dropdown) => {
         const btn = dropdown.querySelector('.nav-dropdown-btn');
-        let hoverOpenTimer = null;
-        let hoverCloseTimer = null;
 
-        function openDropdown() {
-            clearTimeout(hoverCloseTimer);
-            dropdownContainers.forEach((d) => { if (d !== dropdown) d.classList.remove('is-open'); });
+        function openThis() {
+            clearTimeout(activeCloseTimer);
+            clearTimeout(activeOpenTimer);
+            // Cierra inmediatamente los otros dropdowns al abrir uno nuevo
+            dropdownContainers.forEach((d) => {
+                if (d !== dropdown) d.classList.remove('is-open');
+            });
             dropdown.classList.add('is-open');
         }
-        function closeDropdown() {
-            clearTimeout(hoverOpenTimer);
+
+        function closeThis() {
+            clearTimeout(activeOpenTimer);
             dropdown.classList.remove('is-open');
         }
 
-        // Click: abre/cierra inmediatamente (sin delay)
+        // Click: toggle inmediato
         if (btn) {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                clearTimeout(hoverOpenTimer);
-                clearTimeout(hoverCloseTimer);
+                clearTimeout(activeCloseTimer);
+                clearTimeout(activeOpenTimer);
                 const isOpen = dropdown.classList.contains('is-open');
                 dropdownContainers.forEach((d) => d.classList.remove('is-open'));
                 if (!isOpen) dropdown.classList.add('is-open');
             });
         }
 
-        // Hover — abre tras 300ms de hover sobre el botón
+        // Hover entrar: si ya había otro abierto abre al instante (0ms), si no abre muy rápido (50ms)
         dropdown.addEventListener('mouseenter', () => {
-            clearTimeout(hoverCloseTimer);
-            hoverOpenTimer = setTimeout(openDropdown, 300);
+            clearTimeout(activeCloseTimer);
+            const anyOpen = Array.from(dropdownContainers).some((d) => d.classList.contains('is-open'));
+            if (anyOpen) {
+                // Al cambiar entre dropdowns, el anterior se cierra y este se abre de inmediato
+                openThis();
+            } else {
+                activeOpenTimer = setTimeout(openThis, 50);
+            }
         });
 
-        // Cierra con 500ms de gracia al salir del dropdown completo (botón + panel)
+        // Hover salir: tiempo de gracia amplio (850ms) para que no se cierre rápido
         dropdown.addEventListener('mouseleave', () => {
-            clearTimeout(hoverOpenTimer);
-            hoverCloseTimer = setTimeout(closeDropdown, 500);
+            clearTimeout(activeOpenTimer);
+            activeCloseTimer = setTimeout(closeThis, 850);
         });
     });
 
     // Cierra al hacer click fuera
     document.addEventListener('click', (e) => {
         if (!e.target.closest('.nav-dropdown')) {
+            clearTimeout(activeCloseTimer);
+            clearTimeout(activeOpenTimer);
             dropdownContainers.forEach((d) => d.classList.remove('is-open'));
         }
     });
@@ -167,11 +181,78 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // 5b. Post-it Card Slider interactivo con flechas y contador
+    function initPostitSlider() {
+        const postitCards = document.querySelectorAll('.postit-card');
+        if (!postitCards.length) return;
+
+        postitCards.forEach(card => {
+            const slides = card.querySelectorAll('.postit-slide');
+            if (!slides.length) return;
+
+            const parent = card.closest('.home-hero-visual, .editorial-visual, .granja-visuals') || card.parentElement;
+            const captionEl = card.querySelector('.postit-caption') || parent.querySelector('.postit-caption');
+            const counterEl = card.querySelector('.postit-counter') || parent.querySelector('.postit-counter');
+            const prevBtn = card.querySelector('.postit-arrow-btn[data-action="prev"], #postit-prev, .postit-prev') || parent.querySelector('.postit-arrow-btn[data-action="prev"], #postit-prev, .postit-prev');
+            const nextBtn = card.querySelector('.postit-arrow-btn[data-action="next"], #postit-next, .postit-next') || parent.querySelector('.postit-arrow-btn[data-action="next"], #postit-next, .postit-next');
+
+            let currentIndex = 0;
+            const totalSlides = slides.length;
+
+            function updateSlide(index) {
+                slides.forEach((s, idx) => {
+                    s.classList.toggle('active', idx === index);
+                });
+
+                if (captionEl) {
+                    const newCaption = slides[index].getAttribute('data-caption') || slides[index].getAttribute('alt') || '';
+                    captionEl.style.opacity = '0';
+                    setTimeout(() => {
+                        captionEl.textContent = newCaption;
+                        captionEl.style.opacity = '1';
+                    }, 150);
+                }
+
+                if (counterEl) {
+                    const curStr = String(index + 1).padStart(2, '0');
+                    const totStr = String(totalSlides).padStart(2, '0');
+                    counterEl.textContent = `${curStr} / ${totStr}`;
+                }
+            }
+
+            if (prevBtn) {
+                prevBtn.onclick = (e) => {
+                    e.preventDefault();
+                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                    updateSlide(currentIndex);
+                };
+            }
+
+            if (nextBtn) {
+                nextBtn.onclick = (e) => {
+                    e.preventDefault();
+                    currentIndex = (currentIndex + 1) % totalSlides;
+                    updateSlide(currentIndex);
+                };
+            }
+
+            // Estado inicial
+            updateSlide(0);
+        });
+    }
+
     // 6. OpenStreetMap with Leaflet (On index.html)
     let leafletMapInstance = null;
+    let isMapFullscreen = false;
+
     function initLeafletMap() {
         const osmContainer = document.getElementById('osm-map');
         if (!osmContainer) return;
+
+        // Reset previo
+        isMapFullscreen = false;
+        document.body.classList.remove('map-fullscreen-active');
+        osmContainer.classList.remove('is-fullscreen');
 
         if (leafletMapInstance) {
             try {
@@ -184,15 +265,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             const mapCoords = [41.055714517046276, -3.6072308811227165];
+            const isMobile = window.matchMedia('(max-width: 768px)').matches || ('ontouchstart' in window && window.innerWidth <= 768);
+
             leafletMapInstance = L.map('osm-map', {
                 center: mapCoords,
                 zoom: 15,
-                dragging: false,       // Sin arrastrar con ratón ni dedo
-                touchZoom: true,       // Pinch-to-zoom en móvil: sí
-                scrollWheelZoom: true, // Rueda del ratón: sí
-                doubleClickZoom: true, // Doble click zoom: sí
-                boxZoom: false,        // Selección con shift+drag: no
-                keyboard: false,       // Teclas de cursor: no
+                dragging: !isMobile,        // Escritorio: libre total. Móvil: bloqueado para no estorbar el scroll
+                touchZoom: true,            // Móvil: permite pinch-to-zoom con dos dedos
+                scrollWheelZoom: !isMobile, // Escritorio: zoom con rueda. Móvil: desactivado
+                doubleClickZoom: true,
+                boxZoom: !isMobile,
+                keyboard: !isMobile,
             });
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -218,6 +301,80 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
             marker.bindPopup(popupContent);
+
+            // Botón Fullscreen integrado en el mapa
+            const fsBtn = document.getElementById('map-fullscreen-toggle');
+            if (fsBtn) {
+                // Evitamos que los clicks en el botón se propaguen al mapa
+                L.DomEvent.disableClickPropagation(fsBtn);
+
+                fsBtn.onclick = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleMapFullscreen();
+                };
+            }
+
+            function toggleMapFullscreen() {
+                isMapFullscreen = !isMapFullscreen;
+                osmContainer.classList.toggle('is-fullscreen', isMapFullscreen);
+                document.body.classList.toggle('map-fullscreen-active', isMapFullscreen);
+
+                if (isMapFullscreen) {
+                    // En pantalla completa: LIBERTAD TOTAL DE MOVIMIENTO en móvil y escritorio
+                    leafletMapInstance.dragging.enable();
+                    leafletMapInstance.touchZoom.enable();
+                    leafletMapInstance.scrollWheelZoom.enable();
+
+                    if (fsBtn) {
+                        fsBtn.innerHTML = '<span class="fs-icon">✕</span> <span class="fs-text">CERRAR PANTALLA COMPLETA</span>';
+                        fsBtn.setAttribute('aria-label', 'Cerrar pantalla completa');
+                    }
+                } else {
+                    // Al volver a la vista embebida: si es móvil, re-bloqueamos el arrastre para el scroll seguro
+                    const currentlyMobile = window.matchMedia('(max-width: 768px)').matches || ('ontouchstart' in window && window.innerWidth <= 768);
+                    if (currentlyMobile) {
+                        leafletMapInstance.dragging.disable();
+                        leafletMapInstance.scrollWheelZoom.disable();
+                    } else {
+                        leafletMapInstance.dragging.enable();
+                        leafletMapInstance.scrollWheelZoom.enable();
+                    }
+
+                    if (fsBtn) {
+                        fsBtn.innerHTML = '<span class="fs-icon">⤢</span> <span class="fs-text">AMPLIAR MAPA</span>';
+                        fsBtn.setAttribute('aria-label', 'Ampliar mapa a pantalla completa');
+                    }
+                }
+
+                setTimeout(() => {
+                    leafletMapInstance.invalidateSize();
+                }, 100);
+            }
+
+            // Tecla Escape para salir de fullscreen
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && isMapFullscreen) {
+                    toggleMapFullscreen();
+                }
+            });
+
+            // Ajuste al redimensionar ventana
+            window.addEventListener('resize', () => {
+                if (!leafletMapInstance) return;
+                const mobileNow = window.matchMedia('(max-width: 768px)').matches || ('ontouchstart' in window && window.innerWidth <= 768);
+                if (!isMapFullscreen) {
+                    if (mobileNow) {
+                        leafletMapInstance.dragging.disable();
+                        leafletMapInstance.scrollWheelZoom.disable();
+                    } else {
+                        leafletMapInstance.dragging.enable();
+                        leafletMapInstance.scrollWheelZoom.enable();
+                    }
+                }
+                leafletMapInstance.invalidateSize();
+            });
+
         } catch (err) {
             console.error('Error initializing Leaflet map:', err);
         }
@@ -349,12 +506,26 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.logo-wrapper').forEach((w) => logoObserver.observe(w));
     window.addEventListener('resize', alignLogoSubtitle);
 
+    // Aplicar inclinación orgánica y aleatoria casera a los celos de los postits
+    function applyOrganicTapeTilt() {
+        const tapes = document.querySelectorAll('.postit-tape');
+        tapes.forEach((tape, i) => {
+            // Genera una inclinación entre 1.2° y 3.5° hacia la izquierda o derecha
+            const baseSign = (i % 2 === 0) ? -1 : 1;
+            const magnitude = 1.2 + Math.random() * 2.2;
+            const angle = (baseSign * magnitude).toFixed(1);
+            tape.style.transform = `translateX(-50%) rotate(${angle}deg)`;
+        });
+    }
+
     // Inicializar funciones de página
     function initPageFeatures() {
         initLeafletMap();
         initPolaroid();
+        initPostitSlider();
         initContactForm();
         alignLogoSubtitle();
+        applyOrganicTapeTilt();
     }
     initPageFeatures();
 
