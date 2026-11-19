@@ -1167,6 +1167,202 @@ h2 {
   max-width: 680px;
 }
 
+/* =============================================================================
+   PRINCIPIOS Y PILARES UNIFICADOS (Tríptico Ético con Iconos Centrales)
+   ============================================================================= */
+.principles-pillars-unified {
+  margin: 2.5rem 0 3.5rem 0;
+}
+
+.triptico-intro-text {
+  font-family: var(--font-body, 'Open Sans', sans-serif);
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: #2b2b2b;
+  margin-bottom: 2.8rem;
+  max-width: 880px;
+}
+
+.triptico-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.triptico-card {
+  background: #ffffff;
+  border: 1.8px solid var(--color-marker, #1a1a1a);
+  box-shadow: 4px 4px 0 var(--color-marker, #1a1a1a);
+  padding: 2rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.triptico-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 6px 6px 0 var(--color-marker, #1a1a1a);
+}
+
+.triptico-card.featured-center {
+  border-color: var(--color-wine, #821723);
+  box-shadow: 5px 5px 0 var(--color-wine, #821723);
+  background: #ffffff;
+}
+
+.triptico-card.featured-center:hover {
+  box-shadow: 7px 7px 0 var(--color-wine, #821723);
+}
+
+/* Bloque Superior: El Principio */
+.triptico-top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.triptico-tag {
+  display: inline-block;
+  font-family: var(--font-title, 'Montserrat', sans-serif);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-wine, #821723);
+  margin-bottom: 0.5rem;
+}
+
+.triptico-title {
+  font-family: var(--font-title, 'Montserrat', sans-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-marker, #1a1a1a);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 0.85rem 0;
+  line-height: 1.25;
+}
+
+.triptico-desc {
+  font-family: var(--font-body, 'Open Sans', sans-serif);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #333333;
+  margin: 0;
+}
+
+/* Bloque Central: El Icono Ilustrado al Centro */
+.triptico-center {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.6rem 0;
+  padding: 1rem 0;
+}
+
+.triptico-center::before {
+  content: '';
+  position: absolute;
+  left: -1.6rem;
+  right: -1.6rem;
+  top: 50%;
+  height: 1.5px;
+  background: rgba(26, 26, 26, 0.12);
+  z-index: 1;
+}
+
+.triptico-card.featured-center .triptico-center::before {
+  background: rgba(147, 13, 36, 0.2);
+}
+
+.triptico-icon-frame {
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+  padding: 0 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.triptico-svg {
+  width: 76px;
+  height: 76px;
+  display: block;
+  object-fit: contain;
+  transition: transform 0.25s ease;
+}
+
+.triptico-card:hover .triptico-svg {
+  transform: scale(1.08);
+}
+
+/* Bloque Inferior: El Pilar Práctico */
+.triptico-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  background: #fdfaf6;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 3px;
+  padding: 1.2rem 1.1rem;
+}
+
+.triptico-bottom .triptico-tag {
+  color: #555555;
+  margin-bottom: 0.4rem;
+}
+
+.triptico-subtitle {
+  font-family: var(--font-title, 'Montserrat', sans-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-wine, #821723);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin: 0 0 0.65rem 0;
+  line-height: 1.3;
+}
+
+.soberania-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed rgba(147, 13, 36, 0.25);
+  width: 100%;
+}
+
+.soberania-badge-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.soberania-badge-text {
+  font-family: var(--font-title, 'Montserrat', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 992px) {
+  .triptico-grid {
+    grid-template-columns: 1fr;
+    gap: 2.2rem;
+  }
+}
+
 .principle-column-card {
   display: flex;
   flex-direction: column;
