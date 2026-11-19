@@ -15,6 +15,7 @@ export default defineConfig({
         granjaHuevos: resolve(__dirname, 'granja-huevos.html'),
         historia: resolve(__dirname, 'historia.html'),
         principios: resolve(__dirname, 'principios.html'),
+        pedidos: resolve(__dirname, 'pedidos.html'),
         contacto: resolve(__dirname, 'contacto.html'),
       }
     }
