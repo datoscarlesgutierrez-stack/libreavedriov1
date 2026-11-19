@@ -86,6 +86,19 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', handleNavScroll);
     handleNavScroll();
 
+    // Comprobación inicial al cargar página directamente con ancla en URL (ej: /granja-parque.html#contenido)
+    if (window.location.hash) {
+        setTimeout(() => {
+            const targetAnchor = document.querySelector(window.location.hash);
+            if (targetAnchor) {
+                const headerEl = targetAnchor.querySelector('.editorial-page-header') || targetAnchor;
+                const targetY = Math.max(0, headerEl.getBoundingClientRect().top + window.scrollY - 70);
+                window.scrollTo({ top: targetY, behavior: 'instant' });
+                handleNavScroll();
+            }
+        }, 50);
+    }
+
     // 4. Dropdown Menu — Apertura rápida (50ms) y margen amplio de cierre (850ms)
     const dropdownContainers = document.querySelectorAll('.nav-dropdown');
     let activeCloseTimer = null;
@@ -648,7 +661,23 @@ document.addEventListener('DOMContentLoaded', () => {
                         window.history.pushState(null, doc.title, url);
                     }
 
-                    window.scrollTo({ top: 0, behavior: 'instant' });
+                    // Si la URL contiene un ancla (ej: #contenido al navegar entre subpáginas de La Granja),
+                    // posicionamos el scroll directamente en el título de la página justo debajo del menú sticky,
+                    // sin mostrar la imagen del hero superior ni obligar al usuario a hacer scroll.
+                    const hashIndex = url.indexOf('#');
+                    if (hashIndex !== -1) {
+                        const hash = url.substring(hashIndex);
+                        const targetAnchor = document.querySelector(hash);
+                        if (targetAnchor) {
+                            const headerEl = targetAnchor.querySelector('.editorial-page-header') || targetAnchor;
+                            const targetY = Math.max(0, headerEl.getBoundingClientRect().top + window.scrollY - 70);
+                            window.scrollTo({ top: targetY, behavior: 'instant' });
+                        } else {
+                            window.scrollTo({ top: 0, behavior: 'instant' });
+                        }
+                    } else {
+                        window.scrollTo({ top: 0, behavior: 'instant' });
+                    }
                     handleNavScroll();
 
                     // Re-inicializar componentes

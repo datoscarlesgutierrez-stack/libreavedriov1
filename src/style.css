@@ -1,6 +1,14 @@
 @import './config.css';
 
-/* Reset and basic styles already use the variables from root in config.css */
+/* =====================================================================
+   LIBREAVEDRIO — ESTILOS PRINCIPALES
+   Configuración visual en config.css · Aquí solo layout y componentes.
+   ===================================================================== */
+
+
+/* =====================================================================
+   0. RESET & BASE
+   ===================================================================== */
 
 * {
   box-sizing: border-box;
@@ -50,7 +58,16 @@ h2 {
   padding: 0 var(--spacing-container);
 }
 
-/* 1. HERO SECTION */
+.content-section {
+  padding: var(--spacing-section) 0;
+  scroll-margin-top: var(--scroll-offset);
+}
+
+
+/* =====================================================================
+   1. HERO & SLIDESHOW
+   ===================================================================== */
+
 .hero-intro {
   position: relative;
   height: var(--hero-compact-height, 50vh);
@@ -231,6 +248,11 @@ h2 {
   }
 }
 
+
+/* =====================================================================
+   2. LOGO
+   ===================================================================== */
+
 .logo-wrapper {
   display: flex;
   flex-direction: column;
@@ -279,7 +301,11 @@ h2 {
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85);
 }
 
-/* 2. NAV (INSIDE HERO BACKGROUND FRAME) */
+
+/* =====================================================================
+   3. NAVEGACIÓN & HEADER
+   ===================================================================== */
+
 .sticky-nav {
   position: relative;
   z-index: 50;
@@ -337,7 +363,8 @@ h2 {
   font-weight: var(--font-weight-nav, 700);
   color: var(--color-marker);
   font-size: var(--font-size-nav, 0.85rem);
-  padding: 0.45rem 1.15rem;
+  height: var(--nav-btn-height, 38px);
+  padding: 0 1.15rem;
   transition: all var(--nav-transition-speed) ease;
   text-transform: uppercase;
   background: rgba(255, 251, 240, 0.95);
@@ -348,9 +375,12 @@ h2 {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  line-height: 1;
   gap: 0.4rem;
   white-space: nowrap;
   flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 /* Hover and Active states */
@@ -374,11 +404,13 @@ h2 {
   transform: none;
 }
 
-/* Dropdown Menu for ¿QUIÉNES SOMOS? */
+/* Dropdown Menu para ¿QUIÉNES SOMOS? */
 .nav-dropdown {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   flex-shrink: 0;
+  height: var(--nav-btn-height, 38px);
 }
 
 .nav-dropdown-btn {
@@ -391,14 +423,24 @@ h2 {
   font-weight: var(--font-weight-nav, 700);
   color: var(--color-marker);
   font-size: var(--font-size-nav, 0.85rem);
-  padding: 0.45rem 1.15rem;
+  height: var(--nav-btn-height, 38px);
+  padding: 0 1.15rem;
   cursor: pointer;
   white-space: nowrap;
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  gap: 0.4rem;
+  box-sizing: border-box;
 }
 
 .dropdown-arrow {
   font-size: 0.75rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
   transition: transform 0.2s ease;
 }
 
@@ -483,13 +525,15 @@ h2 {
   font-weight: 700;
   background: var(--color-accent);
   color: white;
-  padding: 2px 8px;
+  padding: 1px 7px;
   border-radius: 50px;
   margin-left: 5px;
   letter-spacing: 0.03em;
   display: inline-flex;
   align-items: center;
-  line-height: 1.2;
+  justify-content: center;
+  line-height: 1;
+  box-sizing: border-box;
 }
 
 .tag-wip {
@@ -506,15 +550,112 @@ h2 {
   line-height: 1.2;
 }
 
-/* Home Intro Section */
-.intro-home-section {
-  padding: 4rem 0 3rem 0;
-  text-align: center;
+
+/* =====================================================================
+   4. BOTONES GLOBALES
+   ===================================================================== */
+
+/* Botón editorial granate con flecha arriba-derecha */
+.btn-editorial-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.6rem;
+  background-color: var(--color-wine, #821723);
+  color: #ffffff;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
 }
 
-/* =============================================================================
-   HOME HERO EDITORIAL & CLEAN POST-IT SLIDER
-   ============================================================================= */
+.btn-editorial-cta:hover {
+  background-color: #69111c;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+}
+
+.btn-editorial-cta .btn-arrow {
+  font-size: 0.95rem;
+  transition: transform 0.2s ease;
+}
+
+.btn-editorial-cta:hover .btn-arrow {
+  transform: translate(2px, -2px);
+}
+
+
+/* =====================================================================
+   5. SEPARADORES SVG (bezier)
+   ===================================================================== */
+
+/* Bezier Separators — se mantiene dentro de los márgenes del texto */
+.bezier-separator {
+  width: 100%;
+  max-width: var(--width-container, 1000px);
+  height: 40px;
+  overflow: visible;
+  margin: var(--spacing-gap-medium) auto;
+  padding: 0 var(--spacing-container, 1.5rem);
+  box-sizing: border-box;
+  color: var(--color-marker);
+  display: flex;
+  align-items: center;
+}
+
+/* Cuando bezier-separator está dentro de un contenedor, no duplica el padding */
+.container>.bezier-separator,
+.container .bezier-separator {
+  max-width: 100%;
+  padding: 0;
+}
+
+.bezier-separator svg,
+.metrics-separator-curve svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.bezier-separator path,
+.metrics-separator-curve path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: var(--bezier-stroke-width, 1.5px);
+  stroke-linecap: round;
+}
+
+/* Trazo curvo que delimita sin desbordar los márgenes del texto */
+.metrics-separator-curve {
+  width: 100%;
+  max-width: 100%;
+  height: 28px;
+  margin: 1.5rem auto 1.25rem auto;
+  color: var(--color-marker);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.metrics-separator-curve svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+
+/* =====================================================================
+   6. PORTADA (Home: grid, postit, métricas)
+   ===================================================================== */
 
 .intro-home-section {
   padding-top: 3.5rem;
@@ -564,43 +705,6 @@ h2 {
   margin-bottom: 2.2rem;
   max-width: 520px;
   text-align: left;
-}
-
-/* Botón editorial granate con flecha arriba-derecha */
-.btn-editorial-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.6rem;
-  background-color: var(--color-wine, #821723);
-  color: #ffffff;
-  text-decoration: none;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  border-radius: 4px;
-  border: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  cursor: pointer;
-}
-
-.btn-editorial-cta:hover {
-  background-color: #69111c;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  color: #ffffff;
-}
-
-.btn-editorial-cta .btn-arrow {
-  font-size: 0.95rem;
-  transition: transform 0.2s ease;
-}
-
-.btn-editorial-cta:hover .btn-arrow {
-  transform: translate(2px, -2px);
 }
 
 /* Columna Derecha: Tarjeta Post-It limpia con una tira de celo superior centrada */
@@ -721,31 +825,8 @@ h2 {
   color: var(--color-wine, #821723);
 }
 
-/* Aclaración en rojo/granate debajo de la foto - eliminada a petición */
-.postit-note-red {
-  display: none !important;
-}
-
-/* Trazo curvo que delimita sin desbordar los márgenes del texto */
-.metrics-separator-curve {
-  width: 100%;
-  max-width: 100%;
-  height: 28px;
-  margin: 1.5rem auto 1.25rem auto;
-  color: var(--color-marker);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.metrics-separator-curve svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
 /* =============================================================================
-   MÉTRICAS DESTACADAS DE IMPACTO (Captura 1 y Mobile)
+   MÉTRICAS DESTACADAS DE IMPACTO
    ============================================================================= */
 
 .home-metrics-grid {
@@ -781,113 +862,10 @@ h2 {
   line-height: 1.3;
 }
 
-.btn-primary-organic {
-  display: inline-block;
-  padding: 0.85rem 1.8rem;
-  background-color: var(--color-marker);
-  color: white;
-  text-decoration: none;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 0.95rem;
-  border: 2px solid var(--color-marker);
-  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
-  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
 
-.btn-primary-organic:hover {
-  background-color: var(--color-accent);
-  border-color: var(--color-accent);
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.25);
-  color: white;
-}
-
-.btn-secondary-organic {
-  display: inline-block;
-  padding: 0.85rem 1.8rem;
-  background-color: var(--color-secondary);
-  color: var(--color-marker);
-  text-decoration: none;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 0.95rem;
-  border: 2px solid var(--color-marker);
-  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
-  box-shadow: 4px 4px 0 var(--color-marker);
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.btn-secondary-organic:hover {
-  background-color: white;
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 6px 6px 0 var(--color-marker);
-}
-
-/* Photo Cards with Scotch Tape Effect for Content Pages (Estilo Polaroid Panorámica Auténtica) */
-.photo-card-tape {
-  position: relative;
-  background: #ffffff;
-  padding: 16px 16px 48px 16px;
-  border: 2px solid var(--color-marker);
-  border-radius: 0;
-  /* Ángulos rectos clásicos Polaroid */
-  box-shadow: 6px 6px 0 var(--color-marker);
-  margin: 2.5rem auto;
-  max-width: 620px;
-  width: 100%;
-  transform: rotate(-1deg);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.photo-card-tape:hover {
-  transform: rotate(0deg) scale(1.01);
-  box-shadow: 8px 8px 0 var(--color-marker);
-}
-
-.photo-card-tape img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  /* Formato panorámico, no 1:1 cuadrado */
-  object-fit: cover;
-  display: block;
-  border-radius: 0;
-  /* Recto */
-  border: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.photo-card-caption {
-  margin-top: 14px;
-  font-family: var(--font-handwriting);
-  font-size: var(--font-size-postit-caption, 24px);
-  font-weight: 600;
-  text-align: center;
-  color: #2c2c2c;
-  line-height: 1.3;
-}
-
-/* Content Page Layout Styles */
-.page-header {
-  text-align: left;
-  margin-bottom: 3rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 2px solid var(--color-marker);
-}
-
-.page-header h2 {
-  text-align: left;
-}
-
-.page-lead-subtitle {
-  font-size: var(--font-size-lead, 1.2rem);
-  max-width: 780px;
-  margin: 0;
-  line-height: var(--line-height-lead, 1.65);
-  color: #555;
-}
+/* =====================================================================
+   7. EDITORIAL: CABECERAS, EYEBROWS, BLOQUES DE TEXTO
+   ===================================================================== */
 
 /* =============================================================================
    EDITORIAL PAGE HEADER DESIGN SYSTEM (MISMA TIPOGRAFÍA Y TAMAÑOS QUE INICIO)
@@ -1026,96 +1004,126 @@ h2 {
   margin-bottom: 0;
 }
 
-/* Contact 2-col Grid */
-.contact-grid-2col {
+
+/* =====================================================================
+   8. POLAROID PANORÁMICO
+   ===================================================================== */
+
+/* Polaroid Panorámica Grande */
+.polaroid-panoramic-wrapper {
+  width: 100%;
+  max-width: 100%;
+  margin: 2.5rem auto 3rem auto;
+}
+
+.polaroid-panoramic-card {
+  position: relative;
+  width: 100%;
+  background: #ffffff;
+  border: 1.8px solid var(--color-marker);
+  box-shadow: 6px 6px 0 var(--color-marker);
+  padding: 14px 14px 16px 14px;
+  box-sizing: border-box;
+}
+
+.polaroid-panoramic-card .postit-image-container {
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  min-height: 280px;
+  max-height: 440px;
+  background: #eee8de;
+}
+
+.polaroid-panoramic-card .postit-caption {
+  font-family: var(--font-handwriting);
+  font-size: var(--font-size-postit-caption, 24px);
+  color: #222;
+  padding-top: 12px;
+  text-align: center;
+}
+
+
+/* =====================================================================
+   9. GRANJA: TARJETAS Y NAV ENTRE SUBPÁGINAS
+   ===================================================================== */
+
+.farm-subpages-grid {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 3.5rem;
-  align-items: start;
-  margin: 2.5rem 0;
-  text-align: left;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  margin: 3rem 0;
 }
 
-.contact-info-card {
-  background: transparent;
-  padding: 1.5rem 0 0 0;
-  text-align: left;
+.farm-subpage-card {
+  border: 1.8px solid var(--color-marker);
+  background: #ffffff;
+  padding: 2rem;
+  box-shadow: 6px 6px 0 var(--color-marker);
+  text-decoration: none;
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.contact-info-item {
-  margin-bottom: 1.3rem;
+.farm-subpage-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 8px 8px 0 var(--color-wine, #821723);
 }
 
-.contact-info-label {
+.farm-subpage-num {
   font-family: var(--font-heading);
   font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
   color: var(--color-eyebrow, #b23b3b);
-  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 0.8rem;
   display: block;
-  margin-bottom: 0.3rem;
 }
 
-.contact-info-text {
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: #2c2c2c;
-  margin: 0;
-}
-
-/* Pillars List (Principios) */
-.pillars-editorial-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.6rem;
-}
-
-.pillar-item {
-  border-left: 3px solid var(--color-wine, #821723);
-  padding-left: 1.25rem;
-}
-
-.pillar-title {
+.farm-subpage-title {
   font-family: var(--font-heading);
-  font-size: 1.05rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--color-marker);
+  margin-bottom: 0.8rem;
   text-transform: uppercase;
-  margin-bottom: 0.35rem;
 }
 
-.pillar-desc {
-  font-size: 1.02rem;
+.farm-subpage-desc {
+  font-family: var(--font-body);
+  font-size: 1rem;
   line-height: 1.7;
-  color: #3a3a3a;
-  margin: 0;
+  color: #444;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
 }
 
-/* Values cards editorial */
-.values-cards-grid-editorial {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  margin-top: 2rem;
+.farm-subpage-link {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-wine, #821723);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-transform: uppercase;
 }
 
-/* =============================================================================
-   PRINCIPIOS: BLOQUES EN LÍNEA CON ILUSTRACIÓN EN LÁPIZ Y POLAROID PANORÁMICA
-   ============================================================================= */
-
-.principles-row-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.8rem;
-  margin: 2.5rem 0 3.5rem 0;
-  text-align: left;
+.subpage-nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  margin: 3rem 0 2rem 0;
 }
 
-.principles-row-grid.grid-4 {
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2.2rem;
-}
+
+/* =====================================================================
+   10. PRINCIPIOS Y PILARES (tríptico)
+   ===================================================================== */
 
 /* =============================================================================
    PRINCIPIOS Y PILARES UNIFICADOS (Tríptico Ético con Iconos Centrales)
@@ -1286,209 +1294,14 @@ h2 {
   text-transform: uppercase;
 }
 
-@media (max-width: 992px) {
-  .triptico-grid {
-    grid-template-columns: 1fr;
-    gap: 2.2rem;
-  }
-}
 
-.principle-column-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-}
-
-.pencil-sketch-wrapper {
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 1.25rem;
-  color: var(--color-marker);
-}
-
-.pencil-sketch-wrapper svg {
-  display: block;
-}
-
-.principle-column-title {
-  font-family: var(--font-heading);
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--color-marker);
-  text-transform: uppercase;
-  margin-bottom: 0.75rem;
-  letter-spacing: 0.04em;
-}
-
-.principle-column-text {
-  font-family: var(--font-body);
-  font-size: 1.05rem;
-  line-height: 1.75;
-  color: #333333;
-  margin: 0;
-}
-
-/* Polaroid Panorámica Grande */
-.polaroid-panoramic-wrapper {
-  width: 100%;
-  max-width: 100%;
-  margin: 2.5rem auto 3rem auto;
-}
-
-.polaroid-panoramic-card {
-  position: relative;
-  width: 100%;
-  background: #ffffff;
-  border: 1.8px solid var(--color-marker);
-  box-shadow: 6px 6px 0 var(--color-marker);
-  padding: 14px 14px 16px 14px;
-  box-sizing: border-box;
-}
-
-.polaroid-panoramic-card .postit-image-container {
-  width: 100%;
-  aspect-ratio: 21 / 9;
-  min-height: 280px;
-  max-height: 440px;
-  background: #eee8de;
-}
-
-.polaroid-panoramic-card .postit-caption {
-  font-family: var(--font-handwriting);
-  font-size: var(--font-size-postit-caption, 24px);
-  color: #222;
-  padding-top: 12px;
-  text-align: center;
-}
-
-/* =============================================================================
-   GRANJA: TARJETAS DE SUBPÁGINAS Y NAVEGACIÓN ENTRE SECCIONES
-   ============================================================================= */
-
-.farm-subpages-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2.5rem;
-  margin: 3rem 0;
-}
-
-.farm-subpage-card {
-  border: 1.8px solid var(--color-marker);
-  background: #ffffff;
-  padding: 2rem;
-  box-shadow: 6px 6px 0 var(--color-marker);
-  text-decoration: none;
-  color: var(--color-text);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.farm-subpage-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 8px 8px 0 var(--color-wine, #821723);
-}
-
-.farm-subpage-num {
-  font-family: var(--font-heading);
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--color-eyebrow, #b23b3b);
-  letter-spacing: 0.14em;
-  margin-bottom: 0.8rem;
-  display: block;
-}
-
-.farm-subpage-title {
-  font-family: var(--font-heading);
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--color-marker);
-  margin-bottom: 0.8rem;
-  text-transform: uppercase;
-}
-
-.farm-subpage-desc {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #444;
-  margin-bottom: 1.5rem;
-  flex-grow: 1;
-}
-
-.farm-subpage-link {
-  font-family: var(--font-heading);
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--color-wine, #821723);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  text-transform: uppercase;
-}
-
-.subpage-nav-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1.2rem;
-  margin: 3rem 0 2rem 0;
-}
-
-@media (max-width: 768px) {
-  .farm-subpages-grid {
-    grid-template-columns: 1fr;
-    gap: 1.8rem;
-  }
-}
+/* =====================================================================
+   11. HISTORIA
+   ===================================================================== */
 
 /* =============================================================================
    HISTORIA: ACADEMIC ESSAY / CONTINUOUS READING LAYOUT
    ============================================================================= */
-
-.story-header-academic {
-  text-align: left;
-  width: 100%;
-  margin-bottom: 2rem;
-}
-
-.story-eyebrow-academic {
-  display: block;
-  font-family: var(--font-heading);
-  font-size: var(--font-size-eyebrow, 0.75rem);
-  font-weight: var(--font-weight-heading, 700);
-  letter-spacing: var(--letter-spacing-eyebrow, 0.16em);
-  color: var(--color-eyebrow, #b23b3b);
-  text-transform: uppercase;
-  margin-bottom: 1.2rem;
-}
-
-.story-title-academic {
-  font-family: var(--font-heading);
-  font-size: clamp(2.3rem, 4.4vw, 3.6rem);
-  font-weight: 900;
-  line-height: 1.08;
-  color: var(--color-marker);
-  margin-bottom: 1.6rem;
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
-}
-
-.story-subtitle-academic {
-  font-family: var(--font-heading);
-  font-size: clamp(1.2rem, 2vw, 1.45rem);
-  font-weight: 700;
-  line-height: 1.45;
-  color: var(--color-wine, #821723);
-  max-width: 820px;
-  margin: 0;
-}
 
 .academic-reading-block {
   width: 100%;
@@ -1511,404 +1324,47 @@ h2 {
   margin-bottom: 0;
 }
 
-@media (max-width: 680px) {
-  .academic-reading-block p {
-    text-align: left;
-    font-size: 1.08rem;
-    line-height: 1.85;
-    margin-bottom: 1.5rem;
-  }
-}
 
-/* Section blocks: editorial, no white box */
-.section-block {
-  padding: 0;
-  margin-bottom: 3.5rem;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  border-radius: 0;
-}
+/* =====================================================================
+   12. CONTACTO: MAPA, FORMULARIO, INFO
+   ===================================================================== */
 
-.section-block h3 {
-  font-size: var(--font-size-h3, 1.45rem);
-  font-weight: var(--font-weight-heading, 700);
-  line-height: var(--line-height-heading, 1.25);
-  margin-bottom: 1.2rem;
-  color: var(--color-marker);
-  border-bottom: none;
-  padding-bottom: 0;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-/* Thin accent line under section titles */
-.section-block h3::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(to right, var(--color-marker) 0%, transparent 100%);
-  margin-left: 0.6rem;
-  opacity: 0.25;
-}
-
-.section-block p {
-  font-size: 1.08rem;
-  line-height: 1.8;
-  margin-bottom: 1.2rem;
-  color: #3a3a3a;
-}
-
-.section-block p:last-child {
-  margin-bottom: 0;
-}
-
-/* Callout Quote in Story — keep the personality but lighter */
-.callout-quote {
-  background: transparent;
-  border-left: 4px solid var(--color-accent);
-  border-top: none;
-  border-right: none;
-  border-bottom: none;
-  border-radius: 0;
-  padding: 1rem 1.5rem;
-  font-size: 1.15rem;
-  font-weight: 600;
-  font-style: italic;
-  margin: 2rem 0;
-  box-shadow: none;
-  color: #444;
-}
-
-/* Work in Progress Banner — más limpio, sin caja amarilla flotante */
-.wip-box {
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  padding: 3rem 1rem;
-  text-align: center;
-  box-shadow: none;
-  max-width: 600px;
-  margin: 2rem auto;
-  border-top: 2px solid var(--color-marker);
-  border-bottom: 2px solid var(--color-marker);
-}
-
-.wip-icon {
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
-  display: block;
-}
-
-.wip-box h3 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  color: var(--color-marker);
-}
-
-.wip-box p {
-  font-size: 1.15rem;
-  line-height: 1.6;
-  color: #444;
-  margin-bottom: 1.5rem;
-}
-
-/* Values Grid — sin tarjetas blancas, estilo lista con icono */
-.values-container {
-  margin-top: 2.5rem;
-}
-
-.values-cards-grid {
+/* Contact 2-col Grid */
+.contact-grid-2col {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem 2.5rem;
-}
-
-.value-card {
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  padding: 0;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3.5rem;
+  align-items: start;
+  margin: 2.5rem 0;
   text-align: left;
-  box-shadow: none;
-  transition: none;
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
 }
 
-.value-card:hover {
-  transform: none;
-  box-shadow: none;
+.contact-info-card {
+  background: transparent;
+  padding: 1.5rem 0 0 0;
+  text-align: left;
 }
 
-.value-card-icon {
-  font-size: 2rem;
-  margin-bottom: 0;
-  display: block;
-  flex-shrink: 0;
-  line-height: 1;
-  margin-top: 2px;
+.contact-info-item {
+  margin-bottom: 1.3rem;
 }
 
-.value-card-body {
-  flex: 1;
-}
-
-.value-card h4 {
+.contact-info-label {
   font-family: var(--font-heading);
-  font-size: 1rem;
-  margin-bottom: 0.35rem;
-  color: var(--color-marker);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-eyebrow, #b23b3b);
   text-transform: uppercase;
-  letter-spacing: 0.03em;
-}
-
-.value-card p {
-  font-size: 0.95rem;
-  color: #555;
-  line-height: 1.55;
-  margin: 0;
-}
-
-
-/* 4. CONTENT SECTIONS */
-/* 4. CONTENT SECTIONS */
-.content-section {
-  padding: var(--spacing-section) 0;
-  /* Parametrized spacing */
-  scroll-margin-top: var(--scroll-offset);
-  /* Ensure breathing room when navigating */
-}
-
-/* Granja Section Grid */
-.granja-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2.5rem;
-  align-items: center;
-}
-
-.granja-visuals {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-}
-
-.text-block {
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  /* Evita que el contenedor de grid se desborde */
-}
-
-/* Polaroid Style (Líneas rectas, ángulos rectos y proporción panorámica) */
-.polaroid-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 460px;
-  margin: 0 auto;
-  transform: rotate(-1.5deg);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.polaroid-wrapper:hover {
-  transform: rotate(0deg) scale(1.02);
-  z-index: 10;
-}
-
-.polaroid-frame {
-  background: #ffffff;
-  padding: 14px 14px 55px 14px;
-  /* Bottom padding for handwritten caption */
-  border: 2px solid var(--color-marker);
-  border-radius: 0;
-  /* Esquinas rectas auténticas Polaroid */
-  box-shadow: 6px 6px 0 var(--color-marker);
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-}
-
-.polaroid-image-container {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  /* Formato panorámico, no 1:1 */
-  overflow: hidden;
-  position: relative;
-  background: #eee;
-  border-radius: 0;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.polaroid-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-.polaroid-img.active {
-  opacity: 1;
-}
-
-.polaroid-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 55px;
-  padding-top: 14px;
-  text-align: center;
-  font-family: var(--font-handwriting);
-  /* Scribble font look */
-  color: #2c2c2c;
-  font-size: var(--font-size-postit-caption, 24px);
-  font-weight: 600;
-}
-
-/* Masking Tape Effect */
-.tape-corner {
-  position: absolute;
-  width: 80px;
-  height: 26px;
-  background-color: rgba(255, 248, 220, 0.6);
-  /* Beige semi-transparent */
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  z-index: 20;
-  opacity: 0.9;
-  backdrop-filter: blur(1px);
-}
-
-.tape-corner.top-left {
-  top: -8px;
-  left: -12px;
-  transform: rotate(-30deg);
-}
-
-.tape-corner.bottom-right {
-  bottom: -8px;
-  right: -12px;
-  transform: rotate(-30deg);
-}
-
-/* Responsive Grid */
-@media (max-width: 900px) {
-  .granja-grid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-
-  .editorial-section-grid,
-  .contact-grid-2col,
-  .principles-row-grid {
-    grid-template-columns: 1fr;
-    gap: 2.2rem;
-  }
-
-  .polaroid-panoramic-card .postit-image-container {
-    aspect-ratio: 16 / 9;
-    min-height: 220px;
-  }
-
-  .editorial-section-grid.reverse>.editorial-visual {
-    order: 0;
-  }
-
-  .editorial-section-grid.reverse>.editorial-content {
-    order: 0;
-  }
-
-  .values-cards-grid-editorial {
-    grid-template-columns: 1fr;
-  }
-
-  .granja-visuals {
-    margin-bottom: 1rem;
-  }
-
-  .polaroid-wrapper {
-    max-width: 440px;
-  }
-}
-
-@media (max-width: 500px) {
-  .tape-corner {
-    display: none;
-    /* En pantallas de móvil muy estrechas evita cualquier riesgo de desbordamiento horizontal */
-  }
-
-  .polaroid-wrapper {
-    transform: none;
-    /* Sin rotación en móviles estrechos para encajar perfecto */
-  }
-
-  .photo-card-tape {
-    transform: none;
-    padding: 12px 12px 40px 12px;
-  }
-}
-
-.text-block p {
-  margin-bottom: 1rem;
-  /* Restore spacing for readability inside grid */
-}
-
-.text-block p+p {
-  margin-top: 0;
-}
-
-.housing-container {
-  margin: var(--spacing-gap-medium) 0;
-  padding: 0;
-  text-align: left;
-}
-
-.housing-container h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  text-align: left;
-}
-
-/* Features Grid — editorial, sin cajas */
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem 2.5rem;
-  text-align: left;
-}
-
-.feature-item {
-  padding: 0;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  transition: none;
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-}
-
-.feature-item:hover {
-  transform: none;
-  box-shadow: none;
-}
-
-.emoji-icon {
-  font-size: 2rem;
   display: block;
-  margin-bottom: 0;
-  flex-shrink: 0;
-  line-height: 1;
-  margin-top: 2px;
+  margin-bottom: 0.3rem;
+}
+
+.contact-info-text {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #2c2c2c;
+  margin: 0;
 }
 
 /* Map Section Styles */
@@ -1965,17 +1421,6 @@ h2 {
   line-height: 1.3;
   text-align: left;
   font-weight: 600;
-}
-
-.location-details {
-  list-style: none;
-  margin: 1.5rem 0;
-  padding: 0;
-}
-
-.location-details li {
-  font-size: 1.1rem;
-  margin-bottom: 0.8rem;
 }
 
 .map-buttons-group {
@@ -2139,20 +1584,6 @@ body.map-fullscreen-active {
   background: #ffffff;
 }
 
-.croquis-container {
-  width: 100%;
-}
-
-.map-image-sketch {
-  width: 100%;
-  height: 380px;
-  object-fit: cover;
-  border: 3px solid var(--color-marker);
-  border-radius: 8px;
-  box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.05);
-  display: block;
-}
-
 /* Custom Leaflet Pin and Popup */
 .custom-leaflet-marker {
   background: transparent;
@@ -2247,28 +1678,7 @@ body.map-fullscreen-active {
   color: white;
 }
 
-@media (max-width: 768px) {
-  .map-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .map-info {
-    text-align: center;
-  }
-}
-
 /* Contact Form */
-.contact-container {
-  max-width: 760px;
-  text-align: center;
-}
-
-.intro-contact {
-  margin-bottom: 2rem;
-  font-size: 1.1rem;
-}
-
 .form-wrapper {
   background: transparent;
   padding: 0;
@@ -2326,7 +1736,6 @@ body.map-fullscreen-active {
   width: 18px;
   height: 18px;
   margin-top: 4px;
-  /* Align with first line of text */
   cursor: pointer;
   accent-color: var(--color-accent);
 }
@@ -2427,6 +1836,11 @@ body.map-fullscreen-active {
   text-align: center;
 }
 
+
+/* =====================================================================
+   13. FOOTER
+   ===================================================================== */
+
 /* Footer Compacto y Distribuido */
 .main-footer {
   padding: 1.25rem 0 1.5rem 0;
@@ -2495,7 +1909,54 @@ body.map-fullscreen-active {
   opacity: 1;
 }
 
+
+/* =====================================================================
+   14. RESPONSIVE MÓVIL (media queries)
+   ===================================================================== */
+
+@media (max-width: 992px) {
+  .triptico-grid {
+    grid-template-columns: 1fr;
+    gap: 2.2rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .editorial-section-grid,
+  .contact-grid-2col {
+    grid-template-columns: 1fr;
+    gap: 2.2rem;
+  }
+
+  .polaroid-panoramic-card .postit-image-container {
+    aspect-ratio: 16 / 9;
+    min-height: 220px;
+  }
+
+  .editorial-section-grid.reverse>.editorial-visual {
+    order: 0;
+  }
+
+  .editorial-section-grid.reverse>.editorial-content {
+    order: 0;
+  }
+}
+
 @media (max-width: 768px) {
+  .farm-subpages-grid {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
+
+  .map-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .map-info {
+    text-align: center;
+  }
+
   .footer-container {
     grid-template-columns: 1fr;
     gap: 0.75rem;
@@ -2514,43 +1975,6 @@ body.map-fullscreen-active {
   .footer-item {
     font-size: 0.8rem;
   }
-}
-
-/* Bezier Separators — se mantiene dentro de los márgenes del texto */
-.bezier-separator {
-  width: 100%;
-  max-width: var(--width-container, 1000px);
-  height: 40px;
-  overflow: visible;
-  margin: var(--spacing-gap-medium) auto;
-  padding: 0 var(--spacing-container, 1.5rem);
-  box-sizing: border-box;
-  color: var(--color-marker);
-  display: flex;
-  align-items: center;
-}
-
-/* Cuando bezier-separator está dentro de un contenedor, no duplica el padding */
-.container>.bezier-separator,
-.container .bezier-separator {
-  max-width: 100%;
-  padding: 0;
-}
-
-.bezier-separator svg,
-.metrics-separator-curve svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-  overflow: visible;
-}
-
-.bezier-separator path,
-.metrics-separator-curve path {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: var(--bezier-stroke-width, 1.5px);
-  stroke-linecap: round;
 }
 
 @media (max-width: 768px) {
@@ -2617,23 +2041,38 @@ body.map-fullscreen-active {
 
   .nav-item {
     font-size: 0.72rem;
-    padding: 0.32rem 0.65rem;
+    height: var(--nav-btn-height-mobile, 30px);
+    padding: 0 0.65rem;
     white-space: nowrap;
     flex-shrink: 0;
     gap: 0.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    box-sizing: border-box;
   }
 
   .nav-dropdown {
     position: relative;
     z-index: 1005;
+    height: var(--nav-btn-height-mobile, 30px);
+    display: inline-flex;
+    align-items: center;
   }
 
   .nav-dropdown-btn {
     font-size: 0.72rem;
-    padding: 0.32rem 0.65rem;
+    height: var(--nav-btn-height-mobile, 30px);
+    padding: 0 0.65rem;
     white-space: nowrap;
     flex-shrink: 0;
     gap: 0.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    box-sizing: border-box;
   }
 
   .badge-disabled {
@@ -2722,11 +2161,6 @@ body.map-fullscreen-active {
     padding-top: 8px;
   }
 
-  .postit-note-red {
-    font-size: 1.25rem;
-    margin-top: 0.75rem;
-  }
-
   .metrics-separator-curve {
     height: 22px;
     margin: 1.5rem auto 1rem auto;
@@ -2791,5 +2225,14 @@ body.map-fullscreen-active {
 
   h2 {
     font-size: var(--font-size-h2-mobile, 2rem);
+  }
+}
+
+@media (max-width: 680px) {
+  .academic-reading-block p {
+    text-align: left;
+    font-size: 1.08rem;
+    line-height: 1.85;
+    margin-bottom: 1.5rem;
   }
 }

@@ -144,6 +144,8 @@
      =========================================================================== */
 
   --header-height:      65px;   /* Altura del header sticky */
+  --nav-btn-height:     38px;   /* Altura idéntica y unificada para TODOS los botones del menú */
+  --nav-btn-height-mobile: 30px; /* Altura idéntica en móviles */
   --nav-btn-radius:     50px;   /* Redondez de los botones del nav (píldora). Ej: 50px, 8px */
   --nav-transition-speed: 0.2s; /* Velocidad de las transiciones hover del nav */
   --nav-bottom-spacing: 2.8rem; /* Separación de los botones con el borde inferior del hero (para que respire) */
