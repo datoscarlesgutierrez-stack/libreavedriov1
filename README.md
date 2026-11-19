@@ -4,7 +4,11 @@ Sitio web oficial de **Granja Libreavedrio**, proyecto de avicultura ecológica 
 
 Diseñado y maquetado con una arquitectura frontend ligera, accesible y responsive basada en **Vite**, **HTML5 semántico**, **CSS nativo con design tokens** y **JavaScript vanilla**.
 
-![Granja Libreavedrio - Portada](docs/preview-home.png)
+<p align="center">
+  <img src="docs/preview-inicio.jpg" alt="Página de Inicio - Granja Libreavedrio" width="48%" />
+  &nbsp;
+  <img src="docs/preview-contacto.jpg" alt="Página de Contacto - Granja Libreavedrio" width="48%" />
+</p>
 
 ---
 
