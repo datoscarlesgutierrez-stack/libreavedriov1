@@ -84,9 +84,11 @@
                             <a href="granja-huevos.html" class="dropdown-item">NUESTROS HUEVOS</a>
                         </div>
                     </div>
-                    <span class="nav-item nav-item-disabled" title="Próximamente">TIENDA <span class="badge-disabled">PRONTO</span></span>
+                    <span class="nav-item nav-item-disabled" title="Próximamente">TIENDA <span
+                            class="badge-disabled">PRONTO</span></span>
                     <a href="contacto.html" class="nav-item active">CONTACTO</a>
-                    <span class="nav-item nav-item-disabled" title="Próximamente">LO QUE ES LA VIDA <span class="badge-disabled">PRONTO</span></span>
+                    <span class="nav-item nav-item-disabled" title="Próximamente">LO QUE ES LA VIDA <span
+                            class="badge-disabled">PRONTO</span></span>
                 </nav>
             </div>
         </header>
@@ -104,6 +106,12 @@
                     </div>
                 </div>
 
+                <!-- Texto introductorio alineado a la izquierda -->
+                <p class="editorial-lead-text">
+                    Preferimos el <strong>trato directo, humano y de confianza</strong>. Escríbenos para cualquier duda
+                    o consulta, proponer colaboraciones o sumarte a nuestros grupos de consumo locales.
+                </p>
+
                 <!-- Separador de trazo fino -->
                 <div class="bezier-separator" style="margin: 2.2rem auto 2.8rem auto;">
                     <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
@@ -111,23 +119,23 @@
                     </svg>
                 </div>
 
-                <!-- Texto introductorio alineado a la izquierda -->
-                <p class="editorial-lead-text">
-                    Preferimos el <strong>trato directo, humano y de confianza</strong>. Escríbenos para cualquier duda o consulta, proponer colaboraciones o sumarte a nuestros grupos de consumo locales.
-                </p>
+
 
                 <!-- Layout a 2 Columnas: Formulario a la Izquierda, Tarjeta Visual e Info a la Derecha -->
                 <div class="contact-grid-2col">
                     <!-- Columna Izquierda: Formulario -->
-                    <div class="form-wrapper" style="box-shadow: none; border: 1.5px solid var(--color-marker); padding: 2rem; border-radius: 4px; background: #ffffff;">
+                    <div class="form-wrapper"
+                        style="box-shadow: none; border: 1.5px solid var(--color-marker); padding: 2rem; border-radius: 4px; background: #ffffff;">
                         <span class="editorial-eyebrow" style="margin-bottom: 0.5rem;">FORMULARIO DIRECTO</span>
-                        <h3 class="editorial-subheading" style="margin-top: 0; margin-bottom: 1.2rem;">ESCRIBIR A LA GRANJA</h3>
+                        <h3 class="editorial-subheading" style="margin-top: 0; margin-bottom: 1.2rem;">ESCRIBIR A LA
+                            GRANJA</h3>
                         <p style="font-size: 0.95rem; color: #555; margin-bottom: 1.5rem; line-height: 1.5;">
                             Escríbenos, propón colaboraciones o consúltanos cualquier duda:
                         </p>
 
                         <!-- AJAX Form -->
-                        <form id="contact-form" action="https://formspree.io/f/xlgbkgok" method="POST" class="contact-form">
+                        <form id="contact-form" action="https://formspree.io/f/xlgbkgok" method="POST"
+                            class="contact-form">
                             <div class="form-group">
                                 <label for="name">Nombre y apellidos</label>
                                 <input type="text" id="name" name="name" required placeholder="Tu nombre y apellidos">
@@ -138,8 +146,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="tel">Teléfono (WhatsApp)</label>
-                                <input type="tel" id="tel" name="tel" required value="+34 " pattern="^(\+34\s?)[6789]\d{8}$"
-                                    title="Formato: +34 seguido de 9 números">
+                                <input type="tel" id="tel" name="tel" required value="+34 "
+                                    pattern="^(\+34\s?)[6789]\d{8}$" title="Formato: +34 seguido de 9 números">
                             </div>
                             <div class="form-group">
                                 <label for="message">Mensaje o Consulta</label>
@@ -148,13 +156,16 @@
                             </div>
                             <div class="form-group checkbox-group">
                                 <input type="checkbox" id="newsletter" name="newsletter">
-                                <label for="newsletter" class="checkbox-label">Quiero recibir noticias y novedades de la granja</label>
+                                <label for="newsletter" class="checkbox-label">Quiero recibir noticias y novedades de la
+                                    granja</label>
                             </div>
                             <div class="form-group checkbox-group">
                                 <input type="checkbox" id="privacy" name="privacy" required>
-                                <label for="privacy" class="checkbox-label">He leído y acepto la política de privacidad</label>
+                                <label for="privacy" class="checkbox-label">He leído y acepto la política de
+                                    privacidad</label>
                             </div>
-                            <button type="submit" id="submit-button" class="btn-editorial-cta" style="width: 100%; justify-content: center; padding: 0.9rem;">
+                            <button type="submit" id="submit-button" class="btn-editorial-cta"
+                                style="width: 100%; justify-content: center; padding: 0.9rem;">
                                 ENVIAR EN UN CLIC <span class="btn-arrow">↗</span>
                             </button>
                             <div id="form-status-error" class="form-status error" style="display: none;"></div>
@@ -174,10 +185,10 @@
                         <div class="postit-card">
                             <span class="postit-tape"></span>
                             <div class="postit-image-container">
-                                <img src="images/granja_3.png" alt="Entorno natural de la granja Libreavedrio"
-                                    class="postit-slide active" data-caption="Entorno y vida en Piñuécar-Gandullas.">
+                                <img src="images/granja_3.png" alt="Entrada accesible a pie de calle a la granja"
+                                    class="postit-slide active" data-caption="Entrada accesible a pie de calle a la granja.">
                             </div>
-                            <p class="postit-caption">Entorno y vida en Piñuécar-Gandullas.</p>
+                            <p class="postit-caption">Entrada accesible a pie de calle a la granja.</p>
                         </div>
 
                         <!-- Tarjeta de información directa editorial -->
@@ -194,7 +205,8 @@
                             <div class="contact-info-item">
                                 <span class="contact-info-label">📧 CORREO ELECTRÓNICO</span>
                                 <p class="contact-info-text">
-                                    <a href="mailto:hola@granjalibreavedrio.es" style="color: var(--color-wine, #821723); font-weight: 700; text-decoration: underline;">
+                                    <a href="mailto:hola@granjalibreavedrio.es"
+                                        style="color: var(--color-wine, #821723); font-weight: 700; text-decoration: underline;">
                                         hola@granjalibreavedrio.es
                                     </a>
                                 </p>
@@ -215,8 +227,9 @@
                             </div>
 
                             <div style="margin-top: 1.5rem;">
-                                <a href="index.html#ubicacion" class="btn-editorial-cta" style="background: transparent; color: var(--color-marker); border: 1.5px solid var(--color-marker); box-shadow: none;">
-                                    CÓMO LLEGAR / GOOGLE MAPS <span class="btn-arrow">↗</span>
+                                <a href="https://www.google.com/maps?q=41.055714517046276,-3.6072308811227165" target="_blank" rel="noopener" class="btn-editorial-cta"
+                                    style="background: transparent; color: var(--color-marker); border: 1.5px solid var(--color-marker); box-shadow: none;">
+                                    VER EN GOOGLE MAPS <span class="btn-arrow">↗</span>
                                 </a>
                             </div>
                         </div>
@@ -237,7 +250,8 @@
         <div class="container footer-container">
             <div class="footer-col footer-col-left">
                 <p class="footer-item">Piñuécar-Gandullas, Madrid</p>
-                <a href="mailto:hola@granjalibreavedrio.es" class="footer-item footer-link">hola@granjalibreavedrio.es</a>
+                <a href="mailto:hola@granjalibreavedrio.es"
+                    class="footer-item footer-link">hola@granjalibreavedrio.es</a>
             </div>
             <div class="footer-col footer-col-center">
                 <a href="index.html" title="Subir al inicio">
@@ -255,4 +269,3 @@
 </body>
 
 </html>
-
