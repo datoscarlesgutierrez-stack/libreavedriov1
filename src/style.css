@@ -2021,3 +2021,82 @@ body.map-fullscreen-active {
     margin-bottom: 1.5rem;
   }
 }
+
+/* Anti-scraping Contact Reveal Elements */
+.btn-reveal-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #ffffff;
+  color: var(--color-marker, #1e1e1e);
+  border: 1px solid rgba(0, 0, 0, 0.22);
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+  margin-top: 0.35rem;
+}
+
+.btn-reveal-contact:hover {
+  background: var(--color-marker, #1e1e1e);
+  color: #ffffff;
+  border-color: var(--color-marker, #1e1e1e);
+  transform: translateY(-1px);
+  box-shadow: 2px 3px 0 rgba(0, 0, 0, 0.15);
+}
+
+.btn-reveal-contact .reveal-icon {
+  font-size: 0.85rem;
+}
+
+.revealed-contact-box {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.35rem;
+  animation: fadeInContact 0.3s ease-out;
+}
+
+@keyframes fadeInContact {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contact-revealed-link {
+  color: var(--color-wine, #821723);
+  font-weight: 700;
+  text-decoration: underline;
+  font-size: 0.95rem;
+}
+
+.contact-wa-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: #25D366;
+  color: #ffffff !important;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  text-decoration: none !important;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.contact-wa-badge:hover {
+  background: #20ba5a;
+  transform: scale(1.05);
+  color: #ffffff !important;
+}

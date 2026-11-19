@@ -534,12 +534,52 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Protección de datos de contacto con interacción (Anti-scraping)
+    function initContactReveal() {
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.btn-reveal-contact');
+            if (!btn) return;
+            const wrapper = btn.closest('.protected-contact-wrapper');
+            if (!wrapper || wrapper.dataset.revealed === 'true') return;
+
+            e.preventDefault();
+            wrapper.dataset.revealed = 'true';
+            const type = wrapper.getAttribute('data-type');
+            const c1 = wrapper.getAttribute('data-chunk1') || '';
+            const c2 = wrapper.getAttribute('data-chunk2') || '';
+            const decoded = atob(c1) + atob(c2);
+
+            let contentHtml = '';
+            if (type === 'phone') {
+                const raw = wrapper.getAttribute('data-raw') ? atob(wrapper.getAttribute('data-raw')) : decoded.replace(/\s+/g, '');
+                const waNum = raw.replace(/\D/g, '');
+                contentHtml = `
+                    <span class="revealed-contact-box">
+                        <a href="tel:${raw}" class="contact-revealed-link">${decoded}</a>
+                        <a href="https://wa.me/${waNum}" target="_blank" rel="noopener" class="contact-wa-badge" title="Escribir por WhatsApp">
+                            💬 WhatsApp
+                        </a>
+                    </span>
+                `;
+            } else if (type === 'email') {
+                contentHtml = `
+                    <span class="revealed-contact-box">
+                        <a href="mailto:${decoded}" class="contact-revealed-link">${decoded}</a>
+                    </span>
+                `;
+            }
+
+            wrapper.innerHTML = contentHtml;
+        });
+    }
+
     // Inicializar funciones de página
     function initPageFeatures() {
         initLeafletMap();
         initPolaroid();
         initPostitSlider();
         initContactForm();
+        initContactReveal();
         alignLogoSubtitle();
         applyOrganicTapeTilt();
     }

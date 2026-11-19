@@ -114,7 +114,13 @@ npm run build
 
 ---
 
-## 📄 Licencia
+## 🔒 Privacidad y Política de Cookies (RGPD)
+
+- **Banner de cookies:** No. Vuestra web no utiliza Google Analytics, píxeles de Meta, publicidad ni cookies de seguimiento invasivas (es código estático servido limpiamente). Al no instalar cookies de terceros en el navegador del usuario, la ley no te obliga a poner el molesto banner de cookies.
+- **Protección de datos (Formulario de contacto):** Cumple con la normativa europea (RGPD) y española (LOPDGDD) mediante el principio de información por capas: casilla de consentimiento obligatorio no premarcada y cláusula informativa básica (responsable, finalidad, legitimación y derechos ARCO) visible al pie del formulario en `contacto.html`.
+- **Anti-Scraping / Protección de contacto:** Los teléfonos y correos directos están codificados y ocultos frente a bots y rastreadores automáticos de spam, requiriendo interacción humana (clic para mostrar) para desplegarlos y utilizarlos.
+
+---
 
 Este proyecto se distribuye bajo la licencia **MIT**, una licencia de código abierto permisiva que permite su uso, modificación, distribución y reutilización libre para proyectos personales o comerciales.
 
