@@ -877,6 +877,13 @@ h2 {
   width: 100%;
 }
 
+/* Ancla para enlaces de navegación entre subpáginas de La Granja.
+   Al llegar al contenido, sitúa el título directamente debajo del menú sticky
+   dejando oculta la foto superior del hero. */
+#contenido {
+  scroll-margin-top: 70px;
+}
+
 .editorial-header-left {
   text-align: left;
   max-width: 900px;

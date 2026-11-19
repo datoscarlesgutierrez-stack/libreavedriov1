@@ -87,16 +87,19 @@ document.addEventListener('DOMContentLoaded', () => {
     handleNavScroll();
 
     // Comprobación inicial al cargar página directamente con ancla en URL (ej: /granja-parque.html#contenido)
-    if (window.location.hash) {
-        setTimeout(() => {
+    function scrollToHashTarget() {
+        if (window.location.hash) {
             const targetAnchor = document.querySelector(window.location.hash);
             if (targetAnchor) {
-                const headerEl = targetAnchor.querySelector('.editorial-page-header') || targetAnchor;
-                const targetY = Math.max(0, headerEl.getBoundingClientRect().top + window.scrollY - 70);
+                const targetY = Math.max(0, targetAnchor.getBoundingClientRect().top + window.scrollY - 70);
                 window.scrollTo({ top: targetY, behavior: 'instant' });
                 handleNavScroll();
             }
-        }, 50);
+        }
+    }
+    if (window.location.hash) {
+        setTimeout(scrollToHashTarget, 20);
+        window.addEventListener('load', scrollToHashTarget);
     }
 
     // 4. Dropdown Menu — Apertura rápida (50ms) y margen amplio de cierre (850ms)
@@ -669,8 +672,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const hash = url.substring(hashIndex);
                         const targetAnchor = document.querySelector(hash);
                         if (targetAnchor) {
-                            const headerEl = targetAnchor.querySelector('.editorial-page-header') || targetAnchor;
-                            const targetY = Math.max(0, headerEl.getBoundingClientRect().top + window.scrollY - 70);
+                            const targetY = Math.max(0, targetAnchor.getBoundingClientRect().top + window.scrollY - 70);
                             window.scrollTo({ top: targetY, behavior: 'instant' });
                         } else {
                             window.scrollTo({ top: 0, behavior: 'instant' });
