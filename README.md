@@ -1,81 +1,92 @@
-# Libreavedrio - Granja Avícola Ecológica
+# Libreavedrio - Web Multisección y Modular
 
-Este proyecto es la página web oficial de **Libreavedrio**, una granja avícola ecológica situada en la Sierra Norte de Madrid. La web está diseñada para ser una landing page moderna, responsive y fácil de configurar, que refleja los valores de sostenibilidad y bienestar animal de la granja.
+Sitio web oficial de **Granja Libreavedrio**, proyecto de avicultura ecológica y sostenible en la Sierra Norte de Madrid.
+
+Diseñado y maquetado con una arquitectura frontend ligera, accesible y responsive basada en **Vite**, **HTML5 semántico**, **CSS nativo con design tokens** y **JavaScript vanilla**.
+
+---
 
 ## 📁 Estructura del Proyecto
 
-El proyecto sigue una estructura limpia y modular para facilitar su mantenimiento:
-
--   `index.html`: Punto de entrada principal de la aplicación. Contiene la estructura semántica de la landing page.
--   `src/`: Directorio con el código fuente del sitio.
-    -   `config.css`: Archivo central de configuración de estilos mediante variables CSS (design tokens).
-    -   `style.css`: Estilos principales y componentes del sitio (layout, secciones, formularios, etc.).
-    -   `main.js`: Lógica principal en JavaScript (interacciones, desplazamiento suave, validación y envío de formularios).
--   `public/`: Contiene los recursos estáticos como imágenes (`images/`), iconos (`favicon.png`) y utilidades gráficas (`marker.svg`).
-
-## 🛠️ Configuración de Estilos (`src/config.css`)
-
-El archivo `src/config.css` funciona como el **panel de control visual** de la web. Aquí se definen las variables globales de CSS que permiten cambiar la apariencia del sitio de forma centralizada.
-
-### Propiedades Disponibles:
-
-#### 🎨 Colores
--   `--color-bg`: Color de fondo principal (crema suave).
--   `--color-text`: Color de texto principal (gris oscuro/negro).
--   `--color-marker`: Color para elementos decorativos tipo "rotulador".
--   `--color-accent`: Color de acento (naranja tierra).
--   `--color-secondary`: Color de fondo secundario para secciones alternas.
--   `--color-nav-bg`: Fondo de la barra de navegación.
-
-#### 🖋️ Tipografía
--   `--font-heading`: Fuente utilizada para títulos (`Montserrat`).
--   `--font-body`: Fuente utilizada para el cuerpo de texto (`Open Sans`).
-
-#### 📏 Espaciado y Dimensiones
--   `--spacing-section`: Espaciado vertical entre secciones.
--   `--spacing-container`: Margen lateral interno de los contenedores.
--   `--width-container`: Ancho máximo del contenido (1000px).
--   `--header-height`: Altura fija del header para cálculos de posicionamiento.
-
-#### 🏷️ Logo y Elementos Específicos
--   `--width-logo-wrapper`: Controla el tamaño del contenedor del logo en la sección Hero.
--   `--logo-subtitle-letter-spacing`: Ajusta el espaciado entre letras del subtítulo del logo para alineación perfecta.
--   `--bezier-stroke-width`: Grosor de las líneas curvas (separadores bezier) entre secciones.
-
-#### 🖱️ Interacción y Scroll
--   `--scroll-offset`: Margen superior que se deja al saltar a una sección mediante el menú, evitando que el header tape el título.
-
-## 🚀 Desarrollo
-
-Para ejecutar el proyecto localmente, asegúrate de tener instalado Node.js y sigue estos pasos:
-
-1.  Instala las dependencias:
-    ```bash
-    npm install
-    ```
-2.  Inicia el servidor de desarrollo:
-    ```bash
-    npm run dev
-    ```
-3.  Para construir el proyecto para producción:
-    ```bash
-    npm run build
-    ```
-
-## 🌐 Despliegue en GitHub Pages
-
-Este proyecto está configurado para desplegarse automáticamente en GitHub Pages mediante **GitHub Actions**.
-
-### Pasos para activar el despliegue:
-
-1.  **Sube los cambios a GitHub**: Asegúrate de que los archivos `.github/workflows/deploy.yml` y `vite.config.js` están en tu repositorio.
-2.  **Configura el Repositorio**:
-    -   Ve a la pestaña **Settings** (Ajustes) de tu repositorio en GitHub.
-    -   En el menú lateral izquierdo, haz clic en **Pages**.
-    -   En la sección **Build and deployment > Source**, selecciona **GitHub Actions** en el desplegable.
-3.  **¡Listo!**: A partir de ahora, cada vez que hagas un `git push` a la rama `main`, la web se compilará y desplegará automáticamente.
-
-La URL de tu web será algo como: `https://datoscarlesgutierrez-stack.github.io/libreavedriov1/`
+- `index.html`: Portada con slider hero, manifiesto y accesos principales.
+- `historia.html`: Historia y orígenes del proyecto.
+- `principios.html`: Manifiesto y principios ideológicos (bienestar animal, sostenibilidad real, soberanía alimentaria).
+- `granja.html`: Visión general de las instalaciones.
+- `granja-nave.html`: Nave de descanso y puesta.
+- `granja-parque.html`: Parque exterior arbolado.
+- `granja-embalaje.html`: Centro de clasificación y envasado.
+- `granja-compostera.html`: Sistema de compostaje e integración con huertas ecológicas.
+- `granja-huevos.html`: Información sobre el producto y marcado código 0.
+- `pedidos.html`: Estado de pedidos y apertura comercial.
+- `contacto.html`: Formulario directo de contacto y pedidos artesanales.
+- `src/`:
+  - `config.css`: Variables globales (paleta de colores, tipografías, alturas de cabecera y márgenes de scroll).
+  - `style.css`: Hojas de estilos modulares y componentes visuales.
+  - `main.js`: Lógica interactiva (menús desplegables, sticky header, scroll y utilidades).
+- `public/`: Archivos estáticos, imágenes, iconos y `CNAME`.
 
 ---
-Diseñado y desarrollado para representar la esencia de la agricultura ecológica y el respeto animal.
+
+## 🛠️ Instalación y Desarrollo Local
+
+Requisitos: Node.js (versión 18 o superior).
+
+```bash
+# 1. Instalar dependencias
+npm install
+
+# 2. Iniciar servidor local de desarrollo con recarga en caliente
+npm run dev
+
+# 3. Compilar para producción (genera la carpeta dist/)
+npm run build
+```
+
+---
+
+## 🚀 Cómo Realizar Cambios y Desplegarlos en GitHub Pages
+
+Para realizar modificaciones futuras y asegurar que se publiquen correctamente en el dominio en vivo:
+
+### 1. Hacer cambios y probar en local
+Modifica los archivos necesarios en HTML, CSS o JS y verifica el resultado en local con `npm run dev`.
+
+### 2. Desplegar la nueva versión compilada
+El sitio en producción se publica mediante la herramienta `gh-pages` a partir de la carpeta `dist/`. Ejecuta:
+
+```bash
+npm run deploy
+```
+
+Este comando ejecuta automáticamente:
+1. `npm run build` (compila assets, genera todas las páginas HTML y copia el archivo `CNAME`).
+2. Sube la compilación a la rama `gh-pages` en el repositorio remoto.
+
+### 3. Guardar el código fuente en el repositorio
+Para registrar los cambios en la rama principal (`main`):
+
+```bash
+git add .
+git commit -m "feat: descripción de tus cambios"
+git push origin main
+```
+
+---
+
+## 🌐 Configuración de Dominio Personalizado y HTTPS
+
+- Dominio configurado: `granjalibreavedrio.es` y `www.granjalibreavedrio.es`.
+- El archivo `public/CNAME` contiene el dominio raíz para persistir la configuración tras cada build.
+- **HTTPS gratuito**: GitHub Pages emite certificados SSL automáticamente vía Let's Encrypt. Una vez completada la verificación DNS en los servidores de GitHub, la opción **Enforce HTTPS** queda disponible para su activación en *Settings > Pages*.
+
+---
+
+## 📄 Licencia
+
+Este proyecto se distribuye bajo la licencia **MIT**, una licencia de código abierto permisiva que permite su uso, modificación, distribución y reutilización libre para proyectos personales o comerciales.
+
+---
+
+## 👨‍💻 Desarrollo Web
+
+- **Carles Gutiérrez**: [Consultoría y Desarrollo Web](https://carlesgutierrez.github.io/consultoria-digital/)
