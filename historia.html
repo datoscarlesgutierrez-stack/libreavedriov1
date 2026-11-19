@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Historia del Proyecto | Libreavedrio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600;700&family=Indie+Flower&display=swap"
+        rel="stylesheet">
+  <script type="module" crossorigin src="./assets/main-B2CegIUR.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/main-BVUE6TTc.css">
+</head>
+
+<body>
+
+    <!-- Hero Section with Slideshow & Menu inside frame -->
+    <section class="hero-intro">
+        <div class="hero-bg" id="hero-slideshow">
+            <img src="images/bosque_1.jpg" alt="Bosque Granja 1" class="hero-slide">
+            <img src="images/bosque_2.jpg" alt="Bosque Granja 2" class="hero-slide">
+            <img src="images/bosque_3.jpg" alt="Bosque Granja 3" class="hero-slide">
+            <img src="images/bosque_4.jpg" alt="Bosque Granja 4" class="hero-slide">
+            <img src="images/bosque_5.jpg" alt="Bosque Granja 5" class="hero-slide">
+            <img src="images/bosque_6.jpg" alt="Bosque Granja 6" class="hero-slide">
+            <img src="images/bosque_7.jpg" alt="Bosque Granja 7" class="hero-slide">
+            <img src="images/bosque_8.jpg" alt="Bosque Granja 8" class="hero-slide">
+        </div>
+        <script>
+            (function () {
+                const slides = document.querySelectorAll('#hero-slideshow .hero-slide');
+                if (!slides.length) return;
+                let idx = sessionStorage.getItem('hero_slide_index');
+                if (idx === null || isNaN(parseInt(idx, 10))) {
+                    idx = Math.floor(Math.random() * slides.length);
+                    sessionStorage.setItem('hero_slide_index', idx);
+                } else {
+                    idx = parseInt(idx, 10) % slides.length;
+                }
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].classList.toggle('active', i === idx);
+                }
+            })();
+        </script>
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+
+
+            <div class="logo-wrapper">
+                <a href="index.html" class="logo-link" title="Inicio - Granja Libreavedrio">
+                    <img src="images/logo.svg" alt="Libreavedrio Graphic" class="main-logo-graphic" width="3784"
+                        height="1011">
+                </a>
+                <p class="logo-subtitle">Granja avícola ecológica Sierra Norte de Madrid</p>
+            </div>
+        </div>
+
+        <!-- Navigation inside the hero background frame -->
+        <header class="sticky-nav" id="main-nav">
+            <div class="container nav-container">
+                <nav class="main-menu">
+                    <a href="index.html" class="nav-item">INICIO</a>
+                    <div class="nav-dropdown">
+                        <button type="button" class="nav-item nav-dropdown-btn active" aria-haspopup="true">
+                            ¿QUIÉNES SOMOS? <span class="dropdown-arrow">▾</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="historia.html" class="dropdown-item active">HISTORIA DEL PROYECTO</a>
+                            <a href="principios.html" class="dropdown-item">PRINCIPIOS IDEOLÓGICOS</a>
+                        </div>
+                    </div>
+                    <div class="nav-dropdown">
+                        <a href="granja.html" class="nav-item nav-dropdown-btn" aria-haspopup="true">
+                            LA GRANJA <span class="dropdown-arrow">▾</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="granja.html" class="dropdown-item">VISIÓN GENERAL</a>
+                            <a href="granja-nave.html" class="dropdown-item">LA NAVE</a>
+                            <a href="granja-parque.html" class="dropdown-item">EL PARQUE</a>
+                            <a href="granja-embalaje.html" class="dropdown-item">CENTRO DE EMBALAJE</a>
+                            <a href="granja-compostera.html" class="dropdown-item">LA COMPOSTERA</a>
+                            <a href="granja-huevos.html" class="dropdown-item">NUESTROS HUEVOS</a>
+                        </div>
+                    </div>
+                    <a href="pedidos.html" class="nav-item">PEDIDOS <span class="badge-disabled">PRONTO</span></a>
+                    <a href="contacto.html" class="nav-item">CONTACTO</a>
+                    <span class="nav-item nav-item-disabled" title="Próximamente">LO QUE ES LA VIDA <span
+                            class="badge-disabled">PRONTO</span></span>
+                </nav>
+            </div>
+        </header>
+    </section>
+
+    <main>
+        <section class="content-section" style="padding-top: 3.5rem; padding-bottom: 2.5rem;">
+            <div class="container">
+                <!-- Cabecera de la página alineada a la izquierda -->
+                <div class="editorial-page-header">
+                    <div class="editorial-header-left">
+                        <span class="intro-eyebrow">QUIÉNES SOMOS / NUESTRA HISTORIA</span>
+                        <h2 class="editorial-header-title">HISTORIA DEL PROYECTO</h2>
+                    </div>
+                </div>
+
+                <!-- Bloque continuo de lectura académica justificada, todo junto sin puntos y aparte -->
+                <article class="academic-reading-block">
+                    <p>
+                        Somos una pareja, <strong>Keila Martín Betancor</strong> y <strong>Miguel Tamayo Belda</strong>,
+                        nacidos en los 80 y con recorridos de vida distintos que confluyeron en los laboratorios de la
+                        <strong>Universidad Autónoma de Madrid</strong>, donde ambos realizamos la tesis doctoral en el
+                        ámbito de la <strong>microbiología ambiental</strong>. Keila, nacida en Lanzarote se desplazó a
+                        Granada para estudiar Biología, desde hace unos años es <strong>docente autónoma en el
+                            Mercamadrid</strong> como formadora de cursos en el sector alimentario. Miguel comenzó sus
+                        estudios en la diplomatura de Educación Social, estudios que dejó a la mitad para comenzar su
+                        formación en <em>artes circenses</em> en la escuela de circo de Carampa, lo que, posteriormente,
+                        le conduciría a interesarse por la biología mientras estudiaba la especialidad de circo en la
+                        <strong>Escuela Internacional de Circo y Teatro CAU</strong>, en Granada, donde cursó Ciencias
+                        ambientales y Biología. En Madrid nos conocimos y ahora junto con nuestras hijos e hijas humanas
+                        y no humanas, vivimos en la <strong>Sierra Norte de Madrid</strong>. Cuando nos mudamos a la
+                        Sierra Norte de Madrid, lo hicimos con la intención de encontrar un lugar donde criar a nuestra
+                        primera hija en un entorno más amable que la ciudad. Al desplazarnos a más de <strong>80 km de
+                            Madrid ciudad</strong>, entendimos que no podíamos continuar vinculadas a un trabajo en la
+                        ciudad, así que nos planteamos varios proyectos de carácter medioambiental. Llegado un punto, a
+                        la vista de la abundante presencia del sector terciario en el ámbito rural, nos vimos con las
+                        ganas y las fuerzas de cambiar el rumbo y hacer que todo partiese de un proyecto más vinculado a
+                        la tierra y propio del <strong>sector primario</strong>. Así surgió un proyecto enfocado en
+                        producir alimentos y distribuirlos en <strong>canales cortos</strong>, promoviendo la
+                        <strong>soberanía alimentaria</strong>. La finca donde vivimos cuenta con <strong>24.000 m² de
+                            pinar y arbustos</strong> y además es <strong>terreno protegido ganadero</strong> por lo que
+                        nos pareció un sitio ideal para ubicar una granja de gallinas para puesta de huevos siguiendo el
+                        <strong>régimen ecológico</strong>. Tras muchas vueltas comenzamos con la parte burocrática y de
+                        permisos de todo este proyecto, que nos ha llevado <strong>casi 5 años</strong>, y mucho dinero.
+                        Por otro lado, desgraciadamente, las ayudas con las que pensábamos poder contar como la
+                        <em>Ayuda a Nueva Incorporación para Jóvenes Agricultores</em> ha sido imposible puesto que en
+                        la Comunidad de Madrid la cantidad de gallinas que debes poner en tu explotación es de
+                        <strong>8.000 cabezas</strong>, número muy superior a la dimensión en la que nosotras queríamos
+                        estar (actualmente <strong>1.600 gallinas</strong>, en un futuro como máximo 3.000). Para poder
+                        llevar a cabo este proyecto hemos necesitado un crédito que nos ha concedido <strong>Fiare Banca
+                            Ética</strong>, dos créditos familiares y una donación familiar y fondos propios. En estos 5
+                        años hemos tenido varios momentos en los que pensábamos que no podríamos hacerlo realidad tanto
+                        por la parte burocrática como por la económica. Nos alegra haber llegado hasta aquí y poder
+                        aportar nuestro granito de arena en la <strong>alimentación responsable, saludable y
+                            local</strong>.
+                    </p>
+                </article>
+
+                <!-- Botones de llamada a la acción -->
+                <div
+                    style="text-align: center; margin: 2rem 0 1rem 0; display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="granja.html" class="btn-editorial-cta">
+                        CONOCER LA GRANJA <span class="btn-arrow">↗</span>
+                    </a>
+                    <a href="contacto.html" class="btn-editorial-cta"
+                        style="background-color: transparent; color: var(--color-marker); border: 1.5px solid var(--color-marker); box-shadow: none;">
+                        CONTACTAR CON NOSOTRAS <span class="btn-arrow">↗</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="bezier-separator">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+            <path d="M0,30 Q720,52 1440,30" />
+        </svg>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <div class="footer-col footer-col-left">
+                <p class="footer-item">Piñuécar-Gandullas, Madrid</p>
+                <a href="mailto:hola@granjalibreavedrio.es" class="footer-item footer-link">hola@granjalibreavedrio.es</a>
+            </div>
+            <div class="footer-col footer-col-center">
+                <a href="index.html" title="Subir al inicio">
+                    <img src="images/logo.svg" alt="Libreavedrio Footer" class="footer-logo-small" id="footer-logo-top">
+                </a>
+            </div>
+            <div class="footer-col footer-col-right">
+                <p class="footer-item">© 2026 Libreavedrio</p>
+                <p class="footer-item footer-subtext">Granja ecológica · Sierra Norte</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
