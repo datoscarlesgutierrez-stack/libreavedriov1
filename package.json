@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://datoscarlesgutierrez-stack.github.io/libreavedriov1/",
+  "homepage": "https://granjalibreavedrio.es/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
