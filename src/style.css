@@ -237,6 +237,7 @@ h2 {
   margin-top: 6px;
   font-family: var(--font-heading);
   font-weight: 600;
+  font-style: italic;
   font-size: clamp(8px, calc(var(--width-logo-wrapper) * 0.02708), 20px);
   color: var(--color-marker);
   text-align: left;
