@@ -1887,10 +1887,15 @@ body.map-fullscreen-active {
     min-width: 250px;
     max-width: calc(100vw - 20px);
     left: 0;
-    /* Alineado a la izquierda del botón para no cortarse jamás por la izquierda */
     transform: translateY(8px);
     z-index: 99999;
     box-shadow: 5px 5px 0 var(--color-marker);
+  }
+
+  /* LA GRANJA dropdown: alineado a la derecha en mobile para no salirse de pantalla */
+  .nav-dropdown:nth-child(2) .dropdown-menu {
+    left: auto;
+    right: 0;
   }
 
   .nav-dropdown:hover .dropdown-menu,
