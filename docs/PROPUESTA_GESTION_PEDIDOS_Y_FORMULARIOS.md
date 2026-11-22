@@ -184,6 +184,52 @@ Es la combinación perfecta de agilidad y coste cero:
    - Copias los datos fiscales del cliente (que ya tienes guardados en la pestaña `CLIENTES` de tu hoja).
    - Emites la factura en 1 minuto en la web de Hacienda y descargas el PDF con QR oficial para enviárselo por WhatsApp o Email.
 
+---
+
+## 7. Esquema de Sincronización: Del Pedido en la Web a Hacienda (Paso a Paso)
+
+Para que todo el circuito funcione como un reloj y sin duplicar trabajo, la sincronización entre tu web, tu Google Sheets y el portal de Hacienda se articula en **3 niveles de automatización progresivos**:
+
+```
+[ PASO 1: ENTRADA ] ──► [ PASO 2: CONTROL Y PREPARACIÓN ] ──► [ PASO 3: FACTURACIÓN HACIENDA ]
+Cliente pide en web       Tu Google Sheets ("ERP Ligero")      Portal AEAT (Veri*factu)
+(contacto / pedidos)      • Estados con colores                 • Emisión oficial 0 €
+                          • Alertas cobro / entrega             • PDF con código QR
+```
+
+### Detalle del Flujo de Sincronización:
+
+#### 1. Sincronización de Datos del Cliente y Pedido (Web ➔ Google Sheets)
+* **Automática e instantánea:** Cuando el cliente rellena el formulario en la web, el script guarda automáticamente en la pestaña `CLIENTES` los datos fiscales (Nombre/Razón Social, NIF/CIF, Dirección) y en `PEDIDOS_ACTIVOS` los datos del encargo (Docenas, Fecha, Importe, Método de pago).
+* **Identificador común:** Cada encargo tiene un identificador (ejemplo: `PED-2027-014`). Este identificador será el que luego uses como referencia o concepto de tu factura en Hacienda.
+
+#### 2. Casillas de Sincronización en tu Hoja de Cálculo
+En la pestaña `PEDIDOS_ACTIVOS`, se añaden tres columnas específicas para tener todo sincronizado a golpe de vista:
+
+| ID Pedido | Cliente | Total (€) | Estado Pedido | Estado Cobro | ¿Requiere Factura? | Nº Factura AEAT | Enlace PDF Factura |
+|:---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|
+| #1001 | Tienda Eco Sierra | 90,00 € | ⚪ Entregado | 🟢 Pagado | **SÍ** | `FAC-2027-003` | [Ver PDF AEAT ↗] |
+| #1002 | María Gómez (Part.) | 18,00 € | ⚪ Entregado | 🟢 Pagado | **NO** (Tiquet) | *— (Libro ventas)* | *—* |
+| #1003 | Rest. El Pinar | 135,00 € | 🟡 En prep. | 🔴 Pendiente | **SÍ** | *(Pendiente)* | *(Subir tras emitir)* |
+
+#### 3. El Momento de la Emisión en la AEAT
+* **¿Cuándo se emite?:** Las facturas para empresas, tiendas o grupos de consumo se emiten habitualmente en el momento de la entrega o a final de mes agrupadas.
+* **Proceso de emisión (2 minutos):**
+  1. Abres la **Aplicación de facturación de la AEAT**.
+  2. Si el cliente ya es habitual, la propia aplicación de la AEAT te permite guardarlo en su libreta de clientes interna para no tener que teclear su NIF dos veces.
+  3. Introduces el número de docenas y el importe.
+  4. La AEAT genera el número oficial (ej. `FAC-2027-003`), envía el registro a los servidores de Hacienda con Veri*factu y te descarga el PDF con el QR oficial.
+* **Cierre del ciclo en Google Sheets:**
+  - En tu hoja de cálculo pegas el número oficial emitido (`FAC-2027-003`) y arrastras el PDF a tu carpeta de Google Drive vinculada (o le pegas el link).
+  - Al marcarla como facturada, la fila se archiva automáticamente en la contabilidad del trimestre.
+
+#### 4. Ventajas de esta Sincronización:
+* **Cero discrepancias contables:** Lo que tienes registrado en tu Google Sheets coincide céntimo a céntimo con lo registrado en la Agencia Tributaria.
+* **Coste mensual cero:** No pagas 20 € o 40 € al mes a plataformas de software privadas por funciones que la web de la AEAT y Google Sheets hacen gratis.
+* **Tranquilidad ante inspecciones:** Cada factura emitida desde la AEAT cuenta con el sello y registro oficial inalterable de Veri*factu desde el primer segundo.
+
+---
+
 ### Enlaces y rutas oficiales de consulta en la AEAT:
 * **Portal Principal SIF y VERI\*FACTU (Sede Electrónica AEAT):**  
   [https://sede.agenciatributaria.gob.es/Sede/iva/sistemas-informaticos-facturacion-verifactu.html](https://sede.agenciatributaria.gob.es/Sede/iva/sistemas-informaticos-facturacion-verifactu.html)
@@ -196,7 +242,7 @@ Es la combinación perfecta de agilidad y coste cero:
 
 ---
 
-## 7. Próximos Pasos Recomendados (Roadmap hacia Feb 2027)
+## 8. Próximos Pasos Recomendados (Roadmap hacia Feb 2027)
 
 1. **Fase 1 (Actual - Contacto):**
    - El formulario actual funciona con Formspree (fiable y gratuito para empezar).
