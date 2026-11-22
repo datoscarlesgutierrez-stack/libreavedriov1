@@ -229,17 +229,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             const mapCoords = [41.055714517046276, -3.6072308811227165];
-            const isMobile = window.matchMedia('(max-width: 768px)').matches || ('ontouchstart' in window && window.innerWidth <= 768);
+            // Detectar dispositivo táctil / móvil con precisión (incluyendo apaisado/landscape)
+            function isTouchOrMobileDevice() {
+                return (
+                    'ontouchstart' in window ||
+                    navigator.maxTouchPoints > 0 ||
+                    window.matchMedia('(pointer: coarse)').matches ||
+                    window.matchMedia('(max-width: 900px)').matches
+                );
+            }
+
+            const isTouch = isTouchOrMobileDevice();
 
             leafletMapInstance = L.map('osm-map', {
                 center: mapCoords,
                 zoom: 15,
-                dragging: !isMobile,
+                dragging: !isTouch,
                 touchZoom: true,
-                scrollWheelZoom: !isMobile,
+                scrollWheelZoom: !isTouch,
                 doubleClickZoom: true,
-                boxZoom: !isMobile,
-                keyboard: !isMobile,
+                boxZoom: !isTouch,
+                keyboard: !isTouch,
             });
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -256,16 +266,22 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const marker = L.marker(mapCoords, { icon: customIcon }).addTo(leafletMapInstance);
+            const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${mapCoords[0]},${mapCoords[1]}`;
             const popupContent = `
                 <div class="map-popup-card">
                     <h4>GRANJA LIBREAVEDRIO</h4>
-                    <p class="popup-sub">Piñuécar-Gandullas, Sierra Norte de Madrid</p>
-                    <a href="https://maps.app.goo.gl/9y5j3v7y2z1" target="_blank" rel="noopener" class="popup-link">
+                    <p class="popup-sub">Piñuécar-Gandullas, Sierra Norte</p>
+                    <a href="${googleMapsUrl}" target="_blank" rel="noopener" class="popup-link">
                         Abrir en Google Maps &rarr;
                     </a>
                 </div>
             `;
-            marker.bindPopup(popupContent);
+            marker.bindPopup(popupContent, {
+                maxWidth: 240,
+                minWidth: 160,
+                autoPan: true,
+                autoPanPadding: [15, 15]
+            });
 
             const fsBtn = document.getElementById('map-fullscreen-btn');
             if (fsBtn) {
@@ -291,8 +307,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         fsBtn.setAttribute('aria-label', 'Cerrar pantalla completa');
                     }
                 } else {
-                    const currentlyMobile = window.matchMedia('(max-width: 768px)').matches || ('ontouchstart' in window && window.innerWidth <= 768);
-                    if (currentlyMobile) {
+                    const currentlyTouch = isTouchOrMobileDevice();
+                    if (currentlyTouch) {
                         leafletMapInstance.dragging.disable();
                         leafletMapInstance.scrollWheelZoom.disable();
                     } else {
@@ -318,9 +334,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             window.addEventListener('resize', () => {
                 if (!leafletMapInstance) return;
-                const mobileNow = window.matchMedia('(max-width: 768px)').matches || ('ontouchstart' in window && window.innerWidth <= 768);
+                const touchNow = isTouchOrMobileDevice();
                 if (!isMapFullscreen) {
-                    if (mobileNow) {
+                    if (touchNow) {
                         leafletMapInstance.dragging.disable();
                         leafletMapInstance.scrollWheelZoom.disable();
                     } else {

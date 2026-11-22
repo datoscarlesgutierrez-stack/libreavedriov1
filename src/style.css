@@ -1509,38 +1509,40 @@ body.map-fullscreen-active {
 }
 
 .map-popup-card {
-  padding: 4px;
+  padding: 2px;
   text-align: center;
 }
 
 .map-popup-card h4 {
   font-family: var(--font-heading);
   color: var(--color-marker);
-  font-size: 1rem;
-  margin-bottom: 4px;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  margin-bottom: 2px;
 }
 
 .map-popup-card p {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: var(--color-text);
-  margin-bottom: 6px;
+  line-height: 1.2;
+  margin-bottom: 5px;
 }
 
 .map-popup-card .coords {
   font-family: monospace;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: #666;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .popup-link {
   display: inline-block;
-  padding: 0.3rem 0.8rem;
+  padding: 0.25rem 0.6rem;
   background: var(--color-marker);
   color: white;
   text-decoration: none;
   font-family: var(--font-heading);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
   border-radius: 4px;
   transition: background 0.2s;
