@@ -554,12 +554,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const marker = L.marker(mapCoords, { icon: customIcon }).addTo(leafletMapInstance);
             const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${mapCoords[0]},${mapCoords[1]}`;
+
+            const computedRoot = getComputedStyle(document.documentElement);
+            const popupTitle = (computedRoot.getPropertyValue('--map-popup-title') || '').trim().replace(/^['"]|['"]$/g, '') || 'GRANJA LIBREAVEDRIO';
+            const popupSubtitle = (computedRoot.getPropertyValue('--map-popup-subtitle') || '').trim().replace(/^['"]|['"]$/g, '') || 'Piñuécar-Gandullas, Sierra Norte';
+            const popupBtnText = (computedRoot.getPropertyValue('--map-popup-btn-text') || '').trim().replace(/^['"]|['"]$/g, '') || 'Abrir en Google Maps &rarr;';
+
             const popupContent = `
                 <div class="map-popup-card">
-                    <h4>GRANJA LIBREAVEDRIO</h4>
-                    <p class="popup-sub">Piñuécar-Gandullas, Sierra Norte</p>
+                    <h4>${popupTitle}</h4>
+                    <p class="popup-sub">${popupSubtitle}</p>
                     <a href="${googleMapsUrl}" target="_blank" rel="noopener" class="popup-link">
-                        Abrir en Google Maps &rarr;
+                        ${popupBtnText}
                     </a>
                 </div>
             `;

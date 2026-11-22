@@ -268,6 +268,16 @@
   --map-attribution: "";
   /* Texto de atribución de proveedores del mapa (ej: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'). Déjalo en "" para ocultarlo */
 
+  /* Textos del globo informativo del mapa (popup) */
+  --map-popup-title: "GRANJA LIBREAVEDRIO";
+  /* Título en negrita dentro del globo del mapa */
+
+  --map-popup-subtitle: "Piñuécar-Gandullas, Sierra Norte";
+  /* Subtítulo / ubicación dentro del globo del mapa */
+
+  --map-popup-btn-text: "Abrir en Google Maps →";
+  /* Texto del botón de enlace dentro del globo del mapa */
+
   /* ===========================================================================
      🦶  FOOTER — Textos y separación inferior
      =========================================================================== */
