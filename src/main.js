@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 5b. Post-it Slider
+    // 5b. Post-it Slider con soporte Touch & Drag (swipe / arrastrar izquierda-derecha)
     function initPostitSlider() {
         const postitCards = document.querySelectorAll('.postit-card');
         if (!postitCards.length) return;
@@ -165,13 +165,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const counterEl = card.querySelector('.postit-counter') || parent.querySelector('.postit-counter');
             const prevBtn = card.querySelector('.postit-arrow-btn[data-action="prev"], #postit-prev, .postit-prev') || parent.querySelector('.postit-arrow-btn[data-action="prev"], #postit-prev, .postit-prev');
             const nextBtn = card.querySelector('.postit-arrow-btn[data-action="next"], #postit-next, .postit-next') || parent.querySelector('.postit-arrow-btn[data-action="next"], #postit-next, .postit-next');
+            const imageContainer = card.querySelector('.postit-image-container') || card;
 
             let currentIndex = 0;
             const totalSlides = slides.length;
 
-            function updateSlide(index) {
+            if (totalSlides > 1) {
+                card.classList.add('has-multiple-slides');
+            }
+
+            function updateSlide(index, direction = 0) {
                 slides.forEach((s, idx) => {
-                    s.classList.toggle('active', idx === index);
+                    const isActive = idx === index;
+                    s.classList.toggle('active', isActive);
+                    s.style.transform = '';
+                    s.style.transition = '';
                 });
 
                 if (captionEl) {
@@ -190,22 +198,162 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
+            function goToPrev() {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateSlide(currentIndex, -1);
+            }
+
+            function goToNext() {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateSlide(currentIndex, 1);
+            }
+
             if (prevBtn) {
                 prevBtn.onclick = (e) => {
                     e.preventDefault();
-                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-                    updateSlide(currentIndex);
+                    goToPrev();
                 };
             }
 
             if (nextBtn) {
                 nextBtn.onclick = (e) => {
                     e.preventDefault();
-                    currentIndex = (currentIndex + 1) % totalSlides;
-                    updateSlide(currentIndex);
+                    goToNext();
                 };
             }
 
+            // ==========================================
+            // Gestos Swipe y Drag & Drop (Touch + Mouse)
+            // ==========================================
+            if (totalSlides > 1 && imageContainer) {
+                let startX = 0;
+                let startY = 0;
+                let currentX = 0;
+                let currentY = 0;
+                let isDragging = false;
+                let isHorizontal = null;
+
+                function getActiveSlide() {
+                    return slides[currentIndex];
+                }
+
+                // Touch Events (Mobile)
+                imageContainer.addEventListener('touchstart', (e) => {
+                    if (e.touches.length !== 1) return;
+                    startX = e.touches[0].clientX;
+                    startY = e.touches[0].clientY;
+                    currentX = startX;
+                    currentY = startY;
+                    isDragging = true;
+                    isHorizontal = null;
+                }, { passive: true });
+
+                imageContainer.addEventListener('touchmove', (e) => {
+                    if (!isDragging || e.touches.length !== 1) return;
+                    currentX = e.touches[0].clientX;
+                    currentY = e.touches[0].clientY;
+                    const diffX = currentX - startX;
+                    const diffY = currentY - startY;
+
+                    if (isHorizontal === null) {
+                        // Detectar si el usuario intenta hacer swipe horizontal o scroll vertical
+                        if (Math.abs(diffX) > 8 || Math.abs(diffY) > 8) {
+                            isHorizontal = Math.abs(diffX) > Math.abs(diffY);
+                        }
+                    }
+
+                    if (isHorizontal) {
+                        const activeSlide = getActiveSlide();
+                        if (activeSlide) {
+                            activeSlide.style.transition = 'none';
+                            // Resistencia elástica en los extremos si no queremos que se pase demasiado
+                            activeSlide.style.transform = `translateX(${diffX * 0.75}px)`;
+                        }
+                    }
+                }, { passive: true });
+
+                imageContainer.addEventListener('touchend', () => {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    const diffX = currentX - startX;
+                    const threshold = 40; // Umbral mínimo de píxeles para pasar foto
+
+                    const activeSlide = getActiveSlide();
+                    if (activeSlide) {
+                        activeSlide.style.transition = 'transform 0.25s ease, opacity 0.45s ease';
+                    }
+
+                    if (isHorizontal && Math.abs(diffX) >= threshold) {
+                        if (diffX < 0) {
+                            goToNext();
+                        } else {
+                            goToPrev();
+                        }
+                    } else if (activeSlide) {
+                        activeSlide.style.transform = '';
+                    }
+                    isHorizontal = null;
+                });
+
+                imageContainer.addEventListener('touchcancel', () => {
+                    isDragging = false;
+                    isHorizontal = null;
+                    const activeSlide = getActiveSlide();
+                    if (activeSlide) {
+                        activeSlide.style.transition = 'transform 0.25s ease, opacity 0.45s ease';
+                        activeSlide.style.transform = '';
+                    }
+                });
+
+                // Mouse Events (Desktop Drag & Drop)
+                imageContainer.addEventListener('mousedown', (e) => {
+                    if (e.button !== 0) return; // Solo clic izquierdo
+                    startX = e.clientX;
+                    currentX = startX;
+                    isDragging = true;
+                    card.classList.add('is-dragging');
+                    const activeSlide = getActiveSlide();
+                    if (activeSlide) {
+                        activeSlide.style.transition = 'none';
+                    }
+                    e.preventDefault();
+                });
+
+                window.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    currentX = e.clientX;
+                    const diffX = currentX - startX;
+                    const activeSlide = getActiveSlide();
+                    if (activeSlide) {
+                        activeSlide.style.transform = `translateX(${diffX * 0.75}px)`;
+                    }
+                });
+
+                window.addEventListener('mouseup', () => {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    card.classList.remove('is-dragging');
+                    const diffX = currentX - startX;
+                    const threshold = 45;
+
+                    const activeSlide = getActiveSlide();
+                    if (activeSlide) {
+                        activeSlide.style.transition = 'transform 0.25s ease, opacity 0.45s ease';
+                    }
+
+                    if (Math.abs(diffX) >= threshold) {
+                        if (diffX < 0) {
+                            goToNext();
+                        } else {
+                            goToPrev();
+                        }
+                    } else if (activeSlide) {
+                        activeSlide.style.transform = '';
+                    }
+                });
+            }
+
+            // Estado inicial
             updateSlide(0);
         });
     }

@@ -745,6 +745,16 @@ body.hero-revealing main {
   position: relative;
   background: #eee8de;
   border: 1px solid rgba(0, 0, 0, 0.08);
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.postit-card.has-multiple-slides .postit-image-container {
+  cursor: grab;
+}
+
+.postit-card.has-multiple-slides.is-dragging .postit-image-container {
+  cursor: grabbing;
 }
 
 .postit-slide {
@@ -755,8 +765,10 @@ body.hero-revealing main {
   top: 0;
   left: 0;
   opacity: 0;
-  transition: opacity 0.45s ease-in-out;
+  transition: opacity 0.45s ease-in-out, transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   display: block;
+  pointer-events: none;
+  -webkit-user-drag: none;
 }
 
 .postit-slide.active {
