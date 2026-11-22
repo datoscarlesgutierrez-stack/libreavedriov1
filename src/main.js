@@ -531,8 +531,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 position: 'bottomleft'
             }).addTo(leafletMapInstance);
 
-            // Atribución configurable desde config.css (--map-attribution)
+            // Atribución y prefijo de Leaflet configurables desde config.css
+            const mapPrefix = (getComputedStyle(document.documentElement).getPropertyValue('--map-prefix-attribution') || '').trim().replace(/^['"]|['"]$/g, '');
             const mapAttr = (getComputedStyle(document.documentElement).getPropertyValue('--map-attribution') || '').trim().replace(/^['"]|['"]$/g, '');
+
+            if (leafletMapInstance.attributionControl) {
+                leafletMapInstance.attributionControl.setPrefix(mapPrefix ? mapPrefix : false);
+            }
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: mapAttr || false,
