@@ -778,6 +778,23 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('click', handleReveal);
     }
 
+    // 8. Textos de Footer configurables desde config.css
+    function applyFooterConfig() {
+        const computed = getComputedStyle(document.documentElement);
+        const textLeft = (computed.getPropertyValue('--footer-text-left') || '').trim().replace(/^['"]|['"]$/g, '');
+        const textRight = (computed.getPropertyValue('--footer-text-right') || '').trim().replace(/^['"]|['"]$/g, '');
+
+        if (textLeft) {
+            const leftEl = document.querySelector('.footer-col-left .footer-item');
+            if (leftEl) leftEl.textContent = textLeft;
+        }
+
+        if (textRight) {
+            const rightEl = document.querySelector('.footer-col-right .footer-item');
+            if (rightEl) rightEl.textContent = textRight;
+        }
+    }
+
     // Inicializador global de componentes por página
     function initPageFeatures() {
         initLeafletMap();
@@ -785,6 +802,7 @@ document.addEventListener('DOMContentLoaded', () => {
         initPostitSlider();
         initContactForm();
         initContactReveal();
+        applyFooterConfig();
         alignLogoSubtitle();
         applyOrganicTapeTilt();
     }
