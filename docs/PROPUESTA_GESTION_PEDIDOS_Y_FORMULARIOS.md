@@ -242,7 +242,46 @@ En la pestaña `PEDIDOS_ACTIVOS`, se añaden tres columnas específicas para ten
 
 ---
 
-## 8. Próximos Pasos Recomendados (Roadmap hacia Feb 2027)
+## 8. ¿Habría que modificar algo de nuestro formulario o método de seguimiento para que fluya?
+
+Para que todo este circuito fluya **sin fricción para el usuario** y **sin trabajo manual repetitivo para vosotros**, esta es la auditoría exacta de lo que conviene mantener y lo que convendría ajustar:
+
+### A. En el Formulario actual de `contacto.html`:
+* **Estado actual:** Está impecable y no hace falta complicarlo.
+* **Por qué NO conviene tocarlo ahora:** 
+  - La página de contacto debe seguir siendo muy ligera (solo Nombre, Email, Teléfono, Canal de contacto y Mensaje).
+  - Pedir DNI/NIF o dirección en un mensaje de duda general aumentaría el abandono del usuario.
+* **Única mejora técnica recomendada (cuando se desee dar el paso):**
+  - Cambiar el destino del formulario de Formspree a la URL del Webhook propio de Google Sheets para que las consultas caigan directamente a una pestaña de vuestro Excel sin intermediarios.
+
+### B. En el futuro Formulario de `pedidos.html` (Lanzamiento 2027):
+Aquí sí conviene incluir **3 casillas clave** que marcarán toda la diferencia para que la facturación con Hacienda no os robe tiempo:
+
+1. **Casilla condicional o desplegable: "¿Necesitas factura oficial?" (Sí / No)**
+   - Si marca **"No"**: No se le pide NIF ni razón social (solo su nombre, teléfono y dirección de entrega para llevarle los huevos). A nivel contable, se registra como venta directa.
+   - Si marca **"Sí"**: Se despliega automáticamente un campo para su **NIF/CIF** y la **Razón social / Dirección fiscal**.
+   - *Beneficio:* Quien solo quiere una docena no se siente abrumado con burocracia, pero quien necesita factura (un bar, tienda o grupo de consumo) ya te deja todos los datos obligatorios para la AEAT desde el primer segundo.
+
+2. **Campo de "Dirección / Zona de entrega":**
+   - Para poder filtrar en el Excel los pedidos por ruta geográfica (ej. *"Ruta Sierra Norte - Miércoles"* vs *"Ruta Madrid Capital - Jueves"*).
+
+3. **Selector de Método de Pago Previsto:**
+   - [Bizum] / [Transferencia bancaria previa] / [Efectivo al repartidor].
+   - Así ya sabéis de antemano si tenéis que llevar cambio o simplemente comprobar el ingreso en la cuenta del banco.
+
+### C. En el Método de Seguimiento (Vuestro día a día):
+Para que la operativa sea ágil y no un dolor de cabeza, solo se requieren dos buenas prácticas muy sencillas:
+
+1. **Uso de un código identificador único (ID de Pedido):**
+   - La hoja de cálculo genera automáticamente el identificador (ej. `#1001`, `#1002`).
+   - Cuando el cliente hace la transferencia o Bizum, se le pide que ponga ese número en el concepto: *"Concepto: Pedido 1001"*. Así asociáis el cobro bancario con la fila del Excel en 2 segundos.
+2. **Carpeta compartida en Google Drive:**
+   - Una carpeta llamada `Facturas_AEAT_2027` donde guardáis los PDFs que descarguéis de Hacienda con el mismo nombre (`FAC-2027-001_TiendaEco.pdf`). 
+   - A final de trimestre, le compartís el enlace de esa carpeta y del Excel a vuestro gestor fiscal y el cierre trimestral queda hecho en 5 minutos.
+
+---
+
+## 9. Próximos Pasos Recomendados (Roadmap hacia Feb 2027)
 
 1. **Fase 1 (Actual - Contacto):**
    - El formulario actual funciona con Formspree (fiable y gratuito para empezar).
