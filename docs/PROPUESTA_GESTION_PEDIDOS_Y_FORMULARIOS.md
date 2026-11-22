@@ -155,7 +155,48 @@ La pestaña de resumen mensual calcula automáticamente mediante fórmulas simpl
 
 ---
 
-## 6. Próximos Pasos Recomendados (Roadmap hacia Feb 2027)
+## 6. Hacienda y Veri*factu en España: ¿Cómo resolverlo GRATIS y sin software de terceros?
+
+### ¿Qué exige la normativa Veri*factu / Reglamento SIF?
+El reglamento derivado de la Ley Antifraude (Real Decreto 1007/2023) exige que los sistemas informáticos de facturación garanticen la integridad, inalterabilidad y trazabilidad de los registros de facturación, remitiéndolos a la Agencia Tributaria (modalidad **VERI*FACTU**) o generando registros seguros con código QR.
+
+### ¿Dispone Hacienda de una plataforma web pública y gratuita?
+**Sí, rotundamente.** La Agencia Estatal de Administración Tributaria (AEAT) ha habilitado formalmente en su Sede Electrónica la **«Aplicación de facturación de la AEAT»**.
+
+Esta herramienta oficial está diseñada específicamente para autónomos y pequeñas empresas con el objetivo expreso de **evitar que tengan que contratar obligatoriamente un software de pago** o servicios privados de suscripción.
+
+### Características clave del servicio público de la AEAT:
+1. **100% Gratuito y Oficial:** No requiere cuotas mensuales, licencias ni intermediarios.
+2. **Cumplimiento automático de VERI*FACTU:** Cada factura emitida desde el portal web de la AEAT queda registrada de forma inmediata y automática en los servidores de Hacienda, cumpliendo al 100% todas las exigencias legales.
+3. **Sin límite de facturación:** No hay límite de número de facturas que se pueden emitir al mes o al año.
+4. **Generación automática de PDF y QR:** La propia plataforma de la AEAT genera la factura en formato PDF oficial con su código QR reglamentario y datos de verificación para enviársela al cliente.
+5. **Identificación estándar:** Se accede con **Certificado Electrónico**, **DNI electrónico** o sistema **Cl@ve** (del titular o del representante apoderado).
+
+### ¿Qué limitaciones tiene la aplicación de la AEAT frente a tu día a día?
+* **Facturas Nominativas (con destinatario identificado):** La herramienta pública está pensada para facturas completas nominativas (donde pones el NIF/CIF o NIE del cliente o comercio).
+* **Venta directa / Tiques (Factura simplificada sin datos de cliente):** Si vendes directamente en la granja o en mercadillos a particulares sin pedirles su DNI, Hacienda no tiene un TPV de caja en esa web. Para ventas minoristas sin NIF, se registran en tu libro diario de ingresos de la granja (en la pestaña `HISTÓRICO_Y_CONTABILIDAD`) y, si el cliente pide factura o es un grupo de consumo/restaurante/tienda, se emite directamente en la aplicación de la AEAT.
+
+### ¿Cómo integrarlo con el flujo de Libreavedrio?
+Es la combinación perfecta de agilidad y coste cero:
+1. **Tu Excel / Google Sheets** te da el control diario de pedidos, preparación, entregas y pagos.
+2. Cuando un cliente particular o empresa solicite factura oficial (o para facturar a tiendas/restaurantes):
+   - Entras en la Sede de la AEAT con tu Cl@ve o Certificado.
+   - Copias los datos fiscales del cliente (que ya tienes guardados en la pestaña `CLIENTES` de tu hoja).
+   - Emites la factura en 1 minuto en la web de Hacienda y descargas el PDF con QR oficial para enviárselo por WhatsApp o Email.
+
+### Enlaces y rutas oficiales de consulta en la AEAT:
+* **Portal Principal SIF y VERI\*FACTU (Sede Electrónica AEAT):**  
+  [https://sede.agenciatributaria.gob.es/Sede/iva/sistemas-informaticos-facturacion-verifactu.html](https://sede.agenciatributaria.gob.es/Sede/iva/sistemas-informaticos-facturacion-verifactu.html)
+* **Acceso directo al trámite «Acceso a la Aplicación de facturación de la AEAT»:**  
+  Ruta en la Sede: `Inicio > IVA > Sistemas Informáticos de Facturación (SIF) y VERI*FACTU > Acceso a la Aplicación de facturación de la AEAT`.
+* **Guía y Manual de Usuario oficial de la Aplicación de Facturación:**  
+  Disponible en el bloque de ayuda del portal anterior (sección *Manuales y Guías prácticas*).
+* **Preguntas Frecuentes de la AEAT sobre SIF y Veri\*factu:**  
+  [Preguntas Frecuentes SIF en la Sede de la AEAT](https://sede.agenciatributaria.gob.es/Sede/iva/sistemas-informaticos-facturacion-verifactu.html)
+
+---
+
+## 7. Próximos Pasos Recomendados (Roadmap hacia Feb 2027)
 
 1. **Fase 1 (Actual - Contacto):**
    - El formulario actual funciona con Formspree (fiable y gratuito para empezar).
@@ -168,3 +209,4 @@ La pestaña de resumen mensual calcula automáticamente mediante fórmulas simpl
 3. **Fase 3 (Enero 2027 - Lanzamiento de Pedidos):**
    - Sustituir el aviso "PRONTO" de `pedidos.html` por el formulario maquetado de 3 bloques.
    - Enlazar la hoja de pedidos y configurar las plantillas de mensajes directos para WhatsApp/Email.
+
