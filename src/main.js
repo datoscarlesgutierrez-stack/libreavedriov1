@@ -576,7 +576,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 autoPanPadding: [15, 15]
             });
 
-            const fsBtn = document.getElementById('map-fullscreen-btn');
+            const fsBtn = document.getElementById('map-fullscreen-toggle') || document.getElementById('map-fullscreen-btn') || document.querySelector('.map-fullscreen-btn');
             if (fsBtn) {
                 L.DomEvent.disableClickPropagation(fsBtn);
                 fsBtn.onclick = (e) => {
