@@ -174,13 +174,66 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.classList.add('has-multiple-slides');
             }
 
+            // ==========================================
+            // Gestos Swipe y Drag & Drop (Touch + Mouse)
+            // Permite ver la foto siguiente/anterior en tiempo real al arrastrar
+            // ==========================================
+            let isAnimating = false;
+            let incomingSlide = null;
+
             function updateSlide(index, direction = 0) {
-                slides.forEach((s, idx) => {
-                    const isActive = idx === index;
-                    s.classList.toggle('active', isActive);
-                    s.style.transform = '';
-                    s.style.transition = '';
-                });
+                if (isAnimating) return;
+
+                if (direction === 0) {
+                    slides.forEach((s, idx) => {
+                        s.classList.toggle('active', idx === index);
+                        s.classList.remove('is-incoming');
+                        s.style.transform = '';
+                        s.style.transition = '';
+                        s.style.opacity = '';
+                    });
+                } else {
+                    isAnimating = true;
+                    const prevIndex = (direction > 0)
+                        ? (index - 1 + totalSlides) % totalSlides
+                        : (index + 1) % totalSlides;
+                    const currentEl = slides[prevIndex];
+                    const nextEl = slides[index];
+
+                    slides.forEach((s, idx) => {
+                        if (idx !== prevIndex && idx !== index) {
+                            s.classList.remove('active', 'is-incoming');
+                            s.style.transform = '';
+                            s.style.transition = '';
+                            s.style.opacity = '';
+                        }
+                    });
+
+                    currentEl.classList.add('active');
+                    currentEl.style.transition = 'transform 0.3s cubic-bezier(0.25, 1, 0.5, 1)';
+                    currentEl.style.transform = direction > 0 ? 'translateX(-100%)' : 'translateX(100%)';
+
+                    nextEl.classList.add('is-incoming');
+                    nextEl.style.transition = 'none';
+                    nextEl.style.transform = direction > 0 ? 'translateX(100%)' : 'translateX(-100%)';
+                    // Forzar reflow
+                    void nextEl.offsetWidth;
+
+                    nextEl.style.transition = 'transform 0.3s cubic-bezier(0.25, 1, 0.5, 1)';
+                    nextEl.style.transform = 'translateX(0)';
+
+                    setTimeout(() => {
+                        currentEl.classList.remove('active');
+                        currentEl.style.transform = '';
+                        currentEl.style.transition = '';
+
+                        nextEl.classList.remove('is-incoming');
+                        nextEl.classList.add('active');
+                        nextEl.style.transform = '';
+                        nextEl.style.transition = '';
+                        isAnimating = false;
+                    }, 320);
+                }
 
                 if (captionEl) {
                     const newCaption = slides[index].getAttribute('data-caption') || slides[index].getAttribute('alt') || '';
@@ -199,11 +252,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             function goToPrev() {
+                if (isAnimating) return;
                 currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
                 updateSlide(currentIndex, -1);
             }
 
             function goToNext() {
+                if (isAnimating) return;
                 currentIndex = (currentIndex + 1) % totalSlides;
                 updateSlide(currentIndex, 1);
             }
@@ -222,9 +277,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
             }
 
-            // ==========================================
-            // Gestos Swipe y Drag & Drop (Touch + Mouse)
-            // ==========================================
             if (totalSlides > 1 && imageContainer) {
                 let startX = 0;
                 let startY = 0;
@@ -232,14 +284,125 @@ document.addEventListener('DOMContentLoaded', () => {
                 let currentY = 0;
                 let isDragging = false;
                 let isHorizontal = null;
+                let targetIncomingIndex = -1;
 
                 function getActiveSlide() {
                     return slides[currentIndex];
                 }
 
+                function cleanDragState() {
+                    slides.forEach(s => {
+                        s.classList.remove('is-incoming');
+                        s.style.transform = '';
+                        s.style.transition = '';
+                        s.style.opacity = '';
+                    });
+                    if (slides[currentIndex]) {
+                        slides[currentIndex].classList.add('active');
+                    }
+                    incomingSlide = null;
+                    targetIncomingIndex = -1;
+                }
+
+                function onDragMove(diffX) {
+                    const activeSlide = getActiveSlide();
+                    if (!activeSlide) return;
+
+                    const containerWidth = imageContainer.offsetWidth || 300;
+
+                    let newIncomingIndex = -1;
+                    if (diffX < 0) {
+                        newIncomingIndex = (currentIndex + 1) % totalSlides;
+                    } else if (diffX > 0) {
+                        newIncomingIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                    }
+
+                    if (newIncomingIndex !== targetIncomingIndex) {
+                        if (incomingSlide) {
+                            incomingSlide.classList.remove('is-incoming');
+                            incomingSlide.style.transform = '';
+                            incomingSlide.style.transition = '';
+                            incomingSlide.style.opacity = '';
+                        }
+                        targetIncomingIndex = newIncomingIndex;
+                        if (targetIncomingIndex >= 0) {
+                            incomingSlide = slides[targetIncomingIndex];
+                            incomingSlide.classList.add('is-incoming');
+                            incomingSlide.style.transition = 'none';
+                        } else {
+                            incomingSlide = null;
+                        }
+                    }
+
+                    activeSlide.style.transition = 'none';
+                    activeSlide.style.transform = `translateX(${diffX}px)`;
+
+                    if (incomingSlide) {
+                        const offset = diffX < 0 ? containerWidth + diffX : -containerWidth + diffX;
+                        incomingSlide.style.transform = `translateX(${offset}px)`;
+                    }
+                }
+
+                function onDragEnd() {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    card.classList.remove('is-dragging');
+
+                    const diffX = currentX - startX;
+                    const containerWidth = imageContainer.offsetWidth || 300;
+                    const threshold = Math.min(50, containerWidth * 0.18);
+
+                    const activeSlide = getActiveSlide();
+
+                    if (isHorizontal && Math.abs(diffX) >= threshold && incomingSlide) {
+                        isAnimating = true;
+                        const toNext = diffX < 0;
+                        const targetIndex = targetIncomingIndex;
+
+                        activeSlide.style.transition = 'transform 0.25s ease-out';
+                        activeSlide.style.transform = toNext ? `translateX(${-containerWidth}px)` : `translateX(${containerWidth}px)`;
+
+                        incomingSlide.style.transition = 'transform 0.25s ease-out';
+                        incomingSlide.style.transform = 'translateX(0px)';
+
+                        setTimeout(() => {
+                            currentIndex = targetIndex;
+                            cleanDragState();
+                            isAnimating = false;
+
+                            if (captionEl) {
+                                const newCaption = slides[currentIndex].getAttribute('data-caption') || slides[currentIndex].getAttribute('alt') || '';
+                                captionEl.textContent = newCaption;
+                            }
+                            if (counterEl) {
+                                const curStr = String(currentIndex + 1).padStart(2, '0');
+                                const totStr = String(totalSlides).padStart(2, '0');
+                                counterEl.textContent = `${curStr} / ${totStr}`;
+                            }
+                        }, 260);
+                    } else {
+                        // Cancelar arrastre, volver a posición original
+                        if (activeSlide) {
+                            activeSlide.style.transition = 'transform 0.2s ease-out';
+                            activeSlide.style.transform = 'translateX(0px)';
+                        }
+                        if (incomingSlide) {
+                            incomingSlide.style.transition = 'transform 0.2s ease-out';
+                            const targetOffset = diffX < 0 ? containerWidth : -containerWidth;
+                            incomingSlide.style.transform = `translateX(${targetOffset}px)`;
+                        }
+
+                        setTimeout(() => {
+                            cleanDragState();
+                        }, 210);
+                    }
+
+                    isHorizontal = null;
+                }
+
                 // Touch Events (Mobile)
                 imageContainer.addEventListener('touchstart', (e) => {
-                    if (e.touches.length !== 1) return;
+                    if (isAnimating || e.touches.length !== 1) return;
                     startX = e.touches[0].clientX;
                     startY = e.touches[0].clientY;
                     currentX = startX;
@@ -256,100 +419,48 @@ document.addEventListener('DOMContentLoaded', () => {
                     const diffY = currentY - startY;
 
                     if (isHorizontal === null) {
-                        // Detectar si el usuario intenta hacer swipe horizontal o scroll vertical
-                        if (Math.abs(diffX) > 8 || Math.abs(diffY) > 8) {
+                        if (Math.abs(diffX) > 7 || Math.abs(diffY) > 7) {
                             isHorizontal = Math.abs(diffX) > Math.abs(diffY);
                         }
                     }
 
                     if (isHorizontal) {
-                        const activeSlide = getActiveSlide();
-                        if (activeSlide) {
-                            activeSlide.style.transition = 'none';
-                            // Resistencia elástica en los extremos si no queremos que se pase demasiado
-                            activeSlide.style.transform = `translateX(${diffX * 0.75}px)`;
-                        }
+                        onDragMove(diffX);
                     }
                 }, { passive: true });
 
                 imageContainer.addEventListener('touchend', () => {
-                    if (!isDragging) return;
-                    isDragging = false;
-                    const diffX = currentX - startX;
-                    const threshold = 40; // Umbral mínimo de píxeles para pasar foto
-
-                    const activeSlide = getActiveSlide();
-                    if (activeSlide) {
-                        activeSlide.style.transition = 'transform 0.25s ease, opacity 0.45s ease';
-                    }
-
-                    if (isHorizontal && Math.abs(diffX) >= threshold) {
-                        if (diffX < 0) {
-                            goToNext();
-                        } else {
-                            goToPrev();
-                        }
-                    } else if (activeSlide) {
-                        activeSlide.style.transform = '';
-                    }
-                    isHorizontal = null;
+                    if (isDragging) onDragEnd();
                 });
 
                 imageContainer.addEventListener('touchcancel', () => {
-                    isDragging = false;
-                    isHorizontal = null;
-                    const activeSlide = getActiveSlide();
-                    if (activeSlide) {
-                        activeSlide.style.transition = 'transform 0.25s ease, opacity 0.45s ease';
-                        activeSlide.style.transform = '';
+                    if (isDragging) {
+                        isDragging = false;
+                        isHorizontal = null;
+                        cleanDragState();
                     }
                 });
 
                 // Mouse Events (Desktop Drag & Drop)
                 imageContainer.addEventListener('mousedown', (e) => {
-                    if (e.button !== 0) return; // Solo clic izquierdo
+                    if (isAnimating || e.button !== 0) return;
                     startX = e.clientX;
                     currentX = startX;
                     isDragging = true;
+                    isHorizontal = true;
                     card.classList.add('is-dragging');
-                    const activeSlide = getActiveSlide();
-                    if (activeSlide) {
-                        activeSlide.style.transition = 'none';
-                    }
                     e.preventDefault();
                 });
 
                 window.addEventListener('mousemove', (e) => {
-                    if (!isDragging) return;
+                    if (!isDragging || isHorizontal === false) return;
                     currentX = e.clientX;
                     const diffX = currentX - startX;
-                    const activeSlide = getActiveSlide();
-                    if (activeSlide) {
-                        activeSlide.style.transform = `translateX(${diffX * 0.75}px)`;
-                    }
+                    onDragMove(diffX);
                 });
 
                 window.addEventListener('mouseup', () => {
-                    if (!isDragging) return;
-                    isDragging = false;
-                    card.classList.remove('is-dragging');
-                    const diffX = currentX - startX;
-                    const threshold = 45;
-
-                    const activeSlide = getActiveSlide();
-                    if (activeSlide) {
-                        activeSlide.style.transition = 'transform 0.25s ease, opacity 0.45s ease';
-                    }
-
-                    if (Math.abs(diffX) >= threshold) {
-                        if (diffX < 0) {
-                            goToNext();
-                        } else {
-                            goToPrev();
-                        }
-                    } else if (activeSlide) {
-                        activeSlide.style.transform = '';
-                    }
+                    if (isDragging) onDragEnd();
                 });
             }
 
