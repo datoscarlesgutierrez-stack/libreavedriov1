@@ -25,6 +25,8 @@ Diseñado y maquetado con una arquitectura frontend ligera, accesible y responsi
 - `granja-huevos.html`: Información sobre el producto, marcaje código 0 y calidad de yema.
 - `pedidos.html`: Estado comercial y aviso de apertura (llegada de gallinas en febrero de 2027).
 - `contacto.html`: Formulario directo de contacto y pedidos para grupos de consumo.
+- `docs/`:
+  - `PROPUESTA_GESTION_PEDIDOS_Y_FORMULARIOS.md`: Arquitectura técnica y operativa para gestión de formularios con Google Sheets, seguimiento de pedidos, estados de entrega, facturación y contabilidad mensual sin coste ni fricción.
 - `src/`:
   - `config.css`: Variables globales (paleta de colores, tipografías, alturas de cabecera y márgenes de scroll).
   - `style.css`: Hojas de estilos modulares y componentes visuales.
