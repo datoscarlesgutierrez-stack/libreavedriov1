@@ -531,8 +531,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 position: 'bottomleft'
             }).addTo(leafletMapInstance);
 
+            // Atribución configurable desde config.css (--map-attribution)
+            const mapAttr = (getComputedStyle(document.documentElement).getPropertyValue('--map-attribution') || '').trim().replace(/^['"]|['"]$/g, '');
+
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
+                attribution: mapAttr || false,
                 maxZoom: 19
             }).addTo(leafletMapInstance);
 

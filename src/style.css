@@ -1528,23 +1528,26 @@ body.map-fullscreen-active {
 }
 
 .map-popup-card {
-  padding: 2px;
+  padding: 4px 6px 6px 6px;
   text-align: center;
 }
 
 .map-popup-card h4 {
   font-family: var(--font-heading);
   color: var(--color-marker);
-  font-size: 0.85rem;
-  line-height: 1.2;
-  margin-bottom: 2px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1.25;
+  margin-bottom: 3px;
 }
 
-.map-popup-card p {
+.map-popup-card p.popup-sub {
+  font-family: var(--font-body);
   font-size: 0.75rem;
-  color: var(--color-text);
-  line-height: 1.2;
-  margin-bottom: 5px;
+  color: #555;
+  line-height: 1.25;
+  margin-bottom: 8px;
 }
 
 .map-popup-card .coords {
@@ -1555,21 +1558,30 @@ body.map-fullscreen-active {
 }
 
 .popup-link {
-  display: inline-block;
-  padding: 0.25rem 0.6rem;
-  background: var(--color-marker);
-  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
+  background: var(--color-accent);
+  color: #ffffff !important;
   text-decoration: none;
   font-family: var(--font-heading);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  border-radius: 4px;
-  transition: background 0.2s;
+  letter-spacing: 0.04em;
+  border-radius: var(--nav-btn-radius, 50px);
+  border: 1.5px solid var(--color-marker);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .popup-link:hover {
-  background: var(--color-accent);
-  color: white;
+  background: var(--color-wine, #821723);
+  color: #ffffff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Contact Form */

@@ -256,10 +256,12 @@
 
 
   /* ===========================================================================
-     🗺️  MAPA (Página Contacto)
+     🗺️  MAPA (Página Contacto / Portada)
      =========================================================================== */
 
   --map-filter: sepia(0.28) saturate(0.85) contrast(0.96) brightness(0.98);
   /* Filtro estético para el mapa OpenStreetMap. Ajusta los valores para más/menos color */
 
+  --map-attribution: "";
+  /* Texto de atribución inferior del mapa (ej: '&copy; OpenStreetMap contributors'). Déjalo en "" para ocultarlo */
 }
