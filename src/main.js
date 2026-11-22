@@ -179,19 +179,25 @@ document.addEventListener('DOMContentLoaded', () => {
             // Permite ver la foto siguiente/anterior en tiempo real al arrastrar
             // ==========================================
             let isAnimating = false;
-            let incomingSlide = null;
+            let currentDragCard = null; // Control para drag de ratón por tarjeta
+
+            function applySlideClasses(activeIdx) {
+                slides.forEach((s, idx) => {
+                    const isActive = idx === activeIdx;
+                    s.classList.toggle('active', isActive);
+                    s.classList.remove('is-incoming');
+                    s.style.transform = '';
+                    s.style.transition = '';
+                    s.style.opacity = '';
+                    s.style.zIndex = isActive ? '2' : '1';
+                });
+            }
 
             function updateSlide(index, direction = 0) {
                 if (isAnimating) return;
 
                 if (direction === 0) {
-                    slides.forEach((s, idx) => {
-                        s.classList.toggle('active', idx === index);
-                        s.classList.remove('is-incoming');
-                        s.style.transform = '';
-                        s.style.transition = '';
-                        s.style.opacity = '';
-                    });
+                    applySlideClasses(index);
                 } else {
                     isAnimating = true;
                     const prevIndex = (direction > 0)
@@ -205,15 +211,20 @@ document.addEventListener('DOMContentLoaded', () => {
                             s.classList.remove('active', 'is-incoming');
                             s.style.transform = '';
                             s.style.transition = '';
-                            s.style.opacity = '';
+                            s.style.opacity = '0';
+                            s.style.zIndex = '0';
                         }
                     });
 
                     currentEl.classList.add('active');
+                    currentEl.style.zIndex = '2';
+                    currentEl.style.opacity = '1';
                     currentEl.style.transition = 'transform 0.3s cubic-bezier(0.25, 1, 0.5, 1)';
                     currentEl.style.transform = direction > 0 ? 'translateX(-100%)' : 'translateX(100%)';
 
                     nextEl.classList.add('is-incoming');
+                    nextEl.style.zIndex = '3';
+                    nextEl.style.opacity = '1';
                     nextEl.style.transition = 'none';
                     nextEl.style.transform = direction > 0 ? 'translateX(100%)' : 'translateX(-100%)';
                     // Forzar reflow
@@ -223,14 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     nextEl.style.transform = 'translateX(0)';
 
                     setTimeout(() => {
-                        currentEl.classList.remove('active');
-                        currentEl.style.transform = '';
-                        currentEl.style.transition = '';
-
-                        nextEl.classList.remove('is-incoming');
-                        nextEl.classList.add('active');
-                        nextEl.style.transform = '';
-                        nextEl.style.transition = '';
+                        applySlideClasses(index);
                         isAnimating = false;
                     }, 320);
                 }
@@ -284,22 +288,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 let currentY = 0;
                 let isDragging = false;
                 let isHorizontal = null;
+                let incomingSlide = null;
                 let targetIncomingIndex = -1;
 
                 function getActiveSlide() {
                     return slides[currentIndex];
                 }
 
-                function cleanDragState() {
-                    slides.forEach(s => {
+                function resetDragStyles() {
+                    slides.forEach((s, idx) => {
                         s.classList.remove('is-incoming');
+                        s.classList.toggle('active', idx === currentIndex);
                         s.style.transform = '';
                         s.style.transition = '';
                         s.style.opacity = '';
+                        s.style.zIndex = idx === currentIndex ? '2' : '1';
                     });
-                    if (slides[currentIndex]) {
-                        slides[currentIndex].classList.add('active');
-                    }
                     incomingSlide = null;
                     targetIncomingIndex = -1;
                 }
@@ -323,12 +327,15 @@ document.addEventListener('DOMContentLoaded', () => {
                             incomingSlide.style.transform = '';
                             incomingSlide.style.transition = '';
                             incomingSlide.style.opacity = '';
+                            incomingSlide.style.zIndex = '1';
                         }
                         targetIncomingIndex = newIncomingIndex;
-                        if (targetIncomingIndex >= 0) {
+                        if (targetIncomingIndex >= 0 && targetIncomingIndex !== currentIndex) {
                             incomingSlide = slides[targetIncomingIndex];
                             incomingSlide.classList.add('is-incoming');
                             incomingSlide.style.transition = 'none';
+                            incomingSlide.style.opacity = '1';
+                            incomingSlide.style.zIndex = '3';
                         } else {
                             incomingSlide = null;
                         }
@@ -336,6 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     activeSlide.style.transition = 'none';
                     activeSlide.style.transform = `translateX(${diffX}px)`;
+                    activeSlide.style.zIndex = '2';
 
                     if (incomingSlide) {
                         const offset = diffX < 0 ? containerWidth + diffX : -containerWidth + diffX;
@@ -346,15 +354,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 function onDragEnd() {
                     if (!isDragging) return;
                     isDragging = false;
+                    currentDragCard = null;
                     card.classList.remove('is-dragging');
 
                     const diffX = currentX - startX;
                     const containerWidth = imageContainer.offsetWidth || 300;
-                    const threshold = Math.min(50, containerWidth * 0.18);
+                    const threshold = Math.min(45, containerWidth * 0.15);
 
                     const activeSlide = getActiveSlide();
 
-                    if (isHorizontal && Math.abs(diffX) >= threshold && incomingSlide) {
+                    if (isHorizontal && Math.abs(diffX) >= threshold && incomingSlide && targetIncomingIndex >= 0) {
                         isAnimating = true;
                         const toNext = diffX < 0;
                         const targetIndex = targetIncomingIndex;
@@ -367,7 +376,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         setTimeout(() => {
                             currentIndex = targetIndex;
-                            cleanDragState();
+                            resetDragStyles();
                             isAnimating = false;
 
                             if (captionEl) {
@@ -393,7 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
 
                         setTimeout(() => {
-                            cleanDragState();
+                            resetDragStyles();
                         }, 210);
                     }
 
@@ -409,6 +418,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     currentY = startY;
                     isDragging = true;
                     isHorizontal = null;
+                    incomingSlide = null;
+                    targetIncomingIndex = -1;
                 }, { passive: true });
 
                 imageContainer.addEventListener('touchmove', (e) => {
@@ -419,7 +430,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const diffY = currentY - startY;
 
                     if (isHorizontal === null) {
-                        if (Math.abs(diffX) > 7 || Math.abs(diffY) > 7) {
+                        if (Math.abs(diffX) > 6 || Math.abs(diffY) > 6) {
                             isHorizontal = Math.abs(diffX) > Math.abs(diffY);
                         }
                     }
@@ -437,7 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (isDragging) {
                         isDragging = false;
                         isHorizontal = null;
-                        cleanDragState();
+                        resetDragStyles();
                     }
                 });
 
@@ -448,19 +459,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     currentX = startX;
                     isDragging = true;
                     isHorizontal = true;
+                    currentDragCard = card;
+                    incomingSlide = null;
+                    targetIncomingIndex = -1;
                     card.classList.add('is-dragging');
                     e.preventDefault();
                 });
 
                 window.addEventListener('mousemove', (e) => {
-                    if (!isDragging || isHorizontal === false) return;
+                    if (!isDragging || currentDragCard !== card) return;
                     currentX = e.clientX;
                     const diffX = currentX - startX;
                     onDragMove(diffX);
                 });
 
                 window.addEventListener('mouseup', () => {
-                    if (isDragging) onDragEnd();
+                    if (isDragging && currentDragCard === card) onDragEnd();
                 });
             }
 
