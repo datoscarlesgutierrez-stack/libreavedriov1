@@ -78,7 +78,19 @@ h2 {
   align-items: center;
   justify-content: space-between;
   overflow: visible;
-  transition: height 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: height 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Transición suave y armónica para el contenido inferior (main) cuando el hero se abre/cierra */
+main {
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
+}
+
+/* Cuando el hero se expande para revelar la imagen completa, la página se desplaza hacia abajo */
+body.hero-revealing main {
+  transform: translateY(40px);
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Initial Home Animation States */
@@ -91,6 +103,12 @@ h2 {
   opacity: 0;
   transform: scale(0.9);
   transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+/* Cuando se reproduce desde el clic del logo (replay), el logo SIEMPRE se mantiene visible */
+.hero-intro.is-animating.replay-intro .logo-wrapper {
+  opacity: 1 !important;
+  transform: scale(1) !important;
 }
 
 .hero-intro.is-animating .main-menu>* {
@@ -140,6 +158,39 @@ h2 {
   opacity: 1;
   transform: translateY(0);
   transition-delay: 0.49s;
+}
+
+/* Transición inversa al hacer clic en el Logo:
+   Los botones desaparecen en cascada inversa hacia abajo, el hero se expande a pantalla completa (100vh) */
+.hero-intro.reversing .main-menu>* {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.hero-intro.reversing .main-menu>*:nth-child(5) {
+  transition-delay: 0.0s;
+}
+
+.hero-intro.reversing .main-menu>*:nth-child(4) {
+  transition-delay: 0.07s;
+}
+
+.hero-intro.reversing .main-menu>*:nth-child(3) {
+  transition-delay: 0.14s;
+}
+
+.hero-intro.reversing .main-menu>*:nth-child(2) {
+  transition-delay: 0.21s;
+}
+
+.hero-intro.reversing .main-menu>*:nth-child(1) {
+  transition-delay: 0.28s;
+}
+
+.hero-intro.expand-full {
+  height: 100vh !important;
+  min-height: 100vh !important;
 }
 
 .hero-bg {
@@ -236,8 +287,8 @@ h2 {
   white-space: nowrap;
   margin-top: 6px;
   font-family: var(--font-heading);
-  font-weight: 600;
-  font-style: italic;
+  font-weight: var(--logo-subtitle-font-weight, 800);
+  font-style: var(--logo-subtitle-font-style, italic);
   font-size: clamp(8px, calc(var(--width-logo-wrapper) * 0.02708), 20px);
   color: var(--color-marker);
   text-align: left;
@@ -1786,6 +1837,11 @@ body.map-fullscreen-active {
   .hero-intro.is-animating.step-shrink {
     height: var(--hero-mobile-height, var(--hero-compact-height, 50vh));
     min-height: var(--hero-mobile-min-height, 340px);
+  }
+
+  .hero-intro.expand-full {
+    height: 100vh;
+    min-height: 100vh;
   }
 
   .logo-wrapper {
