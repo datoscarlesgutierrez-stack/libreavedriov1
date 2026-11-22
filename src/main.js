@@ -759,14 +759,27 @@ document.addEventListener('DOMContentLoaded', () => {
             let contentHtml = '';
             if (type === 'phone') {
                 const raw = wrapper.getAttribute('data-raw') ? atob(wrapper.getAttribute('data-raw')) : decoded.replace(/\s+/g, '');
-                const waNum = raw.replace(/\D/g, '');
+                const cleanNum = raw.replace(/\D/g, ''); // 34626887384
+                const telLink = `tel:${raw}`;
+                const waLink = `https://wa.me/${cleanNum}`;
+                const tgLink = `https://t.me/+${cleanNum}`;
+                const signalLink = `https://signal.me/#p/+${cleanNum}`;
+
                 contentHtml = `
-                    <span class="revealed-contact-box">
-                        <a href="tel:${raw}" class="contact-revealed-link">${decoded}</a>
-                        <a href="https://wa.me/${waNum}" target="_blank" rel="noopener" class="contact-wa-badge" title="Escribir por WhatsApp">
-                            💬 WhatsApp
-                        </a>
-                    </span>
+                    <div class="revealed-phone-block">
+                        <a href="${telLink}" class="contact-revealed-link" title="Llamar">${decoded}</a>
+                        <div class="contact-apps-row">
+                            <a href="${waLink}" target="_blank" rel="noopener" class="contact-app-badge wa" title="Abrir en WhatsApp">
+                                💬 WhatsApp
+                            </a>
+                            <a href="${tgLink}" target="_blank" rel="noopener" class="contact-app-badge tg" title="Abrir en Telegram">
+                                ✈️ Telegram
+                            </a>
+                            <a href="${signalLink}" target="_blank" rel="noopener" class="contact-app-badge signal" title="Abrir en Signal">
+                                🔒 Signal
+                            </a>
+                        </div>
+                    </div>
                 `;
             } else if (type === 'email') {
                 contentHtml = `

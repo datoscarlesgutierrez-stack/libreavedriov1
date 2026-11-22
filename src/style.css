@@ -1610,7 +1610,8 @@ body.map-fullscreen-active {
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
   width: 100%;
   padding: 1rem;
   border: 2px solid var(--color-marker);
@@ -1622,8 +1623,19 @@ body.map-fullscreen-active {
   cursor: text;
 }
 
+.form-group select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23101010' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.15em;
+  padding-right: 2.5rem;
+}
+
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.form-group select:focus {
   outline: none;
   border-color: var(--color-accent);
   box-shadow: 4px 4px 0 var(--color-marker);
@@ -2162,6 +2174,21 @@ body.map-fullscreen-active {
   animation: fadeInContact 0.3s ease-out;
 }
 
+.revealed-phone-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+  animation: fadeInContact 0.3s ease-out;
+}
+
+.contact-apps-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+}
+
 @keyframes fadeInContact {
   from {
     opacity: 0;
@@ -2180,23 +2207,37 @@ body.map-fullscreen-active {
   font-size: 0.95rem;
 }
 
-.contact-wa-badge {
+.contact-app-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  background: #25D366;
   color: #ffffff !important;
   font-size: 0.75rem;
   font-weight: 700;
-  padding: 0.25rem 0.6rem;
+  padding: 0.28rem 0.65rem;
   border-radius: 999px;
   text-decoration: none !important;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
-  transition: transform 0.15s ease, background 0.15s ease;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+  user-select: none;
 }
 
-.contact-wa-badge:hover {
-  background: #20ba5a;
-  transform: scale(1.05);
+.contact-app-badge.wa {
+  background: #25D366;
+}
+
+.contact-app-badge.tg {
+  background: #2AABEE;
+}
+
+.contact-app-badge.signal {
+  background: #3A76F0;
+}
+
+.contact-app-badge:hover {
+  transform: translateY(-1px) scale(1.04);
+  filter: brightness(1.08);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   color: #ffffff !important;
 }
