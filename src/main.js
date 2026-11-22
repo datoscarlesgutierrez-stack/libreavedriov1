@@ -244,6 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
             leafletMapInstance = L.map('osm-map', {
                 center: mapCoords,
                 zoom: 15,
+                zoomControl: false, // Desactivamos el zoom por defecto arriba a la izquierda para ponerlo abajo
                 dragging: !isTouch,
                 touchZoom: true,
                 scrollWheelZoom: !isTouch,
@@ -251,6 +252,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 boxZoom: !isTouch,
                 keyboard: !isTouch,
             });
+
+            // Colocar los botones de zoom (+ / -) en la esquina inferior izquierda
+            L.control.zoom({
+                position: 'bottomleft'
+            }).addTo(leafletMapInstance);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',

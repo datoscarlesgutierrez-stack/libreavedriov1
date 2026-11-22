@@ -1395,11 +1395,12 @@ body.hero-revealing main {
   filter: var(--map-filter);
 }
 
-/* Botón Fullscreen Integrado en el Mapa */
+/* Botón Fullscreen Integrado en el Mapa: ubicado abajo a la derecha para despejar el popup */
 .map-fullscreen-btn {
   position: absolute;
-  top: 12px;
+  bottom: 24px;
   right: 12px;
+  top: auto;
   z-index: 1000;
   background: rgba(255, 251, 240, 0.96);
   border: 1.8px solid var(--color-marker);
@@ -1450,6 +1451,7 @@ body.map-fullscreen-active {
 
 .map-canvas.is-fullscreen .map-fullscreen-btn {
   top: 18px;
+  bottom: auto;
   right: 18px;
   padding: 0.6rem 1.15rem;
   font-size: 0.8rem;
