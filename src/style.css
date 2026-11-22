@@ -1943,13 +1943,16 @@ body.map-fullscreen-active {
     min-width: 250px;
     max-width: calc(100vw - 20px);
     left: 0;
+    right: auto;
     transform: translateY(8px);
     z-index: 99999;
     box-shadow: 5px 5px 0 var(--color-marker);
   }
 
-  /* LA GRANJA dropdown: alineado a la derecha en mobile para no salirse de pantalla */
-  .nav-dropdown:nth-child(2) .dropdown-menu {
+  /* LA GRANJA es el 3er hijo de .main-menu (INICIO=1, ¿QUIÉNES SOMOS?=2, LA GRANJA=3):
+     Alineado a la derecha del botón para que no se salga de la pantalla en móvil */
+  .main-menu>.nav-dropdown:nth-of-type(2) .dropdown-menu,
+  .nav-dropdown:nth-child(3) .dropdown-menu {
     left: auto;
     right: 0;
   }

@@ -426,32 +426,53 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 9. Contacto - Revelar Email y Teléfono (Protección anti-spam)
+    // 9. Contacto - Revelar Email y Teléfono (Protección anti-spam con soporte click y touch)
     function initContactReveal() {
-        const revealBtn = document.getElementById('reveal-contact-btn');
-        const contactDetails = document.getElementById('protected-contact-details');
-        const revealWrapper = document.getElementById('contact-reveal-wrapper');
-        const emailLink = document.getElementById('protected-email-link');
-        const phoneLink = document.getElementById('protected-phone-link');
+        const handleReveal = (e) => {
+            const btn = e.target.closest('.btn-reveal-contact');
+            if (!btn) return;
+            const wrapper = btn.closest('.protected-contact-wrapper');
+            if (!wrapper || wrapper.dataset.revealed === 'true') return;
 
-        if (!revealBtn || !contactDetails || !emailLink || !phoneLink) return;
+            e.preventDefault();
+            wrapper.dataset.revealed = 'true';
+            const type = wrapper.getAttribute('data-type');
+            const c1 = wrapper.getAttribute('data-chunk1') || '';
+            const c2 = wrapper.getAttribute('data-chunk2') || '';
+            let decoded = '';
+            try {
+                decoded = atob(c1) + atob(c2);
+            } catch (err) {
+                console.error('Error decoding contact info:', err);
+                return;
+            }
 
-        const emailUser = 'granjalibreavedrio';
-        const emailDomain = 'gmail.com';
-        const phoneRaw = '697475149';
-        const phoneDisplay = '697 47 51 49';
+            let contentHtml = '';
+            if (type === 'phone') {
+                const raw = wrapper.getAttribute('data-raw') ? atob(wrapper.getAttribute('data-raw')) : decoded.replace(/\s+/g, '');
+                const waNum = raw.replace(/\D/g, '');
+                contentHtml = `
+                    <span class="revealed-contact-box">
+                        <a href="tel:${raw}" class="contact-revealed-link">${decoded}</a>
+                        <a href="https://wa.me/${waNum}" target="_blank" rel="noopener" class="contact-wa-badge" title="Escribir por WhatsApp">
+                            💬 WhatsApp
+                        </a>
+                    </span>
+                `;
+            } else if (type === 'email') {
+                contentHtml = `
+                    <span class="revealed-contact-box">
+                        <a href="mailto:${decoded}" class="contact-revealed-link">${decoded}</a>
+                    </span>
+                `;
+            }
 
-        revealBtn.addEventListener('click', () => {
-            const emailFull = `${emailUser}@${emailDomain}`;
-            emailLink.href = `mailto:${emailFull}`;
-            emailLink.textContent = emailFull;
+            wrapper.innerHTML = contentHtml;
+        };
 
-            phoneLink.href = `tel:+34${phoneRaw}`;
-            phoneLink.textContent = phoneDisplay;
-
-            revealWrapper.style.display = 'none';
-            contactDetails.style.display = 'block';
-        });
+        // Event delegation global: funciona tanto al entrar directamente como navegando por SPA
+        document.removeEventListener('click', handleReveal);
+        document.addEventListener('click', handleReveal);
     }
 
     // Inicializador global de componentes por página
