@@ -25,13 +25,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600;700&family=Indie+Flower&display=swap"
-        rel="stylesheet">
-  <script type="module" crossorigin src="./assets/main-DY1K_qOD.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/main-DC3ChpPv.css">
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&family=Open+Sans:wght@400;600;700&family=Indie+Flower&display=swap"
+        rel="stylesheet">
+  <script type="module" crossorigin src="./assets/main-BnG_7Ph_.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/main-NBKfd8Fo.css">
 </head>
 
 <body>
+
 
     <!-- Hero Section with Slideshow & Menu inside frame -->
     <section class="hero-intro">
@@ -161,9 +162,20 @@
                                 <input type="email" id="email" name="email" required placeholder="tucorreo@ejemplo.com">
                             </div>
                             <div class="form-group">
-                                <label for="tel">Teléfono (WhatsApp)</label>
+                                <label for="tel">Teléfono</label>
                                 <input type="tel" id="tel" name="tel" required value="+34 "
                                     pattern="^(\+34\s?)[6789]\d{8}$" title="Formato: +34 seguido de 9 números">
+                            </div>
+                            <div class="form-group">
+                                <label for="preferred-contact">Canal de contacto preferido</label>
+                                <div class="select-wrapper">
+                                    <select id="preferred-contact" name="preferred_contact" class="form-select" required>
+                                        <option value="Correo electrónico" selected>📧 Correo electrónico</option>
+                                        <option value="WhatsApp">💬 WhatsApp</option>
+                                        <option value="Telegram">✈️ Telegram</option>
+                                        <option value="Signal">🔒 Signal</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="message">Mensaje o Consulta</label>
@@ -180,7 +192,7 @@
                                 <strong>Finalidad:</strong> Responder a tu mensaje o consulta planteada a través del formulario.<br>
                                 <strong>Legitimación:</strong> Tu consentimiento expreso al enviar el formulario.<br>
                                 <strong>Destinatarios:</strong> No se ceden datos a terceros salvo obligación legal.<br>
-                                <strong>Derechos:</strong> Puedes acceder, rectificar y suprimir tus datos escribiendo a <a href="mailto:hola@granjalibreavedrio.es" style="color: inherit; text-decoration: underline;">hola@granjalibreavedrio.es</a>.
+                                <strong>Derechos:</strong> Puedes acceder, rectificar y suprimir tus datos escribiendo a <a href="mailto:contacto@granjalibreavedrio.es" style="color: inherit; text-decoration: underline;">contacto@granjalibreavedrio.es</a>.
                             </div>
                             <button type="submit" id="submit-button" class="btn-editorial-cta"
                                 style="width: 100%; justify-content: center; padding: 0.9rem;">
@@ -235,7 +247,7 @@
                             <div class="contact-info-item">
                                 <span class="contact-info-label">📧 CORREO ELECTRÓNICO</span>
                                 <p class="contact-info-text">
-                                    <span class="protected-contact-wrapper" data-type="email" data-chunk1="aG9sYUBncmFuamFs" data-chunk2="aWJyZWF2ZWRyaW8uZXM=">
+                                    <span class="protected-contact-wrapper" data-type="email" data-chunk1="Y29udGFjdG9AZ3Jhbmo=" data-chunk2="YWxpYnJlYXZlZHJpby5lcw==">
                                         <button type="button" class="btn-reveal-contact" title="Haz clic para ver la dirección de correo">
                                             <span class="reveal-icon">🔒</span> Mostrar correo
                                         </button>
@@ -292,7 +304,7 @@
             </div>
         </div>
     </footer>
-
+
 </body>
 
 </html>
