@@ -262,32 +262,32 @@
    --map-filter: sepia(0.28) saturate(0.85) contrast(0.96) brightness(0.98);
    /* Filtro estético para el mapa OpenStreetMap. Ajusta los valores para más/menos color */
 
-  --map-prefix-attribution: "";
-  /* Prefijo de Leaflet (bandera de Ucrania y enlace a Leaflet). Déjalo en "" para ocultar Leaflet */
+   --map-prefix-attribution: "";
+   /* Prefijo de Leaflet (bandera de Ucrania y enlace a Leaflet). Déjalo en "" para ocultar Leaflet */
 
-  --map-attribution: "";
-  /* Texto de atribución de proveedores del mapa (ej: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'). Déjalo en "" para ocultarlo */
+   --map-attribution: "";
+   /* Texto de atribución de proveedores del mapa (ej: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'). Déjalo en "" para ocultarlo */
 
-  /* Textos del globo informativo del mapa (popup) */
-  --map-popup-title: "GRANJA LIBREAVEDRIO";
-  /* Título en negrita dentro del globo del mapa */
+   /* Textos del globo informativo del mapa (popup) */
+   --map-popup-title: "GRANJA LIBREAVEDRIO";
+   /* Título en negrita dentro del globo del mapa */
 
-  --map-popup-subtitle: "Piñuécar-Gandullas, Sierra Norte";
-  /* Subtítulo / ubicación dentro del globo del mapa */
+   --map-popup-subtitle: "Piñuécar-Gandullas, Sierra Norte";
+   /* Subtítulo / ubicación dentro del globo del mapa */
 
-  --map-popup-btn-text: "Abrir en Google Maps →";
-  /* Texto del botón de enlace dentro del globo del mapa */
+   --map-popup-btn-text: "Abrir en Google Maps →";
+   /* Texto del botón de enlace dentro del globo del mapa */
 
-  /* ===========================================================================
+   /* ===========================================================================
      🦶  FOOTER — Textos y separación inferior
      =========================================================================== */
 
-  --footer-text-left: "Piñuécar-Gandullas, Madrid";
-  /* Texto del lado izquierdo del footer (en móvil aparece arriba) */
+   --footer-text-left: "Piñuécar-Gandullas, Madrid";
+   /* Texto del lado izquierdo del footer (en móvil aparece arriba) */
 
-  --footer-text-right: "Granja ecológica · Sierra Norte";
-  /* Texto del lado derecho del footer (en móvil aparece abajo) */
+   --footer-text-right: "Granja avícola ecológica · Sierra Norte";
+   /* Texto del lado derecho del footer (en móvil aparece abajo) */
 
-  --footer-mobile-spacing: 0.35rem;
-  /* Espacio vertical entre los 2 textos del footer en versión móvil */
+   --footer-mobile-spacing: 0.35rem;
+   /* Espacio vertical entre los 2 textos del footer en versión móvil */
 }
