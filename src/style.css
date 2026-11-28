@@ -1053,7 +1053,7 @@ body.hero-revealing main {
   text-align: center;
 }
 
-/* Variante para foto completa 4:3 de fundadores con firma Edding */
+/* Variante para foto completa 4:3 */
 .polaroid-founders-wrapper {
   max-width: 560px;
 }
@@ -1062,19 +1062,6 @@ body.hero-revealing main {
   aspect-ratio: 4 / 3 !important;
   min-height: auto !important;
   max-height: none !important;
-}
-
-.founders-edding-signature {
-  position: absolute;
-  right: 5%;
-  bottom: 14%;
-  width: 34%;
-  height: auto;
-  z-index: 4;
-  pointer-events: none;
-  transform: rotate(-7deg);
-  opacity: 0.88;
-  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.25));
 }
 
 

@@ -5,6 +5,7 @@ import L from 'leaflet';
 import { initHeroSlideshow, playIntroAnimation, triggerLogoReplaySequence, advanceHeroSlide } from './animations.js';
 import { alignLogoSubtitle } from './subtitle.js';
 import { getPageFileName, getCssConfigBool } from './utils.js';
+import { polaroidConfig, applyHeroConfig, applyTextsConfig, applyPagePolaroids } from './polaroidConfig.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Permitir reiniciar intro con ?intro=reset en la URL
@@ -13,7 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
         sessionStorage.removeItem('hero_slide_index');
     }
 
-    // 1. Inicialización de fotos de fondo (rotación aleatoria y secuencial)
+    // 1. Inicialización de fotos de fondo (centralizadas en polaroid.md)
+    applyHeroConfig();
     initHeroSlideshow();
 
     // 2. Animación cinematográfica inicial
@@ -531,9 +533,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 position: 'bottomleft'
             }).addTo(leafletMapInstance);
 
-            // Atribución y prefijo de Leaflet configurables desde config.css
-            const mapPrefix = (getComputedStyle(document.documentElement).getPropertyValue('--map-prefix-attribution') || '').trim().replace(/^['"]|['"]$/g, '');
-            const mapAttr = (getComputedStyle(document.documentElement).getPropertyValue('--map-attribution') || '').trim().replace(/^['"]|['"]$/g, '');
+            // Atribución y prefijo de Leaflet configurables desde polaroid.md
+            const fm = polaroidConfig.footerMap;
+            const mapPrefix = fm.mapa_prefijo || '';
+            const mapAttr = fm.mapa_atribucion || '';
 
             if (leafletMapInstance.attributionControl) {
                 leafletMapInstance.attributionControl.setPrefix(mapPrefix ? mapPrefix : false);
@@ -555,10 +558,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const marker = L.marker(mapCoords, { icon: customIcon }).addTo(leafletMapInstance);
             const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${mapCoords[0]},${mapCoords[1]}`;
 
-            const computedRoot = getComputedStyle(document.documentElement);
-            const popupTitle = (computedRoot.getPropertyValue('--map-popup-title') || '').trim().replace(/^['"]|['"]$/g, '') || 'GRANJA LIBREAVEDRIO';
-            const popupSubtitle = (computedRoot.getPropertyValue('--map-popup-subtitle') || '').trim().replace(/^['"]|['"]$/g, '') || 'Piñuécar-Gandullas, Sierra Norte';
-            const popupBtnText = (computedRoot.getPropertyValue('--map-popup-btn-text') || '').trim().replace(/^['"]|['"]$/g, '') || 'Abrir en Google Maps &rarr;';
+            const popupTitle = fm.mapa_popup_titulo || 'GRANJA LIBREAVEDRIO';
+            const popupSubtitle = fm.mapa_popup_subtitulo || 'Piñuécar-Gandullas, Sierra Norte';
+            const popupBtnText = fm.mapa_popup_boton || 'Abrir en Google Maps &rarr;';
 
             const popupContent = `
                 <div class="map-popup-card">
@@ -797,31 +799,15 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('click', handleReveal);
     }
 
-    // 8. Textos de Footer configurables desde config.css
-    function applyFooterConfig() {
-        const computed = getComputedStyle(document.documentElement);
-        const textLeft = (computed.getPropertyValue('--footer-text-left') || '').trim().replace(/^['"]|['"]$/g, '');
-        const textRight = (computed.getPropertyValue('--footer-text-right') || '').trim().replace(/^['"]|['"]$/g, '');
-
-        if (textLeft) {
-            const leftEl = document.querySelector('.footer-col-left .footer-item');
-            if (leftEl) leftEl.textContent = textLeft;
-        }
-
-        if (textRight) {
-            const rightEl = document.querySelector('.footer-col-right .footer-item');
-            if (rightEl) rightEl.textContent = textRight;
-        }
-    }
-
-    // Inicializador global de componentes por página
+    // Inicializador global de componentes por página (centralizado desde polaroid.md)
     function initPageFeatures() {
+        applyPagePolaroids();
+        applyTextsConfig();
         initLeafletMap();
         initPolaroid();
         initPostitSlider();
         initContactForm();
         initContactReveal();
-        applyFooterConfig();
         alignLogoSubtitle();
         applyOrganicTapeTilt();
     }
@@ -989,3 +975,9 @@ document.addEventListener('DOMContentLoaded', () => {
         navigateTo(window.location.href, false);
     });
 });
+
+if (import.meta.hot) {
+    import.meta.hot.accept('./polaroidConfig.js', () => {
+        window.location.reload();
+    });
+}
