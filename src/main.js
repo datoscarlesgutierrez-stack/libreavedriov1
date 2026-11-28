@@ -153,14 +153,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 5b. Post-it Slider con soporte Touch & Drag (swipe / arrastrar izquierda-derecha)
     function initPostitSlider() {
-        const postitCards = document.querySelectorAll('.postit-card');
+        const postitCards = document.querySelectorAll('.postit-card, .polaroid-panoramic-card');
         if (!postitCards.length) return;
 
         postitCards.forEach(card => {
             const slides = card.querySelectorAll('.postit-slide');
             if (!slides.length) return;
 
-            const parent = card.closest('.home-hero-visual, .editorial-visual, .granja-visuals') || card.parentElement;
+            const parent = card.closest('.home-hero-visual, .editorial-visual, .granja-visuals, .polaroid-panoramic-wrapper') || card.parentElement;
             const captionEl = card.querySelector('.postit-caption') || parent.querySelector('.postit-caption');
             const counterEl = card.querySelector('.postit-counter') || parent.querySelector('.postit-counter');
             const prevBtn = card.querySelector('.postit-arrow-btn[data-action="prev"], #postit-prev, .postit-prev') || parent.querySelector('.postit-arrow-btn[data-action="prev"], #postit-prev, .postit-prev');

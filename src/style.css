@@ -749,11 +749,13 @@ body.hero-revealing main {
   touch-action: pan-y;
 }
 
-.postit-card.has-multiple-slides .postit-image-container {
+.postit-card.has-multiple-slides .postit-image-container,
+.polaroid-panoramic-card.has-multiple-slides .postit-image-container {
   cursor: grab;
 }
 
-.postit-card.has-multiple-slides.is-dragging .postit-image-container {
+.postit-card.has-multiple-slides.is-dragging .postit-image-container,
+.polaroid-panoramic-card.has-multiple-slides.is-dragging .postit-image-container {
   cursor: grabbing;
 }
 
@@ -1049,6 +1051,30 @@ body.hero-revealing main {
   color: #222;
   padding-top: 12px;
   text-align: center;
+}
+
+/* Variante para foto completa 4:3 de fundadores con firma Edding */
+.polaroid-founders-wrapper {
+  max-width: 560px;
+}
+
+.polaroid-founders-card .postit-image-container {
+  aspect-ratio: 4 / 3 !important;
+  min-height: auto !important;
+  max-height: none !important;
+}
+
+.founders-edding-signature {
+  position: absolute;
+  right: 5%;
+  bottom: 14%;
+  width: 34%;
+  height: auto;
+  z-index: 4;
+  pointer-events: none;
+  transform: rotate(-7deg);
+  opacity: 0.88;
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.25));
 }
 
 
