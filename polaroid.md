@@ -95,6 +95,6 @@ Edita este archivo para cambiar de forma centralizada las fotos, pies de foto (p
 - imagen: images/granja_4.png | caption: Preparando cada rincón para la llegada de las gallinas en febrero de 2027. | alt: Gallinas ISA Brown en libertad en Granja Libreavedrio | pos: center 42%
 
 ### contacto.html
-- imagen: images/entrada/entrada_1.jpg | caption: Entrada accesible por el camino hacia la granja. | alt: Entrada accesible a pie de calle a la granja | pos: center 50%
 - imagen: images/entrada/entrada_2.jpg | caption: Acceso directo desde el camino en Piñuécar-Gandullas. | alt: Camino de acceso a Granja Libreavedrio | pos: center 50%
+- imagen: images/entrada/entrada_1.jpg | caption: Entrada accesible por el camino hacia la granja. | alt: Entrada accesible a pie de calle a la granja | pos: center 50%
 - imagen: images/entrada/entrada_3.jpg | caption: Entorno tranquilo y rodeado de naturaleza. | alt: Llegada a las instalaciones de la granja | pos: center 50%
